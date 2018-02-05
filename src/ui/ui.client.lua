@@ -93,29 +93,27 @@ end
 
 -- Open input
 function OpenTextInput(settings)
-  Citizen.CreateThread(function()
 
-		settings = settings or {}
-		local windowTitle = settings.windowTitle or "FMMC_KEY_TIP8"
-		local defaultText = settings.defaultText or ""
-		local maxInputLength = settings.maxInputLength or 255
+	settings = settings or {}
+	local title = settings.title or "FMMC_KEY_TIP8"
+	local defaultText = settings.defaultText or ""
+	local maxInputLength = settings.maxInputLength or 255
 
-	  DisplayOnscreenKeyboard(true, windowTitle, "", defaultText, "", "", "", maxInputLength)
+	DisplayOnscreenKeyboard(true, title, "", defaultText, "", "", "", maxInputLength)
 
-		while UpdateOnscreenKeyboard() == 0 do
-			DisableAllControlActions(0);
-			Citizen.Wait(0);
-		end
+	while UpdateOnscreenKeyboard() == 0 do
+		DisableAllControlActions(0);
+		Citizen.Wait(0);
+	end
 
-		UnlockEnter()
-		local result = GetOnscreenKeyboardResult()
-		if result then
-			return result
-		else
-			return nil
-		end
+	UnlockEnter()
+	local result = GetOnscreenKeyboardResult()
+	if result then
+		return result
+	else
+		return nil
+	end
 
-	end)
 end
 
 -- Events

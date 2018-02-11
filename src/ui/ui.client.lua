@@ -116,9 +116,25 @@ function OpenTextInput(settings)
 
 end
 
+-- Text on center
+function TextNotification(settings)
+
+	settings = settings or {}
+	local text = settings.text or "Text"
+	local time = settings.time or 1000
+
+	SetTextEntry_2("STRING")
+	AddTextComponentString(text)
+	DrawSubtitleTimed(time, true)
+
+end
+
 -- Events
 RegisterNetEvent('ft_libs:Notification')
 AddEventHandler('ft_libs:Notification', Notification)
 
 RegisterNetEvent('ft_libs:AdvancedNotification')
 AddEventHandler('ft_libs:AdvancedNotification', AdvancedNotification)
+
+RegisterNetEvent('ft_libs:TextNotification')
+AddEventHandler('ft_libs:TextNotification', TextNotification)

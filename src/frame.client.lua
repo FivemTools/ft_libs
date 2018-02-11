@@ -27,18 +27,3 @@ function RunToFrames()
   end
 
 end
-
--- Client is 100% loaded games
-Citizen.CreateThread(function()
-  while true do
-    Citizen.Wait(1)
-
-    if NetworkIsSessionStarted() then
-
-      RunToFrames()
-      break
-
-    end
-
-  end
-end)

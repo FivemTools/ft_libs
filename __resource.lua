@@ -18,6 +18,10 @@ client_scripts {
   -- Frames
   "src/frame.client.lua",
 
+  -- Menu
+  "src/menu/menu.client.lua",
+  "src/menu/menus.client.lua",
+
   -- Event 100% load
   "src/client.load.lua",
 
@@ -40,6 +44,22 @@ exports {
   "OpenTextInput",
   "TextNotification",
 
+  -- Menu
+    "AddMenu",
+    "RemoveMenu",
+    "MenuIsOpen",
+    "CurrentMenu",
+    "FreezeMenu",
+    "OpenMenu",
+    "CloseMenu",
+    "NextMenu",
+    "BackMenu",
+    "CleanMenuButtons",
+    "SetMenuButtons",
+    "SetMenuValue",
+    "AddMenuButton",
+    "RemoveMenuButton",
+
 }
 
 server_scripts {
@@ -50,6 +70,9 @@ server_scripts {
 
   -- Debug
   "src/debug/debug.server.lua",
+
+  -- Exemples
+  "exemples/menu/menus.server.lua",
 
 }
 

@@ -22,6 +22,10 @@ client_scripts {
   "src/menu/menu.client.lua",
   "src/menu/menus.client.lua",
 
+  -- Blip
+  "src/blip/blip.client.lua",
+  "src/blip/blips.client.lua",
+
   -- Event 100% load
   "src/client.load.lua",
 
@@ -45,20 +49,26 @@ exports {
   "TextNotification",
 
   -- Menu
-    "AddMenu",
-    "RemoveMenu",
-    "MenuIsOpen",
-    "CurrentMenu",
-    "FreezeMenu",
-    "OpenMenu",
-    "CloseMenu",
-    "NextMenu",
-    "BackMenu",
-    "CleanMenuButtons",
-    "SetMenuButtons",
-    "SetMenuValue",
-    "AddMenuButton",
-    "RemoveMenuButton",
+  "AddMenu",
+  "RemoveMenu",
+  "MenuIsOpen",
+  "CurrentMenu",
+  "FreezeMenu",
+  "OpenMenu",
+  "CloseMenu",
+  "NextMenu",
+  "BackMenu",
+  "CleanMenuButtons",
+  "SetMenuButtons",
+  "SetMenuValue",
+  "AddMenuButton",
+  "RemoveMenuButton",
+
+  -- Blip
+  "AddBlip",
+  "RemoveBlip",
+  "ShowBlip",
+  "HideBlip",
 
 }
 
@@ -70,9 +80,6 @@ server_scripts {
 
   -- Debug
   "src/debug/debug.server.lua",
-
-  -- Exemples
-  "exemples/menu/menus.server.lua",
 
 }
 

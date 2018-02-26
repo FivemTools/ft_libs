@@ -18,9 +18,9 @@ function Blip(data)
   self.rotation = data.rotation or 0
 
   if data.shortRange ~= nil then
-      self.shortRange = data.shortRange
+    self.shortRange = data.shortRange
   else
-      self.shortRange = true
+    self.shortRange = true
   end
 
   if data.enable ~= nil then
@@ -30,31 +30,28 @@ function Blip(data)
   end
 
   self.Show = function()
-    Citizen.CreateThread(function()
 
-      if self.x ~= nil and self.y ~= nil and self.z ~= nil and self.blip == nil then
-        self.blip = AddBlipForCoord(self.x, self.y, self.z)
-        SetBlipSprite(self.blip, self.imageId)
-        SetBlipAsShortRange(self.blip, self.shortRange)
-        SetBlipColour(self.blip, self.colorId)
-        SetBlipScale(self.blip, self.scale)
-        SetBlipRotation(self.blip, self.rotation)
-        BeginTextCommandSetBlipName("STRING")
-        AddTextComponentString(self.text)
-        EndTextCommandSetBlipName(self.blip)
-      end
+    if self.x ~= nil and self.y ~= nil and self.z ~= nil and self.blip == nil then
+      local blip = AddBlipForCoord(self.x, self.y, self.z)
+      SetBlipSprite(blip, self.imageId)
+      SetBlipAsShortRange(blip, self.shortRange)
+      SetBlipColour(blip, self.colorId)
+      SetBlipScale(blip, self.scale)
+      SetBlipRotation(blip, self.rotation)
+      BeginTextCommandSetBlipName("STRING")
+      AddTextComponentString(self.text)
+      EndTextCommandSetBlipName(blip)
+      self.blip = blip
+    end
 
-    end)
   end
 
   self.Hide = function()
-    Citizen.CreateThread(function()
 
-      if self.blip ~= nil then
-        RemoveBlip(self.blip)
-      end
+    if self.blip ~= nil then
+      Citizen.InvokeNative(0x86A652570E5F25DD, Citizen.PointerValueIntInitialized(self.blip))
+    end
 
-    end)
   end
 
   return self

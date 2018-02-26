@@ -49,13 +49,27 @@ function RemoveBlip(...)
 
     for _, name in ipairs(args[1]) do
       Citizen.Wait(1)
-      Blips[name] = nil
+      if Blips[name] ~= nil then
+
+        if Blips[name].enable then
+          Blips[name].Hide()
+        end
+        Blips[name] = nil
+
+      end
     end
 
   elseif count == 1 then
 
     local name = args[1]
-    Blips[name] = nil
+    if Blips[name] ~= nil then
+
+      if Blips[name].enable then
+        Blips[name].Hide()
+      end
+      Blips[name] = nil
+
+    end
 
   else
 
@@ -76,6 +90,7 @@ function ShowBlip(...)
       Citizen.Wait(1)
       if Blips[name] ~= nil then
         Blips[name].Show()
+        Blips[name].enable = true
       end
     end
 
@@ -84,6 +99,7 @@ function ShowBlip(...)
     local name = args[1]
     if Blips[name] ~= nil then
       Blips[name].Show()
+      Blips[name].enable = true
     end
 
   else
@@ -105,6 +121,7 @@ function HideBlip(...)
       Citizen.Wait(1)
       if Blips[name] ~= nil then
         Blips[name].Hide()
+        Blips[name].enable = false
       end
     end
 
@@ -113,6 +130,7 @@ function HideBlip(...)
     local name = args[1]
     if Blips[name] ~= nil then
       Blips[name].Hide()
+      Blips[name].enable = false
     end
 
   else

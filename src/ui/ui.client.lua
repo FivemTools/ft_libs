@@ -78,7 +78,7 @@ function Text(settings)
 		local blue = settings.blue or 255
 		local alpha = settings.alpha or 255
 
-		if data.shortRange ~= nil then
+		if settings.center ~= nil then
 				local centre = settings.center
 		else
 				local centre = true

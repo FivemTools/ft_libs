@@ -70,7 +70,6 @@ function Text(settings)
 		settings = settings or {}
 		local text = settings.text or "Text"
 		local font = settings.font or 1
-		local centre = settings.center or true
 		local x = settings.x or 0
 		local y = settings.y or 0
 		local scale = settings.scale or 1.0
@@ -78,6 +77,12 @@ function Text(settings)
 		local green = settings.green or 255
 		local blue = settings.blue or 255
 		local alpha = settings.alpha or 255
+
+		if data.shortRange ~= nil then
+				local centre = settings.center
+		else
+				local centre = true
+		end
 
     SetTextFont(font)
     SetTextProportional(0)

@@ -79,7 +79,7 @@ function ShowBlip(...)
       end
     end
 
-  elseif count == 2 then
+  elseif count == 1 then
 
     local name = args[1]
     if Blips[name] ~= nil then
@@ -108,7 +108,7 @@ function HideBlip(...)
       end
     end
 
-  elseif count == 2 then
+  elseif count == 1 then
 
     local name = args[1]
     if Blips[name] ~= nil then

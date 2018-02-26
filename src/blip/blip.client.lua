@@ -14,10 +14,20 @@ function Blip(data)
   self.text = data.text or "Blip"
   self.imageId = data.imageId or 1
   self.colorId = data.colorId or 0
-  self.shortRange = data.shortRange or true
   self.scale = data.scale or 1.0
   self.rotation = data.rotation or 0
-  self.enable = enable or true
+
+  if data.shortRange ~= nil then
+      self.shortRange = data.shortRange
+  else
+      self.shortRange = true
+  end
+
+  if data.enable ~= nil then
+    self.enable = data.enable
+  else
+    self.enable = true
+  end
 
   self.Show = function()
     Citizen.CreateThread(function()

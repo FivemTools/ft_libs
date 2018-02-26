@@ -12,7 +12,6 @@ function Menu(data)
     y = 0.25,
     title = data.title or nil,
     menuTitle = data.menuTitle or nil,
-    closable = data.closable or true,
     backLock = data.backLock or false,
     titleScale = data.titleScale or 1.0,
     textScale = data.textScale or 0.36,
@@ -63,6 +62,13 @@ function Menu(data)
     buttons = data.buttons or {},
 
   }
+
+  -- Closable menu
+  if data.closable ~= nil then
+      self.closable = data.closable
+  else
+      self.closable = true
+  end
 
   -- Get position (1 = left / 2 - right [default])
   if data.position == 1 then

@@ -122,6 +122,7 @@ function HideBlip(...)
       if Blips[name] ~= nil then
         Blips[name].Hide()
         Blips[name].enable = false
+        Blips[name].blip = nil
       end
     end
 
@@ -131,6 +132,7 @@ function HideBlip(...)
     if Blips[name] ~= nil then
       Blips[name].Hide()
       Blips[name].enable = false
+      Blips[name].blip = nil
     end
 
   else

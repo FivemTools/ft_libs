@@ -58,29 +58,35 @@ function RemoveArea(...)
 
   if count == 1 and type(args[1]) == "table" then
 
-    for name, value in pairs(args[1]) do
+    for _, name in ipairs(args[1]) do
+      Citizen.Wait(1)
 
-      Areas[name] = #value.locations
+      if Areas[name] ~= nil then
 
-      for key, location in pairs(Areas[name]) do
-        Areas[name][key].Remove()
+        for _, area in pairs(Areas[name]) do
+          area.Disable()
+          area.Remove()
+        end
+
+        Areas[name] = nil
+      end
+
+    end
+
+  elseif count == 1 then
+
+    local name = args[1]
+
+    if Areas[name] ~= nil then
+
+      for _, area in pairs(Areas[name]) do
+        area.Disable()
+        area.Remove()
       end
 
       Areas[name] = nil
 
     end
-
-  elseif count == 2 then
-
-    local name = args[1]
-    local value = args[2]
-    Areas[name] = #value.locations
-
-    for key, location in pairs(Areas[name]) do
-      Areas[name][key].Remove()
-    end
-
-    Areas[name] = nil
 
   else
 
@@ -97,20 +103,26 @@ function EnableArea(...)
 
   if count == 1 and type(args[1]) == "table" then
 
-    for name, value in pairs(args[1]) do
+    for _, name in ipairs(args[1]) do
+      Citizen.Wait(1)
+
       if Areas[name] ~= nil then
-        Areas[name].Enable()
-        Area[name].enable = true
+        for _, area in pairs(Areas[name]) do
+          area.Enable()
+          area.enable = true
+        end
       end
+
     end
 
-  elseif count == 2 then
+  elseif count == 1 then
 
     local name = args[1]
-    local status = args[2]
     if Areas[name] ~= nil then
-      Areas[name].Enable()
-      Area[name].enable = true
+      for _, area in pairs(Areas[name]) do
+        area.Enable()
+        area.enable = true
+      end
     end
 
   else
@@ -128,20 +140,26 @@ function DisableArea(...)
 
   if count == 1 and type(args[1]) == "table" then
 
-    for name, value in pairs(args[1]) do
+    for _, name in ipairs(args[1]) do
+      Citizen.Wait(1)
+
       if Areas[name] ~= nil then
-        Areas[name].Disable()
-        Area[name].enable = false
+        for _, area in pairs(Areas[name]) do
+          area.Disable()
+          area.enable = false
+        end
       end
+
     end
 
   elseif count == 2 then
 
     local name = args[1]
-    local status = args[2]
     if Areas[name] ~= nil then
-      Areas[name].Disable()
-      Area[name].enable = false
+      for _, area in pairs(Areas[name]) do
+        area.Disable()
+        area.enable = false
+      end
     end
 
   else
@@ -159,29 +177,31 @@ function SwitchArea(...)
 
   if count == 1 and type(args[1]) == "table" then
 
-    for name, status in pairs(args[1]) do
+    for name, status in ipairs(args[1]) do
       Citizen.Wait(1)
-      if Area[name] ~= nil then
-        if status == false then
-          Areas[name].Disable()
-        elseif status ==  true then
-          Areas[name].Enable()
+
+      if Areas[name] ~= nil then
+        for _, area in pairs(Areas[name]) do
+          if status == false then
+            area.Disable()
+            area.enable = false
+          elseif status == true then
+            area.Enable()
+            area.enable = true
+          end
         end
-        Area[name].enable = status
       end
+
     end
 
   elseif count == 2 then
 
     local name = args[1]
-    local status = args[2]
-    if Area[name] ~= nil then
-      if status == false then
-        Areas[name].Disable()
-      elseif status ==  true then
-        Areas[name].Enable()
+    if Areas[name] ~= nil then
+      for _, area in pairs(Areas[name]) do
+        area.Disable()
+        area.enable = false
       end
-      Area[name].enable = status
     end
 
   else

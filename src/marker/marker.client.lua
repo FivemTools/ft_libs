@@ -20,9 +20,9 @@ function Marker(data)
   self.showDistance = data.showDistance or self.weight + 20
 
   if data.enable ~= nil then
-      self.enable = data.enable
+    self.enable = data.enable
   else
-      self.enable = true
+    self.enable = true
   end
 
   self.Display = function(display)

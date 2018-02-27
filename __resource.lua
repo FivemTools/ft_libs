@@ -26,6 +26,10 @@ client_scripts {
   "src/blip/blip.client.lua",
   "src/blip/blips.client.lua",
 
+  -- Trigger
+  "src/trigger/trigger.client.lua",
+  "src/trigger/triggers.client.lua",
+
   -- Event 100% load
   "src/client.load.lua",
 
@@ -69,6 +73,14 @@ exports {
   "RemoveBlip",
   "ShowBlip",
   "HideBlip",
+
+  -- Trigger
+  "AddTrigger",
+  "RemoveTrigger",
+  "SwitchTrigger",
+  "EnableTrigger",
+  "DisableTrigger",
+  "CurrentTrigger",
 
 }
 

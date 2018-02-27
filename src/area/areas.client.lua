@@ -62,8 +62,8 @@ function RemoveArea(...)
 
       Areas[name] = #value.locations
 
-      for key, location in pairs(value.locations) do
-        Areas[name .. "_" .. key].Remove()
+      for key, location in pairs(Areas[name]) do
+        Areas[name][key].Remove()
       end
 
       Areas[name] = nil
@@ -76,8 +76,8 @@ function RemoveArea(...)
     local value = args[2]
     Areas[name] = #value.locations
 
-    for key, location in pairs(value.locations) do
-      Areas[name .. "_" .. key].Remove()
+    for key, location in pairs(Areas[name]) do
+      Areas[name][key].Remove()
     end
 
     Areas[name] = nil

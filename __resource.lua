@@ -34,6 +34,10 @@ client_scripts {
   "src/marker/marker.client.lua",
   "src/marker/markers.client.lua",
 
+  -- Area
+  "src/area/area.client.lua",
+  "src/area/areas.client.lua",
+
   -- Event 100% load
   "src/client.load.lua",
 

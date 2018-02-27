@@ -30,6 +30,10 @@ client_scripts {
   "src/trigger/trigger.client.lua",
   "src/trigger/triggers.client.lua",
 
+  -- Marker
+  "src/marker/marker.client.lua",
+  "src/marker/markers.client.lua",
+
   -- Event 100% load
   "src/client.load.lua",
 

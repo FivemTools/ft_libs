@@ -66,6 +66,8 @@ function RemoveArea(...)
         Areas[name .. "_" .. key].Remove()
       end
 
+      Areas[name] = nil
+
     end
 
   elseif count == 2 then
@@ -77,6 +79,8 @@ function RemoveArea(...)
     for key, location in pairs(value.locations) do
       Areas[name .. "_" .. key].Remove()
     end
+
+    Areas[name] = nil
 
   else
 

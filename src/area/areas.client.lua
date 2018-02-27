@@ -16,14 +16,14 @@ function AddArea(...)
 
     for name, value in pairs(args[1]) do
 
-      Areas[name] = #value.locations
+      Areas[name] = {}
 
       for key, location in pairs(value.locations) do
         Citizen.Wait(1)
         value.x = location.x
         value.y = location.y
         value.z = location.z
-        Area(name .. "_" .. key, value)
+        Areas[name][key] = Area(name .. "_" .. key, value)
       end
 
     end
@@ -32,14 +32,14 @@ function AddArea(...)
 
     local name = args[1]
     local value = args[2]
-    Areas[name] = #value.locations
+    Areas[name] = {}
 
     for key, location in pairs(value.locations) do
       Citizen.Wait(1)
       value.x = location.x
       value.y = location.y
       value.z = location.z
-      Area(name .. "_" .. key, value)
+      Areas[name][key] = Area(name .. "_" .. key, value)
     end
 
   else

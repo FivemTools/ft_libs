@@ -69,10 +69,10 @@ function SwitchTrigger(...)
 
   if count == 1 and type(args[1]) == "table" then
 
-    for name, value in pairs(args[1]) do
+    for name, status in pairs(args[1]) do
       Citizen.Wait(1)
       if Triggers[name] ~= nil then
-        Triggers[name].enable = value
+        Triggers[name].enable = status
       end
     end
 
@@ -81,7 +81,7 @@ function SwitchTrigger(...)
     local name = args[1]
     local status = args[2]
     if Triggers[name] ~= nil then
-      Triggers[name].enable = value
+      Triggers[name].enable = status
     end
 
   else

@@ -68,36 +68,6 @@ function EnableMarker(...)
 
   if count == 1 and type(args[1]) == "table" then
 
-    for name, value in pairs(args[1]) do
-      Citizen.Wait(1)
-      if Markers[name] ~= nil then
-        Markers[name].enable = value
-      end
-    end
-
-  elseif count == 2 then
-
-    local name = args[1]
-    local status = args[2]
-    if Markers[name] ~= nil then
-      Markers[name].enable = status
-    end
-
-  else
-
-    return false
-
-  end
-
-end
-
-function EnableMarker(...)
-
-  local args = {...}
-  local count = #args
-
-  if count == 1 and type(args[1]) == "table" then
-
     for _, name in pairs(args[1]) do
       Citizen.Wait(1)
       if Markers[name] ~= nil then

@@ -86,6 +86,14 @@ exports {
   "DisableTrigger",
   "CurrentTrigger",
 
+  -- Marker
+  "AddMarker",
+  "RemoveMarker",
+  "EnableMarker",
+  "DisableMarker",
+  "SwitchMarker",
+  "CurrentMarker",
+
 }
 
 server_scripts {

@@ -61,6 +61,7 @@ exports {
   "RemoveMenu",
   "MenuIsOpen",
   "CurrentMenu",
+  "PrimaryMenu",
   "FreezeMenu",
   "OpenMenu",
   "CloseMenu",

@@ -7,6 +7,7 @@
 Menus = {
   open = nil,
   curent = nil,
+  primary = nil,
   freeze = false,
   from = 1,
   to = 10,
@@ -87,6 +88,13 @@ function CurrentMenu()
 
 end
 
+-- Return current
+function PrimaryMenu()
+
+  return Menus.primary
+
+end
+
 -- Freeze menu
 function FreezeMenu(status)
 
@@ -104,6 +112,7 @@ function OpenMenu(name)
 
   Menus.open = true
   Menus.curent = name
+  Menus.primary = name
 
   local menu = Menus.list[name]
   local countBtns = TableLength(menu.buttons)

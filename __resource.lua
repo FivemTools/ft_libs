@@ -34,10 +34,6 @@ client_scripts {
   "src/marker/marker.client.lua",
   "src/marker/markers.client.lua",
 
-  -- Area
-  "src/area/area.client.lua",
-  "src/area/areas.client.lua",
-
   -- Event 100% load
   "src/client.load.lua",
 
@@ -65,6 +61,7 @@ exports {
   "RemoveMenu",
   "MenuIsOpen",
   "CurrentMenu",
+  "PrimaryMenu",
   "FreezeMenu",
   "OpenMenu",
   "CloseMenu",
@@ -89,6 +86,14 @@ exports {
   "EnableTrigger",
   "DisableTrigger",
   "CurrentTrigger",
+
+  -- Marker
+  "AddMarker",
+  "RemoveMarker",
+  "EnableMarker",
+  "DisableMarker",
+  "SwitchMarker",
+  "CurrentMarker",
 
 }
 

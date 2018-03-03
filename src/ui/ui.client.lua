@@ -78,17 +78,16 @@ function Text(settings)
 		local blue = settings.blue or 255
 		local alpha = settings.alpha or 255
 
+		local center = true
 		if settings.center ~= nil then
-				local centre = settings.center
-		else
-				local centre = true
+				centre = settings.center
 		end
 
     SetTextFont(font)
     SetTextProportional(0)
     SetTextScale(scale, scale)
     SetTextColour(red, green, blue, alpha)
-    SetTextCentre(centre)
+    SetTextCentre(center)
     SetTextEntry("STRING")
     AddTextComponentString(text)
     DrawText(x, y)

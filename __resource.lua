@@ -95,6 +95,13 @@ exports {
   "SwitchMarker",
   "CurrentMarker",
 
+  -- Areas
+  "AddAreas",
+  "RemoveAreas",
+  "EnableAreas",
+  "DisableAreas",
+  "SwitchAreas",
+
 }
 
 server_scripts {

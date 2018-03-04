@@ -78,16 +78,13 @@ function Text(settings)
 		local blue = settings.blue or 255
 		local alpha = settings.alpha or 255
 
-		local center = true
-		if settings.center ~= nil then
-				centre = settings.center
-		end
-
     SetTextFont(font)
     SetTextProportional(0)
     SetTextScale(scale, scale)
     SetTextColour(red, green, blue, alpha)
-    SetTextCentre(center)
+		if settings.center == true then
+    	SetTextCentre(true)
+		end
     SetTextEntry("STRING")
     AddTextComponentString(text)
     DrawText(x, y)
@@ -110,7 +107,6 @@ function OpenTextInput(settings)
 		Citizen.Wait(0);
 	end
 
-	UnlockEnter()
 	local result = GetOnscreenKeyboardResult()
 	if result then
 		return result

@@ -205,6 +205,7 @@ function Menu(data)
         x = self.x,
         y = self.y,
         scale = self.titleScale,
+        center = true,
       })
     end
 
@@ -225,11 +226,9 @@ function Menu(data)
     Text({
       text = self.menuTitle,
       font = 0,
-      center = 0,
-      x = self.x - (self.width / 2) + 0.055,
+      x = self.x - (self.width / 2) + 0.005,
       y = y - (self.height / 2) + 0.0028,
       scale = 0.4,
-      center = false,
     })
 
     -- Numbers
@@ -262,13 +261,12 @@ function Menu(data)
       text = data.text,
       font = 0,
       center = 0,
-      x = x - (self.width / 2) + 0.055,
+      x = x - (self.width / 2) + 0.005,
       y = y - self.height / 2 + 0.0035,
       scale = textScale,
       red = color.text.red,
       blue = color.text.blue,
       green = color.text.green,
-      center = false,
     })
     DrawRect(x, y, width, height, color.rect.red, color.rect.blue, color.rect.green, color.rect.alpha)
 

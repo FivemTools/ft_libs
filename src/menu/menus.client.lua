@@ -142,6 +142,7 @@ function CloseMenu()
   Menus.open = false
   Menus.backLock = false
   Menus.enterLock = false
+  Menus.primary = nil
 
 end
 

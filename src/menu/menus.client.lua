@@ -54,7 +54,7 @@ function RemoveMenu(...)
 
     for _, name in ipairs(args[1]) do
       Citizen.Wait(1)
-      if Markers[name] ~= nil then
+      if Menus[name] ~= nil then
         Menus.list[name] = nil
       end
     end
@@ -62,7 +62,7 @@ function RemoveMenu(...)
   elseif count == 1 then
 
     local name = args[1]
-    if Markers[name] ~= nil then
+    if Menus[name] ~= nil then
       Menus.list[name] = nil
     end
 

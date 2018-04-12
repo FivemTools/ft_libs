@@ -15,7 +15,6 @@ function Blip(data)
   self.imageId = data.imageId or 1
   self.colorId = data.colorId or 0
   self.scale = data.scale or 1.0
-  self.rotation = data.rotation or 0
 
   if data.shortRange ~= nil then
     self.shortRange = data.shortRange
@@ -37,7 +36,9 @@ function Blip(data)
       SetBlipAsShortRange(blip, self.shortRange)
       SetBlipColour(blip, self.colorId)
       SetBlipScale(blip, self.scale)
-      SetBlipRotation(blip, self.rotation)
+      if self.rotation ~= nil then
+        SetBlipRotation(blip, self.rotation)
+      end
       BeginTextCommandSetBlipName("STRING")
       AddTextComponentString(self.text)
       EndTextCommandSetBlipName(blip)

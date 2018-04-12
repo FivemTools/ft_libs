@@ -19,16 +19,6 @@ function Marker(data)
   self.alpha = data.alpha or 255
   self.showDistance = data.showDistance or self.weight + 20
 
-  if data.enable ~= nil then
-    self.enable = data.enable
-  else
-    self.enable = true
-  end
-
-  self.Display = function(display)
-    self.display = display
-  end
-
   self.Show = function()
     local weight = self.weight * 2.0
     local height = self.height + 0.0

@@ -5,6 +5,7 @@
 --
 
 Markers = {}
+ActiveMarkers = {}
 
 function AddMarker(...)
 
@@ -16,6 +17,9 @@ function AddMarker(...)
     for name, value in pairs(args[1]) do
       Citizen.Wait(1)
       Markers[name] = Marker(value)
+      if value.enable ~= nil or value.enable == true then
+        ActiveMarkers[name] = Markers[name]
+      end
     end
 
   elseif count == 2 then
@@ -23,6 +27,9 @@ function AddMarker(...)
     local name = args[1]
     local value = args[2]
     Markers[name] = Marker(value)
+    if value.enable ~= nil or value.enable == true then
+      ActiveMarkers[name] = Markers[name]
+    end
 
   else
 
@@ -71,7 +78,7 @@ function EnableMarker(...)
     for _, name in pairs(args[1]) do
       Citizen.Wait(1)
       if Markers[name] ~= nil then
-        Markers[name].enable = true
+        ActiveMarkers[name] = Markers[name]
       end
     end
 
@@ -79,7 +86,7 @@ function EnableMarker(...)
 
     local name = args[1]
     if Markers[name] ~= nil then
-      Markers[name].enable = true
+      ActiveMarkers[name] = Markers[name]
     end
 
   else
@@ -99,16 +106,16 @@ function DisableMarker(...)
 
     for _, name in pairs(args[1]) do
       Citizen.Wait(1)
-      if Markers[name] ~= nil then
-        Markers[name].enable = false
+      if ActiveMarkers[name] ~= nil then
+        ActiveMarkers[name] = nil
       end
     end
 
   elseif count == 1 then
 
     local name = args[1]
-    if Markers[name] ~= nil then
-      Markers[name].enable = false
+    if ActiveMarkers[name] ~= nil then
+      Markers[name] = nil
     end
 
   else
@@ -128,8 +135,10 @@ function SwitchMarker(...)
 
     for name, status in pairs(args[1]) do
       Citizen.Wait(1)
-      if Markers[name] ~= nil then
-        Markers[name].enable = status
+      if ActiveMarkers[name] ~= nil then
+        ActiveMarkers[name] = nil
+      else
+        ActiveMarkers[name] = Markers[name]
       end
     end
 
@@ -137,8 +146,10 @@ function SwitchMarker(...)
 
     local name = args[1]
     local status = args[2]
-    if Markers[name] ~= nil then
-      Markers[name].enable = status
+    if ActiveMarkers[name] ~= nil then
+      ActiveMarkers[name] = nil
+    else
+      ActiveMarkers[name] = Markers[name]
     end
 
   else
@@ -159,8 +170,8 @@ AddRunInFrame(function()
   local playerPed = GetPlayerPed(-1)
   local playerLocalisation = GetEntityCoords(playerPed)
 
-  for name, marker in pairs(Markers) do
-    if GetDistanceBetweenCoords(marker.x, marker.y, marker.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) <= marker.showDistance and marker.enable then
+  for name, marker in pairs(ActiveMarkers) do
+    if GetDistanceBetweenCoords(marker.x, marker.y, marker.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) <= marker.showDistance then
       marker.Show()
     end
   end

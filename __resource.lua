@@ -52,6 +52,7 @@ exports {
   "LoadingPromt",
   "Message",
   "Notification",
+  "AdvancedNotification",
   "Text",
   "OpenTextInput",
   "TextNotification",

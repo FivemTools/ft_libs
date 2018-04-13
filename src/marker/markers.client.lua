@@ -4,176 +4,136 @@
 -- @License: GNU General Public License v3.0
 --
 
-Markers = {}
-ActiveMarkers = {}
+local markers = {}
+local activeMarkers = {}
+local currentMarker = nil
 
+--
+-- Add Marker in the markers Array
+--
 function AddMarker(...)
-
-  local args = {...}
-  local count = #args
-
-  if count == 1 and type(args[1]) == "table" then
-
-    for name, value in pairs(args[1]) do
-      Citizen.Wait(1)
-      Markers[name] = Marker(value)
-      if value.enable ~= nil or value.enable == true then
-        ActiveMarkers[name] = Markers[name]
-      end
+    local args = {...}
+    local count = #args
+    if count == 1 and type(args[1]) == "table" then
+        for name, value in pairs(args[1]) do
+            Citizen.Wait(1)
+            markers[name] = Marker(value)
+            if value.enable or value.enable == true then
+                activeMarkers[name] = markers[name]
+            end
+        end
+    elseif count == 2 then
+        local name = args[1]
+        local value = args[2]
+        markers[name] = Marker(value)
+        if value.enable or value.enable == true then
+            activeMarkers[name] = markers[name]
+        end
     end
-
-  elseif count == 2 then
-
-    local name = args[1]
-    local value = args[2]
-    Markers[name] = Marker(value)
-    if value.enable ~= nil or value.enable == true then
-      ActiveMarkers[name] = Markers[name]
-    end
-
-  else
-
-    return false
-
-  end
-
 end
 
+--
+-- Remove Marker in the markers Array
+--
 function RemoveMarker(...)
-
-  local args = {...}
-  local count = #args
-
-  if count == 1 and type(args[1]) == "table" then
-
-    for _, name in ipairs(args[1]) do
-      Citizen.Wait(1)
-      if Markers[name] ~= nil then
-        Markers[name] = nil
-      end
+    local args = {...}
+    local count = #args
+    if count == 1 and type(args[1]) == "table" then
+        for _, name in ipairs(args[1]) do
+            Citizen.Wait(1)
+            markers[name] = nil
+        end
+    elseif count == 1 then
+        local name = args[1]
+        markers[name] = nil
+        activeMarkers[name] = nil
     end
-
-  elseif count == 1 then
-
-    local name = args[1]
-    if Markers[name] ~= nil then
-      Markers[name] = nil
-    end
-
-  else
-
-    return false
-
-  end
-
 end
 
+--
+-- Add Marker to activeMarkers Array
+--
 function EnableMarker(...)
-
-  local args = {...}
-  local count = #args
-
-  if count == 1 and type(args[1]) == "table" then
-
-    for _, name in pairs(args[1]) do
-      Citizen.Wait(1)
-      if Markers[name] ~= nil then
-        ActiveMarkers[name] = Markers[name]
-      end
+    local args = {...}
+    local count = #args
+    if count == 1 and type(args[1]) == "table" then
+        for _, name in pairs(args[1]) do
+            Citizen.Wait(1)
+            if markers[name] then
+                activeMarkers[name] = markers[name]
+            end
+        end
+    elseif count == 1 then
+        local name = args[1]
+        if markers[name] then
+            activeMarkers[name] = markers[name]
+        end
     end
-
-  elseif count == 1 then
-
-    local name = args[1]
-    if Markers[name] ~= nil then
-      ActiveMarkers[name] = Markers[name]
-    end
-
-  else
-
-    return false
-
-  end
-
 end
 
+--
+-- Remove Marker to activeMarkers Array
+--
 function DisableMarker(...)
-
-  local args = {...}
-  local count = #args
-
-  if count == 1 and type(args[1]) == "table" then
-
-    for _, name in pairs(args[1]) do
-      Citizen.Wait(1)
-      if ActiveMarkers[name] ~= nil then
-        ActiveMarkers[name] = nil
-      end
+    local args = {...}
+    local count = #args
+    if count == 1 and type(args[1]) == "table" then
+        for _, name in pairs(args[1]) do
+            Citizen.Wait(1)
+            activeMarkers[name] = nil
+        end
+    elseif count == 1 then
+        local name = args[1]
+        markers[name] = nil
     end
-
-  elseif count == 1 then
-
-    local name = args[1]
-    if ActiveMarkers[name] ~= nil then
-      Markers[name] = nil
-    end
-
-  else
-
-    return false
-
-  end
-
 end
 
+--
+-- Add/Remove Marker to activeMarkers Array
+--
 function SwitchMarker(...)
-
-  local args = {...}
-  local count = #args
-
-  if count == 1 and type(args[1]) == "table" then
-
-    for name, status in pairs(args[1]) do
-      Citizen.Wait(1)
-      if ActiveMarkers[name] ~= nil then
-        ActiveMarkers[name] = nil
-      else
-        ActiveMarkers[name] = Markers[name]
-      end
+    local args = {...}
+    local count = #args
+    if count == 1 then
+        assert(type(args[1]) == "table", "Data is not table")
+        for name, status in pairs(args[1]) do
+            Citizen.Wait(1)
+            if activeMarkers[name] then
+                activeMarkers[name] = nil
+            else
+                activeMarkers[name] = markers[name]
+            end
+        end
+    elseif count == 2 then
+        local name = args[1]
+        local status = args[2]
+        if activeMarkers[name] then
+            activeMarkers[name] = nil
+        else
+            activeMarkers[name] = markers[name]
+        end
     end
-
-  elseif count == 2 then
-
-    local name = args[1]
-    local status = args[2]
-    if ActiveMarkers[name] ~= nil then
-      ActiveMarkers[name] = nil
-    else
-      ActiveMarkers[name] = Markers[name]
-    end
-
-  else
-
-    return false
-
-  end
-
 end
 
+--
+-- Get Current Marker
+--
 function CurrentMarker()
-  return Markers.current
+    return currentMarker
 end
 
--- Check
+--
+-- Add check for global frame
+--
 AddRunInFrame(function()
-
-  local playerPed = GetPlayerPed(-1)
-  local playerLocalisation = GetEntityCoords(playerPed)
-
-  for name, marker in pairs(ActiveMarkers) do
-    if GetDistanceBetweenCoords(marker.x, marker.y, marker.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) <= marker.showDistance then
-      marker.Show()
+    local playerPed = GetPlayerPed(-1)
+    local playerLocalisation = GetEntityCoords(playerPed)
+    for name, marker in pairs(activeMarkers) do
+        if GetDistanceBetweenCoords(marker.x, marker.y, marker.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) <= marker.showDistance then
+            marker.Show()
+            currentMarker = name
+        elseif currentMarker == name then
+            currentMarker = nil
+        end
     end
-  end
-
 end)

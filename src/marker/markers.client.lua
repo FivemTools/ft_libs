@@ -9,7 +9,7 @@ local activeMarkers = {}
 local currentMarker = nil
 
 --
--- Add Marker in the markers Array
+-- Add Marker in the markers table
 --
 function AddMarker(...)
     local args = {...}
@@ -17,7 +17,7 @@ function AddMarker(...)
     if count == 1 and type(args[1]) == "table" then
         for name, value in pairs(args[1]) do
             Citizen.Wait(1)
-            markers[name] = Marker(value)
+            markers[name] = marker.new(value)
             if value.enable or value.enable == true then
                 activeMarkers[name] = markers[name]
             end
@@ -33,7 +33,7 @@ function AddMarker(...)
 end
 
 --
--- Remove Marker in the markers Array
+-- Remove Marker in the markers table
 --
 function RemoveMarker(...)
     local args = {...}
@@ -51,7 +51,7 @@ function RemoveMarker(...)
 end
 
 --
--- Add Marker to activeMarkers Array
+-- Add Marker to activeMarkers table
 --
 function EnableMarker(...)
     local args = {...}
@@ -72,7 +72,7 @@ function EnableMarker(...)
 end
 
 --
--- Remove Marker to activeMarkers Array
+-- Remove Marker to activeMarkers table
 --
 function DisableMarker(...)
     local args = {...}
@@ -89,7 +89,7 @@ function DisableMarker(...)
 end
 
 --
--- Add/Remove Marker to activeMarkers Array
+-- Add/Remove Marker to activeMarkers table
 --
 function SwitchMarker(...)
     local args = {...}
@@ -130,7 +130,7 @@ AddRunInFrame(function()
     local playerLocalisation = GetEntityCoords(playerPed)
     for name, marker in pairs(activeMarkers) do
         if GetDistanceBetweenCoords(marker.x, marker.y, marker.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) <= marker.showDistance then
-            marker.Show()
+            marker:Show()
             currentMarker = name
         elseif currentMarker == name then
             currentMarker = nil

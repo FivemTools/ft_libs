@@ -14,10 +14,13 @@ local currentMarker = nil
 function AddMarker(...)
     local args = {...}
     local count = #args
-    if count == 1 and type(args[1]) == "table" then
+    if count == 1 then
+        assert(type(args[1]) == "table", "Data is not table")
+
         for name, value in pairs(args[1]) do
             Citizen.Wait(1)
             markers[name] = marker.new(value)
+
             if value.enable or value.enable == true then
                 activeMarkers[name] = markers[name]
             end
@@ -26,6 +29,7 @@ function AddMarker(...)
         local name = args[1]
         local value = args[2]
         markers[name] = Marker(value)
+
         if value.enable or value.enable == true then
             activeMarkers[name] = markers[name]
         end
@@ -38,7 +42,9 @@ end
 function RemoveMarker(...)
     local args = {...}
     local count = #args
-    if count == 1 and type(args[1]) == "table" then
+    if count == 1 then
+        assert(type(args[1]) == "table", "Data is not table")
+
         for _, name in ipairs(args[1]) do
             Citizen.Wait(1)
             markers[name] = nil
@@ -56,15 +62,19 @@ end
 function EnableMarker(...)
     local args = {...}
     local count = #args
-    if count == 1 and type(args[1]) == "table" then
+    if count == 1 then
+        assert(type(args[1]) == "table", "Data is not table")
+
         for _, name in pairs(args[1]) do
             Citizen.Wait(1)
+
             if markers[name] then
                 activeMarkers[name] = markers[name]
             end
         end
     elseif count == 1 then
         local name = args[1]
+
         if markers[name] then
             activeMarkers[name] = markers[name]
         end
@@ -77,7 +87,8 @@ end
 function DisableMarker(...)
     local args = {...}
     local count = #args
-    if count == 1 and type(args[1]) == "table" then
+    if count == 1 then
+        assert(type(args[1]) == "table", "Data is not table")
         for _, name in pairs(args[1]) do
             Citizen.Wait(1)
             activeMarkers[name] = nil
@@ -89,7 +100,7 @@ function DisableMarker(...)
 end
 
 --
--- Add/Remove Marker to activeMarkers table
+-- Add or Remove Marker to activeMarkers table
 --
 function SwitchMarker(...)
     local args = {...}

@@ -20,7 +20,7 @@ function Marker:Show()
 end
 
 --
--- Create new instace
+-- Create new instace of Marker
 --
 function marker.new(data)
     local self = {}

@@ -46,7 +46,7 @@ function blip.new(data)
 
     assert(type(data.x) == "number", "Blip : x must be number")
     assert(type(data.y) == "number", "Blip : y must be number")
-    assert(type(data.text) == "text", "Blip : text must be text")
+    assert(type(data.text) == "string", "Blip : text must be text")
 
     local self = {}
     self.blip = nil

@@ -28,7 +28,7 @@ function AddMarker(...)
     elseif count == 2 then
         local name = args[1]
         local value = args[2]
-        markers[name] = Marker(value)
+        markers[name] = marker.new(value)
 
         if value.enable or value.enable == true then
             activeMarkers[name] = markers[name]
@@ -42,9 +42,7 @@ end
 function RemoveMarker(...)
     local args = {...}
     local count = #args
-    if count == 1 then
-        assert(type(args[1]) == "table", "Data is not table")
-
+    if count == 1 and type(args[1]) == "table" then
         for _, name in ipairs(args[1]) do
             Citizen.Wait(1)
             markers[name] = nil
@@ -62,19 +60,15 @@ end
 function EnableMarker(...)
     local args = {...}
     local count = #args
-    if count == 1 then
-        assert(type(args[1]) == "table", "Data is not table")
-
+    if count == 1 and type(args[1]) == "table" then
         for _, name in pairs(args[1]) do
             Citizen.Wait(1)
-
             if markers[name] then
                 activeMarkers[name] = markers[name]
             end
         end
     elseif count == 1 then
         local name = args[1]
-
         if markers[name] then
             activeMarkers[name] = markers[name]
         end
@@ -87,8 +81,7 @@ end
 function DisableMarker(...)
     local args = {...}
     local count = #args
-    if count == 1 then
-        assert(type(args[1]) == "table", "Data is not table")
+    if count == 1 and type(args[1]) == "table"  then
         for _, name in pairs(args[1]) do
             Citizen.Wait(1)
             activeMarkers[name] = nil
@@ -105,8 +98,7 @@ end
 function SwitchMarker(...)
     local args = {...}
     local count = #args
-    if count == 1 then
-        assert(type(args[1]) == "table", "Data is not table")
+    if count == 1 and type(args[1]) == "table" then
         for name, status in pairs(args[1]) do
             Citizen.Wait(1)
             if activeMarkers[name] then
@@ -115,7 +107,7 @@ function SwitchMarker(...)
                 activeMarkers[name] = markers[name]
             end
         end
-    elseif count == 2 then
+    elseif count == 1 then
         local name = args[1]
         local status = args[2]
         if activeMarkers[name] then

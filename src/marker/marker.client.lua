@@ -23,11 +23,13 @@ end
 -- Create new instace of Marker
 --
 function marker.new(data)
-    local self = {}
+
+    assert(type(data.x) == "number", "Marker : x must be number")
+    assert(type(data.y) == "number", "Marker : y must be number")
+    assert(type(data.z) == "number", "Marker : z must be number")
+
+    local self = data
     self.type = data.type or 1
-    self.x = data.x or 0.0
-    self.y = data.y or 0.0
-    self.z = data.z or 0.0
     self.weight = data.weight or 2.0
     self.height = data.height or 0.5
     self.red = data.red or 255

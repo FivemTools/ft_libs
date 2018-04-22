@@ -23,7 +23,7 @@ function AddArea(...)
         value.x = location.x
         value.y = location.y
         value.z = location.z
-        Areas[name][key] = Area(name .. "_" .. key, value)
+        Areas[name][key] = area.new(name .. "_" .. key, value)
       end
 
     end
@@ -39,7 +39,7 @@ function AddArea(...)
       value.x = location.x
       value.y = location.y
       value.z = location.z
-      Areas[name][key] = Area(name .. "_" .. key, value)
+      Areas[name][key] = area.new(name .. "_" .. key, value)
     end
 
   else
@@ -64,8 +64,8 @@ function RemoveArea(...)
       if Areas[name] ~= nil then
 
         for _, area in pairs(Areas[name]) do
-          area.Disable()
-          area.Remove()
+          area:Disable()
+          area:Remove()
         end
 
         Areas[name] = nil
@@ -80,8 +80,8 @@ function RemoveArea(...)
     if Areas[name] ~= nil then
 
       for _, area in pairs(Areas[name]) do
-        area.Disable()
-        area.Remove()
+        area:Disable()
+        area:Remove()
       end
 
       Areas[name] = nil
@@ -108,7 +108,7 @@ function EnableArea(...)
 
       if Areas[name] ~= nil then
         for _, area in pairs(Areas[name]) do
-          area.Enable()
+          area:Enable()
           area.enable = true
         end
       end
@@ -120,7 +120,7 @@ function EnableArea(...)
     local name = args[1]
     if Areas[name] ~= nil then
       for _, area in pairs(Areas[name]) do
-        area.Enable()
+        area:Enable()
         area.enable = true
       end
     end
@@ -145,7 +145,7 @@ function DisableArea(...)
 
       if Areas[name] ~= nil then
         for _, area in pairs(Areas[name]) do
-          area.Disable()
+          area:Disable()
           area.enable = false
         end
       end
@@ -157,7 +157,7 @@ function DisableArea(...)
     local name = args[1]
     if Areas[name] ~= nil then
       for _, area in pairs(Areas[name]) do
-        area.Disable()
+        area:Disable()
         area.enable = false
       end
     end
@@ -183,10 +183,10 @@ function SwitchArea(...)
       if Areas[name] ~= nil then
         for _, area in pairs(Areas[name]) do
           if status == false then
-            area.Disable()
+            area:Disable()
             area.enable = false
           elseif status == true then
-            area.Enable()
+            area:Enable()
             area.enable = true
           end
         end
@@ -199,7 +199,7 @@ function SwitchArea(...)
     local name = args[1]
     if Areas[name] ~= nil then
       for _, area in pairs(Areas[name]) do
-        area.Disable()
+        area:Disable()
         area.enable = false
       end
     end

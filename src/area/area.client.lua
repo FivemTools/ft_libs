@@ -4,36 +4,51 @@
 -- @License: GNU General Public License v3.0
 --
 
-function Area(name, data)
+--
+area = {}
 
-  local self = {}
-  self.name = name
+-- class table
+local Area = {}
 
+--
+-- Enable Area
+--
+function Area:Enable()
+  EnableMarker(self.name, true)
+  SwitchTrigger(self.name, true)
+  ShowBlip(self.name)
+end
+
+--
+-- Disable Area
+--
+function Area:Disable()
+  EnableMarker(self.name, false)
+  SwitchTrigger(self.name, false)
+  HideBlip(self.name)
+end
+
+--
+-- Remove Area
+--
+function Area:Remove()
+  RemoveMarker(self.name)
+  RemoveTrigger(self.name)
+  RemoveBlip(self.name)
+end
+
+--
+-- Create new instace of Area
+--
+function area.new(name, data)
+
+  assert(type(data.name) == "string", "Area : name must be text")
+
+  local self = data
   if data.enable ~= nil then
       self.enable = data.enable
   else
       self.enable = true
-  end
-
-  -- Enable Area
-  self.Enable = function()
-    EnableMarker(self.name, true)
-    SwitchTrigger(self.name, true)
-    ShowBlip(self.name)
-  end
-
-  -- Disable Area
-  self.Disable = function()
-    EnableMarker(self.name, false)
-    SwitchTrigger(self.name, false)
-    HideBlip(self.name)
-  end
-
-  -- Remove Area
-  self.Remove = function()
-    RemoveMarker(self.name)
-    RemoveTrigger(self.name)
-    RemoveBlip(self.name)
   end
 
   -- Trigger
@@ -66,6 +81,7 @@ function Area(name, data)
     self.marker = AddMarker(self.name, markerData)
   end
 
+  setmetatable(self, { __index = Area })
   return self
 
 end

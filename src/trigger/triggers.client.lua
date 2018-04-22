@@ -4,9 +4,13 @@
 -- @License: GNU General Public License v3.0
 --
 
-Triggers = {}
-Triggers.current = nil
+local triggers = {}
+local activeTriggers = {}
+local currentTrigger = nil
 
+--
+-- Add Trigger
+--
 function AddTrigger(...)
 
   local args = {...}
@@ -16,164 +20,147 @@ function AddTrigger(...)
 
     for name, value in pairs(args[1]) do
       Citizen.Wait(1)
-      Triggers[name] = Trigger(value)
+      triggers[name] = trigger.new(value)
     end
 
   elseif count == 2 then
 
     local name = args[1]
     local value = args[2]
-    Triggers[name] = Trigger(value)
-
-  else
-
-    return false
+    triggers[name] = trigger.new(value)
 
   end
 
 end
 
+--
+-- Remove Trigger
+--
 function RemoveTrigger(...)
 
   local args = {...}
   local count = #args
 
   if count == 1 and type(args[1]) == "table" then
-
     for _, name in ipairs(args[1]) do
       Citizen.Wait(1)
-      if Triggers[name] ~= nil then
-        Triggers[name] = nil
+      if triggers[name] ~= nil then
+        triggers[name] = nil
       end
     end
-
   elseif count == 1 then
-
     local name = args[1]
-    if Triggers[name] ~= nil then
-      Triggers[name] = nil
+    if triggers[name] ~= nil then
+      triggers[name] = nil
     end
-
-  else
-
-    return false
-
   end
 
 end
 
+--
+-- Switch Trigger
+--
 function SwitchTrigger(...)
 
-  local args = {...}
-  local count = #args
-
-  if count == 1 and type(args[1]) == "table" then
-
-    for name, status in pairs(args[1]) do
-      Citizen.Wait(1)
-      if Triggers[name] ~= nil then
-        Triggers[name].enable = status
-      end
+    local args = {...}
+    local count = #args
+    if count == 1 and type(args[1]) == "table" then
+        for name, status in pairs(args[1]) do
+            Citizen.Wait(1)
+            if activeTriggers[name] then
+                activeTriggers[name] = nil
+            else
+                activeMarkers[name] = true
+            end
+        end
+    elseif count == 1 then
+        local name = args[1]
+        local status = args[2]
+        if activeTriggers[name] then
+            activeTriggers[name] = nil
+        else
+            activeTriggers[name] = true
+        end
     end
-
-  elseif count == 2 then
-
-    local name = args[1]
-    local status = args[2]
-    if Triggers[name] ~= nil then
-      Triggers[name].enable = status
-    end
-
-  else
-
-    return false
-
-  end
 
 end
 
+--
+-- Enable Trigger
+--
 function EnableTrigger(...)
 
   local args = {...}
   local count = #args
 
   if count == 1 and type(args[1]) == "table" then
-
     for _, name in pairs(args[1]) do
       Citizen.Wait(1)
-      if Triggers[name] ~= nil then
-        Triggers[name].enable = true
+      if triggers[name] ~= nil then
+        activeTriggers[name] = true
       end
     end
-
   elseif count == 1 then
-
     local name = args[1]
-    if Triggers[name] ~= nil then
-      Triggers[name].enable = true
+    if triggers[name] ~= nil then
+      activeTriggers[name] = true
     end
-
-  else
-
-    return false
-
   end
 
 end
 
+--
+-- Disable Trigger
+--
 function DisableTrigger(...)
 
   local args = {...}
   local count = #args
 
   if count == 1 and type(args[1]) == "table" then
-
     for _, name in pairs(args[1]) do
       Citizen.Wait(1)
-      if Triggers[name] ~= nil then
-        Triggers[name].enable = false
+      if activeTriggers[name] ~= nil then
+        activeTriggers[name] = nil
       end
     end
-
   elseif count == 1 then
-
     local name = args[1]
-    if Triggers[name] ~= nil then
-      Triggers[name].enable = false
+    if activeTriggers[name] ~= nil then
+      activeTriggers[name] = nil
     end
-
-  else
-
-    return false
-
   end
 
 end
 
+--
+-- Current Trigger
+--
 function CurrentTrigger()
-  return Triggers.current
+  return currentTrigger
 end
 
+--
 -- Check
+--
 AddRunInFrame(function()
 
   local playerPed = GetPlayerPed(-1)
   local playerLocalisation = GetEntityCoords(playerPed)
 
-  for name, trigger in pairs(Triggers) do
+  for name, value in pairs(activeTriggers) do
 
-    if trigger.enable then
-      player_in = (GetDistanceBetweenCoords(trigger.x, trigger.y, trigger.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) < (trigger.weight + 0.0) and math.abs(playerLocalisation.z - trigger.z) <= (trigger.height + 0.0))
+    trigger = triggers[name]
+    player_in = (GetDistanceBetweenCoords(trigger.x, trigger.y, trigger.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) < (trigger.weight + 0.0) and math.abs(playerLocalisation.z - trigger.z) <= (trigger.height + 0.0))
 
-      if player_in and Triggers.current ~= name then
-        Triggers.current = name
-        trigger.Enter()
-      elseif player_in and Triggers.current == name then
-        trigger.Active()
-      elseif not player_in and Triggers.current == name then
-        Triggers.current = nil
-        trigger.Exit()
-      end
+    if player_in and currentTrigger ~= name then
+      currentTrigger = name
+      trigger:Enter()
+    elseif player_in and currentTrigger == name then
+      trigger:Active()
+    elseif not player_in and currentTrigger == name then
+      currentTrigger = nil
+      trigger:Exit()
     end
 
   end

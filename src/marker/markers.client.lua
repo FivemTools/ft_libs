@@ -22,7 +22,7 @@ function AddMarker(...)
             markers[name] = marker.new(value)
 
             if value.enable or value.enable == true then
-                activeMarkers[name] = markers[name]
+                activeMarkers[name] = true
             end
         end
     elseif count == 2 then
@@ -31,7 +31,7 @@ function AddMarker(...)
         markers[name] = marker.new(value)
 
         if value.enable or value.enable == true then
-            activeMarkers[name] = markers[name]
+            activeMarkers[name] = true
         end
     end
 end
@@ -64,13 +64,13 @@ function EnableMarker(...)
         for _, name in pairs(args[1]) do
             Citizen.Wait(1)
             if markers[name] then
-                activeMarkers[name] = markers[name]
+                activeMarkers[name] = true
             end
         end
     elseif count == 1 then
         local name = args[1]
         if markers[name] then
-            activeMarkers[name] = markers[name]
+            activeMarkers[name] = true
         end
     end
 end
@@ -88,7 +88,7 @@ function DisableMarker(...)
         end
     elseif count == 1 then
         local name = args[1]
-        markers[name] = nil
+        activeMarkers[name] = nil
     end
 end
 
@@ -104,7 +104,7 @@ function SwitchMarker(...)
             if activeMarkers[name] then
                 activeMarkers[name] = nil
             else
-                activeMarkers[name] = markers[name]
+                activeMarkers[name] = true
             end
         end
     elseif count == 1 then
@@ -113,7 +113,7 @@ function SwitchMarker(...)
         if activeMarkers[name] then
             activeMarkers[name] = nil
         else
-            activeMarkers[name] = markers[name]
+            activeMarkers[name] = true
         end
     end
 end
@@ -131,7 +131,8 @@ end
 AddRunInFrame(function()
     local playerPed = GetPlayerPed(-1)
     local playerLocalisation = GetEntityCoords(playerPed)
-    for name, marker in pairs(activeMarkers) do
+    for name, value in pairs(activeMarkers) do
+        marker = markers[name]
         if GetDistanceBetweenCoords(marker.x, marker.y, marker.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) <= marker.showDistance then
             marker:Show()
             currentMarker = name

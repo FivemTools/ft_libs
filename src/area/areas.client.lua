@@ -4,8 +4,11 @@
 -- @License: GNU General Public License v3.0
 --
 
-Areas = {}
+local areas = {}
 
+--
+--
+--
 function AddArea(...)
 
   local args = {...}
@@ -16,14 +19,14 @@ function AddArea(...)
 
     for name, value in pairs(args[1]) do
 
-      Areas[name] = {}
+      areas[name] = {}
 
       for key, location in pairs(value.locations) do
         Citizen.Wait(1)
         value.x = location.x
         value.y = location.y
         value.z = location.z
-        Areas[name][key] = area.new(name .. "_" .. key, value)
+        areas[name][key] = area.new(name .. "_" .. key, value)
       end
 
     end
@@ -39,12 +42,8 @@ function AddArea(...)
       value.x = location.x
       value.y = location.y
       value.z = location.z
-      Areas[name][key] = area.new(name .. "_" .. key, value)
+      areas[name][key] = area.new(name .. "_" .. key, value)
     end
-
-  else
-
-    return false
 
   end
 
@@ -61,14 +60,14 @@ function RemoveArea(...)
     for _, name in ipairs(args[1]) do
       Citizen.Wait(1)
 
-      if Areas[name] ~= nil then
+      if areas[name] ~= nil then
 
-        for _, area in pairs(Areas[name]) do
+        for _, area in pairs(areas[name]) do
           area:Disable()
           area:Remove()
         end
 
-        Areas[name] = nil
+        areas[name] = nil
       end
 
     end
@@ -77,20 +76,16 @@ function RemoveArea(...)
 
     local name = args[1]
 
-    if Areas[name] ~= nil then
+    if areas[name] ~= nil then
 
-      for _, area in pairs(Areas[name]) do
+      for _, area in pairs(areas[name]) do
         area:Disable()
         area:Remove()
       end
 
-      Areas[name] = nil
+      areas[name] = nil
 
     end
-
-  else
-
-    return false
 
   end
 
@@ -106,8 +101,8 @@ function EnableArea(...)
     for _, name in ipairs(args[1]) do
       Citizen.Wait(1)
 
-      if Areas[name] ~= nil then
-        for _, area in pairs(Areas[name]) do
+      if areas[name] ~= nil then
+        for _, area in pairs(areas[name]) do
           area:Enable()
           area.enable = true
         end
@@ -118,16 +113,12 @@ function EnableArea(...)
   elseif count == 1 then
 
     local name = args[1]
-    if Areas[name] ~= nil then
-      for _, area in pairs(Areas[name]) do
+    if areas[name] ~= nil then
+      for _, area in pairs(areas[name]) do
         area:Enable()
         area.enable = true
       end
     end
-
-  else
-
-    return false
 
   end
 
@@ -143,8 +134,8 @@ function DisableArea(...)
     for _, name in ipairs(args[1]) do
       Citizen.Wait(1)
 
-      if Areas[name] ~= nil then
-        for _, area in pairs(Areas[name]) do
+      if areas[name] ~= nil then
+        for _, area in pairs(areas[name]) do
           area:Disable()
           area.enable = false
         end
@@ -155,16 +146,12 @@ function DisableArea(...)
   elseif count == 2 then
 
     local name = args[1]
-    if Areas[name] ~= nil then
-      for _, area in pairs(Areas[name]) do
+    if areas[name] ~= nil then
+      for _, area in pairs(areas[name]) do
         area:Disable()
         area.enable = false
       end
     end
-
-  else
-
-    return false
 
   end
 
@@ -180,8 +167,8 @@ function SwitchArea(...)
     for name, status in ipairs(args[1]) do
       Citizen.Wait(1)
 
-      if Areas[name] ~= nil then
-        for _, area in pairs(Areas[name]) do
+      if areas[name] ~= nil then
+        for _, area in pairs(areas[name]) do
           if status == false then
             area:Disable()
             area.enable = false
@@ -197,16 +184,11 @@ function SwitchArea(...)
   elseif count == 2 then
 
     local name = args[1]
-    if Areas[name] ~= nil then
-      for _, area in pairs(Areas[name]) do
+    if areas[name] ~= nil then
+      for _, area in pairs(areas[name]) do
         area:Disable()
-        area.enable = false
       end
     end
-
-  else
-
-    return false
 
   end
 

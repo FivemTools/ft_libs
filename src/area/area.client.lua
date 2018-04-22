@@ -8,12 +8,12 @@
 area = {}
 
 -- class table
-local Area = {}
+local AreaClass = {}
 
 --
 -- Enable Area
 --
-function Area:Enable()
+function AreaClass:Enable()
   EnableMarker(self.name, true)
   SwitchTrigger(self.name, true)
   ShowBlip(self.name)

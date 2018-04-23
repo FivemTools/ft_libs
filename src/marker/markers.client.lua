@@ -21,7 +21,7 @@ function AddMarker(...)
             Citizen.Wait(1)
             markers[name] = marker.new(value)
 
-            if value.enable or value.enable == true then
+            if value.enable == nil or value.enable == true then
                 activeMarkers[name] = true
             end
         end
@@ -30,7 +30,7 @@ function AddMarker(...)
         local value = args[2]
         markers[name] = marker.new(value)
 
-        if value.enable or value.enable == true then
+        if value.enable == nil or value.enable == true then
             activeMarkers[name] = true
         end
     end
@@ -46,6 +46,7 @@ function RemoveMarker(...)
         for _, name in ipairs(args[1]) do
             Citizen.Wait(1)
             markers[name] = nil
+            activeMarkers[name] = nil
         end
     elseif count == 1 then
         local name = args[1]
@@ -129,15 +130,23 @@ end
 -- Add check for global frame
 --
 AddRunInFrame(function()
+
     local playerPed = GetPlayerPed(-1)
     local playerLocalisation = GetEntityCoords(playerPed)
     for name, value in pairs(activeMarkers) do
-        marker = markers[name]
-        if GetDistanceBetweenCoords(marker.x, marker.y, marker.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) <= marker.showDistance then
-            marker:Show()
-            currentMarker = name
-        elseif currentMarker == name then
-            currentMarker = nil
+
+        local target = markers[name]
+        if target then
+            if GetDistanceBetweenCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) <= target.showDistance then
+                target:Show()
+                currentMarker = name
+            elseif currentMarker == name then
+                currentMarker = nil
+            end
+        else
+            Citizen.Trace("Marker " .. name .. " empty")
         end
+
     end
+
 end)

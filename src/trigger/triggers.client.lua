@@ -172,8 +172,6 @@ AddRunInFrame(function()
                 currentTrigger = nil
                 target:Exit()
             end
-        else
-            Citizen.Trace("Trigger " .. name .. " empty")
         end
 
     end

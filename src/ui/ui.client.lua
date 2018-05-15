@@ -99,6 +99,10 @@ function OpenTextInput(settings)
 	local title = settings.title or "FMMC_KEY_TIP8"
 	local defaultText = settings.defaultText or ""
 	local maxInputLength = settings.maxInputLength or 255
+	if title ~= nil then
+		AddTextEntry('FT_TEXT', title)
+		title = "FT_TEXT"
+	end
 
 	DisplayOnscreenKeyboard(true, title, "", defaultText, "", "", "", maxInputLength)
 

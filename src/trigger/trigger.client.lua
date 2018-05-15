@@ -18,18 +18,15 @@ function Trigger:Enter()
     Citizen.CreateThread(function()
 
         if self.enter.callback ~= nil then
-            Citizen.Trace("Enter : callback Oui")
             local callback = self.enter.callback
             callback(self.data)
         end
 
         if self.enter.eventClient ~= nil then
-            Citizen.Trace("Enter : eventClient Oui")
             TriggerEvent(self.enter.eventClient, self.data)
         end
 
         if self.enter.eventServer ~= nil then
-            Citizen.Trace("Enter : eventServer Oui")
             TriggerServerEvent(self.enter.eventServer, self.data)
         end
 
@@ -43,18 +40,15 @@ function Trigger:Active()
     Citizen.CreateThread(function()
 
         if self.active.callback ~= nil then
-            Citizen.Trace("Active : callback Oui")
             local callback = self.active.callback
             callback(self.data)
         end
 
         if self.active.eventClient ~= nil then
-            Citizen.Trace("Active : eventClient Oui")
             TriggerEvent(self.active.eventClient, self.data)
         end
 
         if self.active.eventServer ~= nil then
-            Citizen.Trace("Active : eventServer Oui")
             TriggerServerEvent(self.active.eventServer, self.data)
         end
 
@@ -68,18 +62,15 @@ function Trigger:Exit()
     Citizen.CreateThread(function()
 
         if self.exit.callback ~= nil then
-            Citizen.Trace("Exit : callback Oui")
             local callback = self.exit.callback
             callback(self.data)
         end
 
         if self.exit.eventClient ~= nil then
-            Citizen.Trace("Exit : eventClient Oui")
             TriggerEvent(self.exit.eventClient, self.data)
         end
 
         if self.exit.eventServer ~= nil then
-            Citizen.Trace("Exit : eventServer Oui")
             TriggerServerEvent(self.exit.eventServer, self.data)
         end
 

@@ -143,8 +143,6 @@ AddRunInFrame(function()
             elseif currentMarker == name then
                 currentMarker = nil
             end
-        else
-            Citizen.Trace("Marker " .. name .. " empty")
         end
 
     end

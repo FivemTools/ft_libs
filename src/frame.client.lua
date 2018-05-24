@@ -6,14 +6,18 @@
 
 local runInFrameList = {}
 
+--
 -- Add
+--
 function AddRunInFrame(callback)
 
   table.insert(runInFrameList, callback)
 
 end
 
+--
 -- Run all function to exectToFrameList
+--
 function RunToFrames()
 
   while true do

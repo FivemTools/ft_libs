@@ -18,6 +18,9 @@ Menus = {
     lastKeyPressed = 0,
 }
 
+--
+--
+--
 function AddMenu(...)
 
     local args = {...}
@@ -44,6 +47,9 @@ function AddMenu(...)
 
 end
 
+--
+--
+--
 function RemoveMenu(...)
 
     local args = {...}
@@ -73,35 +79,57 @@ function RemoveMenu(...)
 
 end
 
+--
 -- Return if menu is open
+--
 function MenuIsOpen()
 
     return Menus.curent ~= nil
 
 end
 
+--
 -- Return current
+--
 function CurrentMenu()
 
     return Menus.curent
 
 end
 
+--
 -- Return current
+--
 function PrimaryMenu()
 
     return Menus.primary
 
 end
 
+--
 -- Freeze menu
+--
 function FreezeMenu(status)
 
     Menus.freeze = status
 
 end
 
+--
+-- Reset values
+--
+function ResetMenu()
+
+    Menus.selectedButton = 0
+    Menus.freeze = false
+    Menus.from = 1
+    Menus.to = 10
+
+end
+
+--
 -- Open menu
+--
 function OpenMenu(name)
 
     -- Check if menu is open or not
@@ -122,17 +150,9 @@ function OpenMenu(name)
 
 end
 
--- Reset Values
-function ResetMenu()
-
-    Menus.selectedButton = 0
-    Menus.freeze = false
-    Menus.from = 1
-    Menus.to = 10
-
-end
-
--- Close Values
+--
+-- Close menu
+--
 function CloseMenu()
 
     ResetMenu()
@@ -143,7 +163,9 @@ function CloseMenu()
 
 end
 
+--
 -- Move Up action
+--
 local function MoveUp(menu)
 
     local countBtns = TableLength(menu.buttons)
@@ -165,7 +187,9 @@ local function MoveUp(menu)
 
 end
 
+--
 -- Move down action
+--
 local function MoveDown(menu)
 
     local countBtns = TableLength(menu.buttons)
@@ -187,7 +211,9 @@ local function MoveDown(menu)
 
 end
 
+--
 -- Next menu
+--
 function NextMenu(name)
 
     if Menus.curent ~= nil then
@@ -215,7 +241,9 @@ function NextMenu(name)
 
 end
 
+--
 -- Back last menu
+--
 function BackMenu()
 
     local backNumber = TableLength(Menus.backMenu)
@@ -252,29 +280,28 @@ function BackMenu()
 
 end
 
+--
 -- Back is press Back key
+--
 local function BackBtn(menu)
 
     local name = Menus.curent
     local menu = Menus.list[name]
 
-    -- No closable menu for back button
-    if menu.closable ~= nil and menu.closable == false then
-        return
-    end
-
     menu.Back()
 
     local backNumber = TableLength(Menus.backMenu)
-    if next(Menus.backMenu) and backNumber > 0 then
+    if next(Menus.backMenu) and backNumber > 0 and menu.backLock == false then
         BackMenu()
-    else
+    elseif menu.closable == true then
         CloseMenu()
     end
 
 end
 
+--
 -- Execute action
+--
 local function Exec(menu)
 
     local button = menu.buttons[Menus.selectedButton]
@@ -297,6 +324,7 @@ local function Exec(menu)
 
 end
 
+--
 -- Clean buttons
 function CleanMenuButtons(name)
 
@@ -305,8 +333,11 @@ function CleanMenuButtons(name)
     end
 
 end
+--
 
+--
 -- Clean buttons
+--
 function SetMenuButtons(name, buttons)
 
     if Menus.list[name] ~= nil then
@@ -315,7 +346,9 @@ function SetMenuButtons(name, buttons)
 
 end
 
--- Set Menu info
+--
+-- Set menu value
+--
 function SetMenuValue(name, values)
 
     if Menus.list[name] ~= nil then
@@ -330,7 +363,9 @@ function SetMenuValue(name, values)
 
 end
 
+--
 -- Add button
+--
 function AddMenuButton(name, button)
 
     if Menus.list[name] ~= nil then
@@ -355,7 +390,9 @@ function RemoveMenuButton(name, button)
 
 end
 
+--
 -- Show menu
+--
 AddRunInFrame(function()
 
     if MenuIsOpen() and not IsHudComponentActive(19) and not IsHudComponentActive(16) and not IsPauseMenuActive() then

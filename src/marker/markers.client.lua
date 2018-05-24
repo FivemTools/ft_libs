@@ -12,6 +12,7 @@ local currentMarker = nil
 -- Add Marker in the markers table
 --
 function AddMarker(...)
+
     local args = {...}
     local count = #args
     if count == 1 then
@@ -53,12 +54,14 @@ function RemoveMarker(...)
         markers[name] = nil
         activeMarkers[name] = nil
     end
+
 end
 
 --
 -- Add Marker to activeMarkers table
 --
 function EnableMarker(...)
+
     local args = {...}
     local count = #args
     if count == 1 and type(args[1]) == "table" then
@@ -74,12 +77,14 @@ function EnableMarker(...)
             activeMarkers[name] = true
         end
     end
+
 end
 
 --
 -- Remove Marker to activeMarkers table
 --
 function DisableMarker(...)
+
     local args = {...}
     local count = #args
     if count == 1 and type(args[1]) == "table"  then
@@ -91,12 +96,14 @@ function DisableMarker(...)
         local name = args[1]
         activeMarkers[name] = nil
     end
+
 end
 
 --
 -- Add or Remove Marker to activeMarkers table
 --
 function SwitchMarker(...)
+
     local args = {...}
     local count = #args
     if count == 1 and type(args[1]) == "table" then
@@ -117,13 +124,16 @@ function SwitchMarker(...)
             activeMarkers[name] = true
         end
     end
+
 end
 
 --
 -- Get Current Marker
 --
 function CurrentMarker()
+
     return currentMarker
+
 end
 
 --
@@ -139,6 +149,14 @@ AddRunInFrame(function()
         if target then
             if GetDistanceBetweenCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) <= target.showDistance then
                 target:Show()
+                if target.text ~= nil then
+                    Show3DText({
+                        x = target.x,
+                        y = target.y,
+                        z = target.z + target.textOffset,
+                        text = target.text,
+                    })
+                end
                 currentMarker = name
             elseif currentMarker == name then
                 currentMarker = nil

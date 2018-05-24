@@ -14,6 +14,7 @@ local Blip = {}
 -- Show Blip
 --
 function Blip:Show()
+
     self.blip = AddBlipForCoord(self.x, self.y, self.z)
     SetBlipSprite(self.blip, self.imageId)
     SetBlipAsShortRange(self.blip, self.shortRange)
@@ -22,16 +23,21 @@ function Blip:Show()
     BeginTextCommandSetBlipName("STRING")
     AddTextComponentString(self.text)
     EndTextCommandSetBlipName(self.blip)
-    if self.rotation then SetBlipRotation(self.blip, self.rotation) end
+    if self.rotation then
+        SetBlipRotation(self.blip, self.rotation)
+    end
+
 end
 
 --
 -- Hide Blip
 --
 function Blip:Hide()
+
     if self.blip ~= nil then
         Citizen.InvokeNative(0x86A652570E5F25DD, Citizen.PointerValueIntInitialized(self.blip)) -- Use native REMOVE_BLIP
     end
+
 end
 
 --

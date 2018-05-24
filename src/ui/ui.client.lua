@@ -4,7 +4,9 @@
 -- @License: GNU General Public License v3.0
 --
 
+--
 -- Display info in corner top left
+--
 function HelpPromt(text)
 	Citizen.CreateThread(function()
 
@@ -15,7 +17,9 @@ function HelpPromt(text)
 	end)
 end
 
+--
 -- Display loading promt
+--
 function LoadingPromt(settings)
 	Citizen.CreateThread(function()
 
@@ -27,26 +31,29 @@ function LoadingPromt(settings)
 		N_0xaba17d7ce615adbf("STRING")
 		AddTextComponentString(text)
 		N_0xbd12f8228410d9b4(type)
-		Citizen.Wait(time)
 		N_0x10d373323e5b9c0d()
 
 	end)
 end
 
+--
 -- Display notification on the top map
+--
 function Notification(message)
-  Citizen.CreateThread(function()
+	Citizen.CreateThread(function()
 
-    SetNotificationTextEntry('STRING')
-    AddTextComponentString(message)
-    DrawNotification(false, false)
+		SetNotificationTextEntry('STRING')
+		AddTextComponentString(message)
+		DrawNotification(false, false)
 
-  end)
+	end)
 end
 
+--
 -- Display notification on the top map
+--
 function AdvancedNotification(settings)
-  Citizen.CreateThread(function()
+	Citizen.CreateThread(function()
 
 		settings = settings or {}
 		local icon = settings.icon or "CHAR_DEFAULT"
@@ -55,17 +62,19 @@ function AdvancedNotification(settings)
 		local title = settings.title or ""
 		local subTitle = settings.subTitle or ""
 
-    SetNotificationTextEntry("STRING")
-    AddTextComponentString(text)
-    SetNotificationMessage(icon, icon, true, type, title, subTitle)
-    DrawNotification(false, true)
+		SetNotificationTextEntry("STRING")
+		AddTextComponentString(text)
+		SetNotificationMessage(icon, icon, true, type, title, subTitle)
+		DrawNotification(false, true)
 
-  end)
+	end)
 end
 
+--
 -- Display text on the screen
+--
 function Text(settings)
-  Citizen.CreateThread(function()
+	Citizen.CreateThread(function()
 
 		settings = settings or {}
 		local text = settings.text or "Text"
@@ -78,21 +87,23 @@ function Text(settings)
 		local blue = settings.blue or 255
 		local alpha = settings.alpha or 255
 
-    SetTextFont(font)
-    SetTextProportional(0)
-    SetTextScale(scale, scale)
-    SetTextColour(red, green, blue, alpha)
+		SetTextFont(font)
+		SetTextProportional(0)
+		SetTextScale(scale, scale)
+		SetTextColour(red, green, blue, alpha)
 		if settings.center == true then
-    	SetTextCentre(true)
+			SetTextCentre(true)
 		end
-    SetTextEntry("STRING")
-    AddTextComponentString(text)
-    DrawText(x, y)
+		SetTextEntry("STRING")
+		AddTextComponentString(text)
+		DrawText(x, y)
 
-  end)
+	end)
 end
 
+--
 -- Open input
+--
 function OpenTextInput(settings)
 
 	settings = settings or {}
@@ -120,7 +131,9 @@ function OpenTextInput(settings)
 
 end
 
+--
 -- Text on center
+--
 function TextNotification(settings)
 
 	settings = settings or {}
@@ -133,7 +146,48 @@ function TextNotification(settings)
 
 end
 
+--
+-- 3D text
+--
+function Show3DText(settings)
+
+	settings = settings or {}
+	local x = settings.x or 0.0
+	local y = settings.y or 0.0
+	local z = settings.z + 1 or 0.0
+	local text = settings.text or "3D TEXT"
+	local font = settings.font or 1
+	local onScreen, _x, _y = World3dToScreen2d(x, y, z)
+
+	if onScreen then
+		local px, py, pz = table.unpack(GetGameplayCamCoords())
+		local dist = GetDistanceBetweenCoords(px, py, pz, x, y, z, 1)
+		local scale = ( 1 / dist) * 2
+	    local fov = ( 1 / GetGameplayCamFov() ) * 100
+		local scale = scale * fov
+
+		SetTextScale(0.2 * scale, 0.2 * scale)
+		SetTextFont(font)
+		SetTextProportional(1)
+		SetTextScale(0.0, 0.55)
+		SetTextColour(255, 255, 255, 255)
+		SetTextDropshadow(0, 0, 0, 0, 255)
+		SetTextEdge(2, 0, 0, 0, 150)
+		SetTextDropShadow()
+		SetTextOutline()
+		SetTextEntry("STRING")
+		SetTextCentre(1)
+		AddTextComponentString(text)
+		SetDrawOrigin(x, y, z, 0)
+		DrawText(0.0, 0.0)
+		ClearDrawOrigin()
+	end
+
+end
+
+--
 -- Events
+--
 RegisterNetEvent('ft_libs:Notification')
 AddEventHandler('ft_libs:Notification', Notification)
 

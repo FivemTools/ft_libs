@@ -4,7 +4,9 @@
 -- @License: GNU General Public License v3.0
 --
 
+--
 -- Count table
+--
 function TableLength(table)
 
   local count = 0
@@ -15,7 +17,9 @@ function TableLength(table)
 
 end
 
+--
 -- Round number
+--
 function Round(settings)
 
   settings = settings or {}
@@ -27,7 +31,9 @@ function Round(settings)
 
 end
 
+--
 -- Comat number
+--
 function CommaValue(settings)
 
   settings = settings or {}

@@ -4,7 +4,9 @@
 -- @License: GNU General Public License v3.0
 --
 
+--
 -- Get entity
+--
 function GetEntityDirection(range)
 
   local playerPed = GetPlayerPed(-1)

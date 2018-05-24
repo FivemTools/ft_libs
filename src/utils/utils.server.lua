@@ -4,7 +4,9 @@
 -- @License: GNU General Public License v3.0
 --
 
+--
 -- Print table
+--
 function TablePrint(table, indent)
 
   if type(table) == "table" then

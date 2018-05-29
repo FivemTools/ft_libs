@@ -17,9 +17,6 @@ client_scripts {
     -- Ui
     "src/ui/ui.client.lua",
 
-    -- Frames
-    "src/frame.client.lua",
-
     -- Menu
     "src/menu/menu.client.lua",
     "src/menu/menus.client.lua",
@@ -35,6 +32,10 @@ client_scripts {
     -- Marker
     "src/marker/marker.client.lua",
     "src/marker/markers.client.lua",
+
+    -- Area
+    "src/area/area.client.lua",
+    "src/area/areas.client.lua",
 
     -- Event 100% load
     "src/client.load.lua",
@@ -100,11 +101,11 @@ exports {
     "CurrentMarker",
 
     -- Areas
-    "AddAreas",
-    "RemoveAreas",
-    "EnableAreas",
-    "DisableAreas",
-    "SwitchAreas",
+    "AddArea",
+    "RemoveArea",
+    "EnableArea",
+    "DisableArea",
+    "SwitchArea",
 
 }
 

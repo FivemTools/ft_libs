@@ -17,12 +17,11 @@ function AddBlip(...)
     if count == 1 then
         assert(type(args[1]) == "table", "Data is not table")
         for name, value in pairs(args[1]) do
-            Citizen.Wait(1)
             blips[name] = blip.new(value)
-
             if blips[name].enable then
                 blips[name]:Show()
             end
+            Citizen.Wait(10)
         end
     elseif count == 2 then
         local name = args[1]
@@ -88,7 +87,7 @@ function ShowBlip(...)
             blips[name].enable = true
         end
     end
-    
+
 end
 
 --

@@ -19,12 +19,11 @@ function AddTrigger(...)
     if count == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
-            Citizen.Wait(1)
             triggers[name] = trigger.new(value)
-
             if value.enable == nil or value.enable == true then
                 activeTriggers[name] = true
             end
+            Citizen.Wait(10)
         end
 
     elseif count == 2 then
@@ -51,11 +50,11 @@ function RemoveTrigger(...)
 
     if count == 1 and type(args[1]) == "table" then
         for _, name in ipairs(args[1]) do
-            Citizen.Wait(1)
             if triggers[name] ~= nil then
                 triggers[name] = nil
                 activeTriggers[name] = nil
             end
+            Citizen.Wait(10)
         end
     elseif count == 1 then
         local name = args[1]
@@ -76,12 +75,12 @@ function SwitchTrigger(...)
     local count = #args
     if count == 1 and type(args[1]) == "table" then
         for name, status in pairs(args[1]) do
-            Citizen.Wait(1)
             if activeTriggers[name] then
                 activeTriggers[name] = nil
             else
                 activeMarkers[name] = true
             end
+            Citizen.Wait(10)
         end
     elseif count == 1 then
         local name = args[1]
@@ -105,10 +104,10 @@ function EnableTrigger(...)
 
     if count == 1 and type(args[1]) == "table" then
         for _, name in pairs(args[1]) do
-            Citizen.Wait(1)
             if triggers[name] ~= nil then
                 activeTriggers[name] = true
             end
+            Citizen.Wait(10)
         end
     elseif count == 1 then
         local name = args[1]
@@ -129,10 +128,10 @@ function DisableTrigger(...)
 
     if count == 1 and type(args[1]) == "table" then
         for _, name in pairs(args[1]) do
-            Citizen.Wait(1)
             if activeTriggers[name] ~= nil then
                 activeTriggers[name] = nil
             end
+            Citizen.Wait(10)
         end
     elseif count == 1 then
         local name = args[1]
@@ -153,27 +152,35 @@ end
 --
 -- Check
 --
-AddRunInFrame(function()
+function TriggerFrame()
 
-    local playerPed = GetPlayerPed(-1)
-    local playerLocalisation = GetEntityCoords(playerPed)
+    Citizen.CreateThread(function()
 
-    for name, value in pairs(activeTriggers) do
+        while true do
+            local playerPed = GetPlayerPed(-1)
+            local playerLocalisation = GetEntityCoords(playerPed)
 
-        local target = triggers[name]
-        if target then
-            player_in = (GetDistanceBetweenCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) < (target.weight + 0.0) and math.abs(playerLocalisation.z - target.z) <= (target.height + 0.0))
-            if player_in and currentTrigger ~= name then
-                currentTrigger = name
-                target:Enter()
-            elseif player_in and currentTrigger == name then
-                target:Active()
-            elseif not player_in and currentTrigger == name then
-                currentTrigger = nil
-                target:Exit()
+            for name, value in pairs(activeTriggers) do
+
+                local target = triggers[name]
+                if target then
+                    player_in = (GetDistanceBetweenCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) < (target.weight + 0.0) and math.abs(playerLocalisation.z - target.z) <= (target.height + 0.0))
+                    if player_in and currentTrigger ~= name then
+                        currentTrigger = name
+                        target:Enter()
+                    elseif player_in and currentTrigger == name then
+                        target:Active()
+                    elseif not player_in and currentTrigger == name then
+                        currentTrigger = nil
+                        target:Exit()
+                    end
+                end
+
             end
+
+            Citizen.Wait(10)
         end
 
-    end
+    end)
 
-end)
+end

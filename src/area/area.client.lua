@@ -8,12 +8,12 @@
 area = {}
 
 -- class table
-local AreaClass = {}
+local Area = {}
 
 --
 -- Enable Area
 --
-function AreaClass:Enable()
+function Area:Enable()
 
     EnableMarker(self.name, true)
     SwitchTrigger(self.name, true)
@@ -48,9 +48,11 @@ end
 --
 function area.new(name, data)
 
-    assert(type(data.name) == "string", "Area : name must be text")
+    assert(type(name) == "string", "Area : name must be text")
 
+    -- TriggerServerEvent("ft_libs:PrintTable", data)
     local self = data
+    self.name = name
     if data.enable ~= nil then
         self.enable = data.enable
     else
@@ -60,11 +62,11 @@ function area.new(name, data)
     -- Trigger
     if data.trigger ~= nil then
         local triggerData = data.trigger
-        areaData.enable = self.enable
-        areaData.x = data.x
-        areaData.y = data.y
-        areaData.z = data.z
-        self.area = AddTrigger(self.name, areaData)
+        triggerData.enable = self.enable
+        triggerData.x = data.x
+        triggerData.y = data.y
+        triggerData.z = data.z
+        self.area = AddTrigger(name, triggerData)
     end
 
     -- Blip
@@ -74,7 +76,7 @@ function area.new(name, data)
         blipData.x = data.x
         blipData.y = data.y
         blipData.z = data.z
-        self.blip = AddBlip(self.name, blipData)
+        self.blip = AddBlip(name, blipData)
     end
 
     -- Marker
@@ -84,7 +86,7 @@ function area.new(name, data)
         markerData.x = data.x
         markerData.y = data.y
         markerData.z = data.z
-        self.marker = AddMarker(self.name, markerData)
+        self.marker = AddMarker(name, markerData)
     end
 
     setmetatable(self, { __index = Area })

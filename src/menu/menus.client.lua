@@ -393,63 +393,72 @@ end
 --
 -- Show menu
 --
-AddRunInFrame(function()
+function MenuFrame()
 
-    if MenuIsOpen() and not IsHudComponentActive(19) and not IsHudComponentActive(16) and not IsPauseMenuActive() then
+    Citizen.CreateThread(function()
 
-        local current = Menus.curent
-        local menu = Menus.list[current]
-        local countBtns = TableLength(menu.buttons)
+        while true do
 
-        if not Menus.freeze then
+            if MenuIsOpen() and not IsHudComponentActive(19) and not IsHudComponentActive(16) and not IsPauseMenuActive() then
 
-            -- Fix
-            if Menus.selectedButton > countBtns then
-                Menus.selectedButton = countBtns
-            end
+                local current = Menus.curent
+                local menu = Menus.list[current]
+                local countBtns = TableLength(menu.buttons)
 
-            -- Block if menu is empty
-            if Menus.selectedButton > 0 and Menus.selectedButton <= countBtns then
+                if not Menus.freeze then
 
-                -- Up
-                if IsControlPressed(2, 188) and GetLastInputMethod(2) and (GetGameTimer() - Menus.lastKeyPressed) > 150 then
+                    -- Fix
+                    if Menus.selectedButton > countBtns then
+                        Menus.selectedButton = countBtns
+                    end
 
-                    MoveUp(menu)
-                    Menus.lastKeyPressed = GetGameTimer()
+                    -- Block if menu is empty
+                    if Menus.selectedButton > 0 and Menus.selectedButton <= countBtns then
+
+                        -- Up
+                        if IsControlPressed(2, 188) and GetLastInputMethod(2) and (GetGameTimer() - Menus.lastKeyPressed) > 150 then
+
+                            MoveUp(menu)
+                            Menus.lastKeyPressed = GetGameTimer()
+
+                        end
+
+                        -- Down
+                        if IsControlPressed(2, 187) and GetLastInputMethod(2) and (GetGameTimer() - Menus.lastKeyPressed) > 150 then
+
+                            MoveDown(menu)
+                            Menus.lastKeyPressed = GetGameTimer()
+
+                        end
+
+                        -- Enter
+                        if IsControlJustReleased(2, 201) and GetLastInputMethod(2) then
+
+                            Exec(menu)
+                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+
+                        end
+
+                    end
+
+                    -- Back
+                    if IsControlJustReleased(2, 177) and not IsControlJustReleased(2, 322) and not IsControlJustReleased(2, 24) and not IsControlJustReleased(0, 25) and GetLastInputMethod(2) then
+
+                        BackBtn(menu)
+                        PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+
+                    end
 
                 end
 
-                -- Down
-                if IsControlPressed(2, 187) and GetLastInputMethod(2) and (GetGameTimer() - Menus.lastKeyPressed) > 150 then
+                -- Show Memu
+                menu.Show(Menus.from, Menus.to, Menus.selectedButton)
 
-                    MoveDown(menu)
-                    Menus.lastKeyPressed = GetGameTimer()
+            end -- end check menu is open
 
-                end
-
-                -- Enter
-                if IsControlJustReleased(2, 201) and GetLastInputMethod(2) then
-
-                    Exec(menu)
-                    PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
-
-                end
-
-            end
-
-            -- Back
-            if IsControlJustReleased(2, 177) and not IsControlJustReleased(2, 322) and not IsControlJustReleased(2, 24) and not IsControlJustReleased(0, 25) and GetLastInputMethod(2) then
-
-                BackBtn(menu)
-                PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
-
-            end
-
+            Citizen.Wait(10)
         end
 
-        -- Show Memu
-        menu.Show(Menus.from, Menus.to, Menus.selectedButton)
+    end)
 
-    end -- end check menu is open
-
-end)
+end

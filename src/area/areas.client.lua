@@ -18,16 +18,24 @@ function AddArea(...)
     if count == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
-
             areas[name] = {}
-            
+
+            local trigger = value.trigger
+            local blip = value.blip
+            local marker = value.marker
+
             for key, location in pairs(value.locations) do
-                Citizen.Wait(1)
-                value.x = location.x
-                value.y = location.y
-                value.z = location.z
-                areas[name][key] = area.new(name .. "_" .. key, value)
+                local newArea = {}
+                newArea.x = location.x
+                newArea.y = location.y
+                newArea.z = location.z
+                newArea.blip = copy(blip)
+                newArea.marker = copy(marker)
+                newArea.trigger = copy(trigger)
+                areas[name][key] = area.new(name .. "_" .. key, newArea)
+                Citizen.Wait(10)
             end
+            Citizen.Wait(10)
 
         end
 
@@ -35,14 +43,22 @@ function AddArea(...)
 
         local name = args[1]
         local value = args[2]
-        Areas[name] = {}
+        areas[name] = {}
+
+        local trigger = value.trigger
+        local blip = value.blip
+        local marker = value.marker
 
         for key, location in pairs(value.locations) do
-            Citizen.Wait(1)
-            value.x = location.x
-            value.y = location.y
-            value.z = location.z
-            areas[name][key] = area.new(name .. "_" .. key, value)
+            local newArea = {}
+            newArea.x = location.x
+            newArea.y = location.y
+            newArea.z = location.z
+            newArea.blip = copy(blip)
+            newArea.marker = copy(marker)
+            newArea.trigger = copy(trigger)
+            areas[name][key] = area.new(name .. "_" .. key, newArea)
+            Citizen.Wait(10)
         end
 
     end
@@ -58,17 +74,18 @@ function RemoveArea(...)
     if count == 1 and type(args[1]) == "table" then
 
         for _, name in ipairs(args[1]) do
-            Citizen.Wait(1)
 
             if areas[name] ~= nil then
 
                 for _, area in pairs(areas[name]) do
                     area:Disable()
                     area:Remove()
+                    Citizen.Wait(10)
                 end
 
                 areas[name] = nil
             end
+            Citizen.Wait(10)
 
         end
 
@@ -81,6 +98,7 @@ function RemoveArea(...)
             for _, area in pairs(areas[name]) do
                 area:Disable()
                 area:Remove()
+                Citizen.Wait(10)
             end
 
             areas[name] = nil
@@ -99,14 +117,15 @@ function EnableArea(...)
     if count == 1 and type(args[1]) == "table" then
 
         for _, name in ipairs(args[1]) do
-            Citizen.Wait(1)
 
             if areas[name] ~= nil then
                 for _, area in pairs(areas[name]) do
                     area:Enable()
                     area.enable = true
+                    Citizen.Wait(10)
                 end
             end
+            Citizen.Wait(10)
 
         end
 
@@ -117,6 +136,7 @@ function EnableArea(...)
             for _, area in pairs(areas[name]) do
                 area:Enable()
                 area.enable = true
+                Citizen.Wait(10)
             end
         end
 
@@ -132,14 +152,15 @@ function DisableArea(...)
     if count == 1 and type(args[1]) == "table" then
 
         for _, name in ipairs(args[1]) do
-            Citizen.Wait(1)
 
             if areas[name] ~= nil then
                 for _, area in pairs(areas[name]) do
                     area:Disable()
                     area.enable = false
+                    Citizen.Wait(10)
                 end
             end
+            Citizen.Wait(10)
 
         end
 
@@ -150,6 +171,7 @@ function DisableArea(...)
             for _, area in pairs(areas[name]) do
                 area:Disable()
                 area.enable = false
+                Citizen.Wait(10)
             end
         end
 
@@ -165,7 +187,6 @@ function SwitchArea(...)
     if count == 1 and type(args[1]) == "table" then
 
         for name, status in ipairs(args[1]) do
-            Citizen.Wait(1)
 
             if areas[name] ~= nil then
                 for _, area in pairs(areas[name]) do
@@ -176,8 +197,10 @@ function SwitchArea(...)
                         area:Enable()
                         area.enable = true
                     end
+                    Citizen.Wait(10)
                 end
             end
+            Citizen.Wait(10)
 
         end
 
@@ -187,6 +210,7 @@ function SwitchArea(...)
         if areas[name] ~= nil then
             for _, area in pairs(areas[name]) do
                 area:Disable()
+                Citizen.Wait(10)
             end
         end
 

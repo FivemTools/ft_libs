@@ -240,13 +240,15 @@ function Menu(data)
 
         -- Sub title
         DrawRect(self.x, y, self.width, self.height, self.colors.header.red, self.colors.header.green, self.colors.header.blue, self.colors.header.alpha)
-        Text({
-            text = self.menuTitle,
-            font = 0,
-            x = self.x - (self.width / 2) + 0.005,
-            y = y - (self.height / 2) + 0.0028,
-            scale = 0.4,
-        })
+        if self.menuTitle ~= nil then
+            Text({
+                text = self.menuTitle,
+                font = 0,
+                x = self.x - (self.width / 2) + 0.005,
+                y = y - (self.height / 2) + 0.0028,
+                scale = 0.4,
+            })
+        end
 
         -- Numbers
         Text({

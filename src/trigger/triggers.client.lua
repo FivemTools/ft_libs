@@ -176,6 +176,8 @@ function TriggerFrame()
                     end
                 end
 
+                Citizen.Wait(10)
+
             end
 
             Citizen.Wait(10)

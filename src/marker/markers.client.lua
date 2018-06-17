@@ -168,6 +168,8 @@ function MarkerFrame()
                     end
                 end
 
+                Citizen.Wait(10)
+
             end
 
             Citizen.Wait(10)

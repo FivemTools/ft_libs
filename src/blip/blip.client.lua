@@ -54,10 +54,16 @@ function blip.new(data)
     self.imageId = data.imageId or 1
     self.colorId = data.colorId or 0
     self.scale = data.scale or 1.0
+
     self.shortRange = true
+    if data.shortRange ~= nil then
+        self.shortRange = data.shortRange
+    end
+
     self.enable = true
-    if data.shortRange then self.shortRange = data.shortRange end
-    if data.enable then self.enable = data.enable end
+    if data.enable ~= nil then
+        self.enable = data.enable
+    end
 
     setmetatable(self, { __index = Blip })
     return self

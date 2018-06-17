@@ -164,6 +164,11 @@ function Show3DText(settings)
 	local z = settings.z + 1 or 0.0
 	local text = settings.text or "3D TEXT"
 	local font = settings.font or 1
+	local red = settings.red or 255
+	local green = settings.green or 255
+	local blue = settings.blue or 255
+	local alpha = settings.alpha or 255
+	local scale = settings.scale or 1.0
 	local onScreen, _x, _y = World3dToScreen2d(x, y, z)
 
 	if onScreen then
@@ -176,8 +181,8 @@ function Show3DText(settings)
 		SetTextScale(0.2 * scale, 0.2 * scale)
 		SetTextFont(font)
 		SetTextProportional(1)
-		SetTextScale(0.0, 0.55)
-		SetTextColour(255, 255, 255, 255)
+		SetTextScale(scale, scale)
+		SetTextColour(red, green, blue, alpha)
 		SetTextDropshadow(0, 0, 0, 0, 255)
 		SetTextEdge(2, 0, 0, 0, 150)
 		SetTextDropShadow()

@@ -66,17 +66,15 @@ function Menu(data)
     }
 
     -- Closable menu
+    self.closable = true
     if data.closable ~= nil then
         self.closable = data.closable
-    else
-        self.closable = true
     end
 
     -- Lock back menu
+    self.backLock = false
     if data.backLock ~= nil then
         self.backLock = data.backLock
-    else
-        self.backLock = false
     end
 
     -- Get position (1 = left / 2 - right [default])

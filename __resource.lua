@@ -126,5 +126,7 @@ server_exports {
     "TableLength",
     "TablePrint",
     "Round",
+    "GetSteamIDFormSource",
+    "GetIpFormSource",
 
 }

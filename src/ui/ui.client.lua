@@ -110,7 +110,14 @@ function OpenTextInput(settings)
 	local title = settings.title or "FMMC_KEY_TIP8"
 	local defaultText = settings.defaultText or ""
 	local maxInputLength = settings.maxInputLength or 255
-	if title ~= nil then
+	local customTitle = false
+
+	if settings.customTitle ~= nil and settings.customTitle == true then
+		customTitle = settings.customTitle
+	end
+
+	local customTitle = settings.maxInputLength or 255
+	if title ~= nil and customTitle == true then
 		AddTextEntry('FT_TEXT', title)
 		title = "FT_TEXT"
 	end

@@ -50,7 +50,6 @@ function area.new(name, data)
 
     assert(type(name) == "string", "Area : name must be text")
 
-    -- TriggerServerEvent("ft_libs:PrintTable", data)
     local self = data
     self.name = name
     if data.enable ~= nil then

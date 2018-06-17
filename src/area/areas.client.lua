@@ -29,9 +29,9 @@ function AddArea(...)
                 newArea.x = location.x
                 newArea.y = location.y
                 newArea.z = location.z
-                newArea.blip = copy(blip)
-                newArea.marker = copy(marker)
-                newArea.trigger = copy(trigger)
+                newArea.blip = Copy(blip)
+                newArea.marker = Copy(marker)
+                newArea.trigger = Copy(trigger)
                 areas[name][key] = area.new(name .. "_" .. key, newArea)
                 Citizen.Wait(10)
             end
@@ -54,9 +54,9 @@ function AddArea(...)
             newArea.x = location.x
             newArea.y = location.y
             newArea.z = location.z
-            newArea.blip = copy(blip)
-            newArea.marker = copy(marker)
-            newArea.trigger = copy(trigger)
+            newArea.blip = Copy(blip)
+            newArea.marker = Copy(marker)
+            newArea.trigger = Copy(trigger)
             areas[name][key] = area.new(name .. "_" .. key, newArea)
             Citizen.Wait(10)
         end

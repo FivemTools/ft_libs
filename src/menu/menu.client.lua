@@ -284,7 +284,7 @@ function Menu(data)
             font = 0,
             center = 0,
             x = x - (self.width / 2) + 0.005,
-            y = y - self.height / 2 + 0.0035,
+            y = y - (self.height / 2) + 0.0035,
             scale = textScale,
             red = color.text.red,
             blue = color.text.blue,
@@ -313,7 +313,10 @@ function Menu(data)
     --
     self.DrawMenuButtons = function(from, to, selectedButton)
 
-        local y = self.y + 0.12
+        local y = self.y + self.height
+        if self.title ~= nil then
+            y = y + 0.08
+        end
 
         for i, button in pairs(self.buttons) do
 

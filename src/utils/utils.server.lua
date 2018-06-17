@@ -45,3 +45,29 @@ function TablePrint(table, indent)
   end
 
 end
+
+--
+-- Get SeamID
+--
+local function GetSteamIDFormSource(source)
+
+    local player = GetPlayerIdentifiers(source)
+    if player[1] ~= nil  then
+        return player[1]
+    end
+	return false
+
+end
+
+--
+-- Get IP
+--
+local function GetIpFormSource(source)
+
+    local player = GetPlayerEP(source)
+    if player[3] ~= nil  then
+        return player[3]
+    end
+	return false
+
+end

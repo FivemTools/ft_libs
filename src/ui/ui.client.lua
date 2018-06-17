@@ -8,97 +8,87 @@
 -- Display info in corner top left
 --
 function HelpPromt(text)
-	Citizen.CreateThread(function()
 
-		SetTextComponentFormat("STRING")
-		AddTextComponentString(text)
-		DisplayHelpTextFromStringLabel(0, false, false, -1)
+	SetTextComponentFormat("STRING")
+	AddTextComponentString(text)
+	DisplayHelpTextFromStringLabel(0, false, false, -1)
 
-	end)
 end
 
 --
 -- Display loading promt
 --
 function LoadingPromt(settings)
-	Citizen.CreateThread(function()
 
-		settings = settings or {}
-		local text = settings.text or "Text"
-		local type = settings.type or 4
-		local time = settings.time or 1000
+	settings = settings or {}
+	local text = settings.text or "Text"
+	local type = settings.type or 4
+	local time = settings.time or 1000
 
-		N_0xaba17d7ce615adbf("STRING")
-		AddTextComponentString(text)
-		N_0xbd12f8228410d9b4(type)
-		N_0x10d373323e5b9c0d()
+	N_0xaba17d7ce615adbf("STRING")
+	AddTextComponentString(text)
+	N_0xbd12f8228410d9b4(type)
+	N_0x10d373323e5b9c0d()
 
-	end)
 end
 
 --
 -- Display notification on the top map
 --
 function Notification(message)
-	Citizen.CreateThread(function()
 
-		SetNotificationTextEntry('STRING')
-		AddTextComponentString(message)
-		DrawNotification(false, false)
+	SetNotificationTextEntry('STRING')
+	AddTextComponentString(message)
+	DrawNotification(false, false)
 
-	end)
 end
 
 --
 -- Display notification on the top map
 --
 function AdvancedNotification(settings)
-	Citizen.CreateThread(function()
 
-		settings = settings or {}
-		local icon = settings.icon or "CHAR_DEFAULT"
-		local type = settings.type or 1
-		local text = settings.text or ""
-		local title = settings.title or ""
-		local subTitle = settings.subTitle or ""
+	settings = settings or {}
+	local icon = settings.icon or "CHAR_DEFAULT"
+	local type = settings.type or 1
+	local text = settings.text or ""
+	local title = settings.title or ""
+	local subTitle = settings.subTitle or ""
 
-		SetNotificationTextEntry("STRING")
-		AddTextComponentString(text)
-		SetNotificationMessage(icon, icon, true, type, title, subTitle)
-		DrawNotification(false, true)
+	SetNotificationTextEntry("STRING")
+	AddTextComponentString(text)
+	SetNotificationMessage(icon, icon, true, type, title, subTitle)
+	DrawNotification(false, true)
 
-	end)
 end
 
 --
 -- Display text on the screen
 --
 function Text(settings)
-	Citizen.CreateThread(function()
 
-		settings = settings or {}
-		local text = settings.text or "Text"
-		local font = settings.font or 1
-		local x = settings.x or 0
-		local y = settings.y or 0
-		local scale = settings.scale or 1.0
-		local red = settings.red or 255
-		local green = settings.green or 255
-		local blue = settings.blue or 255
-		local alpha = settings.alpha or 255
+	settings = settings or {}
+	local text = settings.text or "Text"
+	local font = settings.font or 1
+	local x = settings.x or 0
+	local y = settings.y or 0
+	local scale = settings.scale or 1.0
+	local red = settings.red or 255
+	local green = settings.green or 255
+	local blue = settings.blue or 255
+	local alpha = settings.alpha or 255
 
-		SetTextFont(font)
-		SetTextProportional(0)
-		SetTextScale(scale, scale)
-		SetTextColour(red, green, blue, alpha)
-		if settings.center == true then
-			SetTextCentre(true)
-		end
-		SetTextEntry("STRING")
-		AddTextComponentString(text)
-		DrawText(x, y)
+	SetTextFont(font)
+	SetTextProportional(0)
+	SetTextScale(scale, scale)
+	SetTextColour(red, green, blue, alpha)
+	if settings.center == true then
+		SetTextCentre(true)
+	end
+	SetTextEntry("STRING")
+	AddTextComponentString(text)
+	DrawText(x, y)
 
-	end)
 end
 
 --
@@ -112,12 +102,7 @@ function OpenTextInput(settings)
 	local maxInputLength = settings.maxInputLength or 255
 
 	local customTitle = false
-	if settings.customTitle ~= nil and settings.customTitle == true then
-		customTitle = settings.customTitle
-	end
-
-	local customTitle = settings.maxInputLength or 255
-	if title ~= nil and customTitle == true then
+	if title ~= nil and settings.customTitle ~= nil and settings.customTitle == true then
 		AddTextEntry('FT_TEXT', title)
 		title = "FT_TEXT"
 	end
@@ -175,7 +160,7 @@ function Show3DText(settings)
 		local px, py, pz = table.unpack(GetGameplayCamCoords())
 		local dist = GetDistanceBetweenCoords(px, py, pz, x, y, z, 1)
 		local scale = ( 1 / dist) * 2
-	    local fov = ( 1 / GetGameplayCamFov() ) * 100
+		local fov = ( 1 / GetGameplayCamFov() ) * 100
 		local scale = scale * fov
 
 		SetTextScale(0.2 * scale, 0.2 * scale)

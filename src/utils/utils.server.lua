@@ -49,11 +49,13 @@ end
 --
 -- Get SeamID
 --
-local function GetSteamIDFormSource(source)
+function GetSteamIDFormSource(source)
 
-    local player = GetPlayerIdentifiers(source)
-    if player[1] ~= nil  then
-        return player[1]
+    assert(type(source) == "number", "source must be number")
+
+    local steamID = GetPlayerIdentifiers(source)
+    if steamID[1] ~= nil  then
+        return steamID[1]
     end
 	return false
 
@@ -62,11 +64,13 @@ end
 --
 -- Get IP
 --
-local function GetIpFormSource(source)
+function GetIpFormSource(source)
 
-    local player = GetPlayerEP(source)
-    if player[3] ~= nil  then
-        return player[3]
+    assert(type(source) == "number", "source must be number")
+
+    local ip = GetPlayerEP(source)
+    if ip ~= nil  then
+        return ip
     end
 	return false
 

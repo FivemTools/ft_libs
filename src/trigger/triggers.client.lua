@@ -146,7 +146,9 @@ end
 -- Current Trigger
 --
 function CurrentTrigger()
+
     return currentTrigger
+
 end
 
 --
@@ -175,8 +177,6 @@ function TriggerFrame()
                         target:Exit()
                     end
                 end
-
-                Citizen.Wait(10)
 
             end
 

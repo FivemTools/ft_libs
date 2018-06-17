@@ -110,8 +110,8 @@ function OpenTextInput(settings)
 	local title = settings.title or "FMMC_KEY_TIP8"
 	local defaultText = settings.defaultText or ""
 	local maxInputLength = settings.maxInputLength or 255
-	local customTitle = false
 
+	local customTitle = false
 	if settings.customTitle ~= nil and settings.customTitle == true then
 		customTitle = settings.customTitle
 	end
@@ -125,8 +125,8 @@ function OpenTextInput(settings)
 	DisplayOnscreenKeyboard(true, title, "", defaultText, "", "", "", maxInputLength)
 
 	while UpdateOnscreenKeyboard() == 0 do
-		DisableAllControlActions(0);
-		Citizen.Wait(0);
+		DisableAllControlActions(0)
+		Citizen.Wait(10)
 	end
 
 	local result = GetOnscreenKeyboardResult()

@@ -49,6 +49,8 @@ exports {
     "Round",
     "CommaValue",
     "GetEntityDirection",
+    "SetDebug",
+    "DPrint",
 
     -- Ui
     "HelpPromt",

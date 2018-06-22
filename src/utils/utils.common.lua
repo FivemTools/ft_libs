@@ -82,3 +82,28 @@ function Clone(t)
     setmetatable(target, meta)
     return target
 end
+
+--
+-- Debug print
+--
+local debugMode = false
+
+function SetDebug(boolean)
+  assert(type(boolean) == "boolean" or boolean == 1 or boolean == 0)
+
+  if boolean == 1 then boolean = true
+  elseif boolean == 0 then boolean = false
+  end
+
+  debugMode = boolean
+end
+
+function DPrint(str)
+  if debugMode then
+    if (type(str) == "table") then
+      TablePrint(str)
+    else
+      print("[DEBUG] - " .. tostring(str))
+    end
+  end
+end

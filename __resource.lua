@@ -50,6 +50,7 @@ exports {
     "Round",
     "CommaValue",
     "GetEntityDirection",
+    "TablePrint",
 
     -- Ui
     "HelpPromt",

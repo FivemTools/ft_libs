@@ -91,18 +91,32 @@ end
 --
 -- Return current
 --
-function CurrentMenu()
+function GetCurrentMenu()
 
     return Menus.curent
+
+end
+
+-- old function name
+function CurrentMenu()
+
+    return GetCurrentMenu()
 
 end
 
 --
 -- Return current
 --
-function PrimaryMenu()
+function GetPrimaryMenu()
 
     return Menus.primary
+
+end
+
+-- old function name
+function PrimaryMenu()
+
+    return GetPrimaryMenu()
 
 end
 

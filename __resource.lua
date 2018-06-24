@@ -69,6 +69,8 @@ exports {
     "MenuIsOpen",
     "CurrentMenu",
     "PrimaryMenu",
+    "GetCurrentMenu",
+    "GetPrimaryMenu",
     "FreezeMenu",
     "OpenMenu",
     "CloseMenu",

@@ -10,42 +10,42 @@
 --
 function TablePrint(table, indent)
 
-  if type(table) == "table" then
-    if not indent then indent = 0 end
-    for k, v in pairs(table) do
-      formatting = string.rep("  ", indent) .. k .. ": "
-      if type(v) == "table" then
-        Citizen.Trace(formatting)
-        TableCitizen.Trace(v, indent + 1)
-      elseif type(v) == "boolean" then
-        if v then
-          Citizen.Trace(formatting .. "true")
-        else
-          Citizen.Trace(formatting .. "false")
-        end
-      elseif type(v) == "nil" then
-        Citizen.Trace(formatting .. "nil")
-      elseif type(v) == "function" then
-        Citizen.Trace(formatting .. "function")
-      else
-        Citizen.Trace(formatting .. tostring(v) .. " (" .. type(v) .. ")")
-      end
-    end
-  elseif type(table) == "boolean" then
-    if table then
-      Citizen.Trace("true")
-    else
-      Citizen.Trace("false")
-    end
-  elseif type(table) == "nil" then
-    Citizen.Trace("nil")
-  elseif type(table) == "function" then
-    Citizen.Trace("function")
-  else
-    Citizen.Trace(tostring(table)  .. " (" .. type(table) .. ")")
-  end
+    if type(table) == "table" then
+        if not indent then indent = 0 end
+        for k, v in pairs(table) do
+            formatting = string.rep("  ", indent) .. k .. ": "
+            if type(v) == "table" then
+                Citizen.Trace(formatting)
+                TableCitizen.Trace(v, indent + 1)
+            elseif type(v) == "boolean" then
+                if v then
+                    Citizen.Trace(formatting .. "true")
+                else
+                    Citizen.Trace(formatting .. "false")
+                end
+            elseif type(v) == "nil" then
+                Citizen.Trace(formatting .. "nil")
+            elseif type(v) == "function" then
+                Citizen.Trace(formatting .. "function")
+                else
+                    Citizen.Trace(formatting .. tostring(v) .. " (" .. type(v) .. ")")
+                end
+            end
+        elseif type(table) == "boolean" then
+            if table then
+                Citizen.Trace("true")
+            else
+                Citizen.Trace("false")
+            end
+        elseif type(table) == "nil" then
+            Citizen.Trace("nil")
+        elseif type(table) == "function" then
+            Citizen.Trace("function")
+            else
+                Citizen.Trace(tostring(table)  .. " (" .. type(table) .. ")")
+            end
 
-end
+        end
 
 --
 -- Count table

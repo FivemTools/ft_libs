@@ -16,6 +16,7 @@ client_scripts {
 
     -- Ui
     "src/ui/ui.client.lua",
+    "src/ui/instructionalButtons.client.lua",
 
     -- Menu
     "src/menu/menu.client.lua",
@@ -51,6 +52,7 @@ exports {
     "GetEntityDirection",
     "SetDebug",
     "DPrint",
+    "TablePrint",
 
     -- Ui
     "HelpPromt",
@@ -69,6 +71,8 @@ exports {
     "MenuIsOpen",
     "CurrentMenu",
     "PrimaryMenu",
+    "GetCurrentMenu",
+    "GetPrimaryMenu",
     "FreezeMenu",
     "OpenMenu",
     "CloseMenu",

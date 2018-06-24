@@ -4,6 +4,62 @@
 -- @License: GNU General Public License v3.0
 --
 
+
+--
+-- Citizen.Trace table
+--
+function TablePrint(table, indent)
+
+    if type(table) == "table" then
+
+        if not indent then
+            indent = 0
+        end
+
+        for k, v in pairs(table) do
+            formatting = string.rep("  ", indent) .. k .. ": "
+            if type(v) == "table" then
+                Citizen.Trace(formatting)
+                TableCitizen.Trace(v, indent + 1)
+            elseif type(v) == "boolean" then
+                if v then
+                    Citizen.Trace(formatting .. "true \n")
+                else
+                    Citizen.Trace(formatting .. "false \n")
+                end
+            elseif type(v) == "nil" then
+                Citizen.Trace(formatting .. "nil \n")
+            elseif type(v) == "function" then
+                Citizen.Trace(formatting .. "function \n")
+            else
+                Citizen.Trace(formatting .. tostring(v) .. " (" .. type(v) .. ") \n")
+            end
+        end
+
+    elseif type(table) == "boolean" then
+
+        if table then
+            Citizen.Trace("true \n")
+        else
+            Citizen.Trace("false \n")
+        end
+
+    elseif type(table) == "nil" then
+
+        Citizen.Trace("nil \n")
+
+    elseif type(table) == "function" then
+
+        Citizen.Trace("function \n")
+
+    else
+
+        Citizen.Trace(tostring(table)  .. " (" .. type(table) .. ") \n")
+
+    end
+
+end
+
 --
 -- Count table
 --

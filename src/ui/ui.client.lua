@@ -77,13 +77,19 @@ function Text(settings)
 	local green = settings.green or 255
 	local blue = settings.blue or 255
 	local alpha = settings.alpha or 255
+	local startWrap = settings.startWrap or 0.0
+	local endWrap = settings.endWrap or 1.0
 
 	SetTextFont(font)
 	SetTextProportional(0)
 	SetTextScale(scale, scale)
 	SetTextColour(red, green, blue, alpha)
+	SetTextWrap(startWrap, endWrap)
 	if settings.center == true then
 		SetTextCentre(true)
+	end
+	if settings.right == true then
+		SetTextJustification(2)
 	end
 	SetTextEntry("STRING")
 	AddTextComponentString(text)

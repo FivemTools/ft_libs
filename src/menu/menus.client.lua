@@ -404,8 +404,6 @@ local function menuInit()
         ["Back"] = 177,
     })
 
-    Citizen.Trace("menuInit")
-
 end
 
 --
@@ -476,11 +474,11 @@ function MenuFrame()
 
                 -- Show Memu
                 menu.Show(Menus.from, Menus.to, Menus.selectedButton)
-                -- DisplayInstructionalButtons("ft_menu")
+                DisplayInstructionalButtons("ft_menu")
 
-            -- elseif GetCurrentInstructionalButtons() == "ft_menu" then
-            --
-            --     DisplayInstructionalButtons(false)
+            elseif GetCurrentInstructionalButtons() == "ft_menu" then
+
+                DisplayInstructionalButtons(false)
 
             end -- end check menu is open
 

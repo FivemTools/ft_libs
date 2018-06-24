@@ -16,12 +16,15 @@ local function CreateInstructionalButtons(data)
         Citizen.Wait(10)
     end
 
+	local total = 0
 	for text, value in pairs(data) do
 		PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
-	    PushScaleformMovieFunctionParameterInt(0)
+	    PushScaleformMovieFunctionParameterInt(total)
 	    PushScaleformMovieFunctionParameterString(GetControlInstructionalButton(2, value, true))
 	    PushScaleformMovieFunctionParameterString(text)
 	    PopScaleformMovieFunctionVoid()
+		total = total + 1
+		Citizen.Wait(1)
 	end
 
     PushScaleformMovieFunction(scaleform, "DRAW_INSTRUCTIONAL_BUTTONS")
@@ -117,10 +120,10 @@ function InstructionalButtonsFrame()
     Citizen.CreateThread(function()
         while true do
 
-            if currentInstructionalButtons ~= nil and instructionalsButtonsList[name] ~= nil then
-                DrawScaleformMovieFullscreen(instructionalsButtonsList[name], 255, 255, 255, 255, 0)
+            if currentInstructionalButtons ~= nil and instructionalsButtonsList[currentInstructionalButtons] ~= nil then
+                DrawScaleformMovieFullscreen(instructionalsButtonsList[currentInstructionalButtons], 255, 255, 255, 255, 0)
             end
-            Citizen.Wait(10)
+            Citizen.Wait(5)
 
         end
     end)

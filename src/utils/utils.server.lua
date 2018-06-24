@@ -46,3 +46,24 @@ AddEventHandler('ft_libs:PrintTable', function(value)
 
 end)
 
+--
+--
+--
+AddEventHandler('onServerResourceStart', function(resource)
+
+    if resource == 'ft_libs' then
+        debugMode = GetConvar("ft_debug", "false")
+    end
+
+end)
+
+--
+--
+--
+RegisterServerEvent("ft_libs:OnClientReady")
+AddEventHandler('ft_libs:OnClientReady', function()
+
+	TriggerClientEvent("ft_libs:DebugMode", source, debugMode)
+
+end)
+

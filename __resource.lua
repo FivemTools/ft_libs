@@ -51,7 +51,7 @@ exports {
     "CommaValue",
     "GetEntityDirection",
     "SetDebug",
-    "DPrint",
+    "Print",
     "TablePrint",
 
     -- Ui

@@ -1,6 +1,7 @@
 --
 -- @Project: FiveM Tools
 -- @Author: Samuelds
+-- @Contributors : izio38
 -- @License: GNU General Public License v3.0
 --
 
@@ -142,24 +143,33 @@ end
 --
 -- Debug print
 --
-local debugMode = false
 
-function SetDebug(boolean)
-  assert(type(boolean) == "boolean" or boolean == 1 or boolean == 0)
+debugMode = false
 
-  if boolean == 1 then boolean = true
-  elseif boolean == 0 then boolean = false
+--
+--
+--
+function SetDebug(status)
+
+  assert(type(status) == "boolean" or boolean == 1 or boolean == 0, "SetDebug : status must be boolean or number")
+
+  if status == 1 then
+      status = true
+  elseif status == 0 then
+      status = false
   end
+  debugMode = status
 
-  debugMode = boolean
 end
 
-function DPrint(str)
+--
+--
+--
+function Print(str)
+
   if debugMode then
-    if (type(str) == "table") then
       TablePrint(str)
-    else
-      print("[DEBUG] - " .. tostring(str))
-    end
   end
+
 end
+

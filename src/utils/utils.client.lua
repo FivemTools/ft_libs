@@ -29,3 +29,13 @@ AddEventHandler('ft_libs:PrintTable', function(value)
     print("-------------------------")
 
 end)
+
+--
+-- Debug mod
+--
+RegisterNetEvent("ft_libs:DebugMode")
+AddEventHandler('ft_libs:DebugMode', function(status)
+
+    debugMode = status
+
+end)

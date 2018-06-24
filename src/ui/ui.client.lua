@@ -82,8 +82,14 @@ function Text(settings)
 	SetTextProportional(0)
 	SetTextScale(scale, scale)
 	SetTextColour(red, green, blue, alpha)
+	if settings.wrap ~= nil then
+		SetTextWrap(settings.wrap[1], settings.wrap[2])
+	end
 	if settings.center == true then
 		SetTextCentre(true)
+	end
+	if settings.right == true then
+		SetTextJustification(2)
 	end
 	SetTextEntry("STRING")
 	AddTextComponentString(text)

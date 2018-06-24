@@ -280,7 +280,6 @@ function Menu(data)
         Text({
             text = data.text,
             font = 0,
-            center = 0,
             x = x - (self.width / 2) + 0.005,
             y = y - (self.height / 2) + 0.0035,
             scale = textScale,
@@ -294,9 +293,10 @@ function Menu(data)
             Text({
                 text = data.subText,
                 font = 0,
-                center = 0,
-                x = x + self.width / 2 - 0.035,
-                y = y - self.height / 2 + 0.0035,
+                right = true,
+                wrap = { self.x, (self.x + (self.width / 2)) - 0.005 },
+                x = x - (self.width / 2),
+                y = y - (self.height / 2) + 0.0035,
                 scale = subTextScale,
                 red = color.text.red,
                 blue = color.text.blue,

@@ -295,7 +295,7 @@ function Menu(data)
                 font = 0,
                 right = true,
                 startWrap = self.x,
-                endWarp = (self.x + (self.width / 2)) - 0.005,
+                endWrap = (self.x + (self.width / 2)) - 0.005,
                 x = x - (self.width / 2),
                 y = y - (self.height / 2) + 0.0035,
                 scale = subTextScale,

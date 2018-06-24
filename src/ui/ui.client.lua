@@ -77,8 +77,8 @@ function Text(settings)
 	local green = settings.green or 255
 	local blue = settings.blue or 255
 	local alpha = settings.alpha or 255
-	local startWrap = settings.startWrap or 0
-	local endWrap = settings.startWrap or 1.0
+	local startWrap = settings.startWrap or 0.0
+	local endWrap = settings.endWrap or 1.0
 
 	SetTextFont(font)
 	SetTextProportional(0)

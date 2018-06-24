@@ -180,7 +180,7 @@ function TriggerFrame()
 
             end
 
-            Citizen.Wait(10)
+            Citizen.Wait(5)
         end
 
     end)

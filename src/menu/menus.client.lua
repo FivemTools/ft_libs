@@ -381,7 +381,9 @@ function AddMenuButton(name, button)
 
 end
 
+--
 -- remove button
+--
 function RemoveMenuButton(name, button)
 
     if menus.list[name] ~= nil then
@@ -391,9 +393,27 @@ function RemoveMenuButton(name, button)
 end
 
 --
+-- Init instructionalButtons
+--
+local function menuInit()
+
+    AddInstructionalButtons("ft_menu", {
+        ["Up"] = 188,
+        ["Down"] = 187,
+        ["Enter"] = 201,
+        ["Back"] = 177,
+    })
+
+    Citizen.Trace("menuInit")
+
+end
+
+--
 -- Show menu
 --
 function MenuFrame()
+
+    menuInit()
 
     Citizen.CreateThread(function()
 
@@ -407,6 +427,9 @@ function MenuFrame()
 
                 if not Menus.freeze then
 
+                    local gameTimer = GetGameTimer()
+                    local getLastInputMethod = GetLastInputMethod()
+
                     -- Fix
                     if Menus.selectedButton > countBtns then
                         Menus.selectedButton = countBtns
@@ -416,23 +439,23 @@ function MenuFrame()
                     if Menus.selectedButton > 0 and Menus.selectedButton <= countBtns then
 
                         -- Up
-                        if IsControlPressed(2, 188) and GetLastInputMethod(2) and (GetGameTimer() - Menus.lastKeyPressed) > 150 then
+                        if IsControlPressed(2, 188) and getLastInputMethod and (gameTimer - Menus.lastKeyPressed) > 150 then
 
                             MoveUp(menu)
-                            Menus.lastKeyPressed = GetGameTimer()
+                            Menus.lastKeyPressed = gameTimer
 
                         end
 
                         -- Down
-                        if IsControlPressed(2, 187) and GetLastInputMethod(2) and (GetGameTimer() - Menus.lastKeyPressed) > 150 then
+                        if IsControlPressed(2, 187) and getLastInputMethod and (gameTimer - Menus.lastKeyPressed) > 150 then
 
                             MoveDown(menu)
-                            Menus.lastKeyPressed = GetGameTimer()
+                            Menus.lastKeyPressed = gameTimer
 
                         end
 
                         -- Enter
-                        if IsControlJustReleased(2, 201) and GetLastInputMethod(2) then
+                        if IsControlJustReleased(2, 201) and getLastInputMethod then
 
                             Exec(menu)
                             PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
@@ -442,7 +465,7 @@ function MenuFrame()
                     end
 
                     -- Back
-                    if IsControlJustReleased(2, 177) and not IsControlJustReleased(2, 322) and not IsControlJustReleased(2, 24) and not IsControlJustReleased(0, 25) and GetLastInputMethod(2) then
+                    if IsControlJustReleased(2, 177) and not IsControlJustReleased(2, 322) and not IsControlJustReleased(2, 24) and not IsControlJustReleased(0, 25) and getLastInputMethod then
 
                         BackBtn(menu)
                         PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
@@ -453,10 +476,15 @@ function MenuFrame()
 
                 -- Show Memu
                 menu.Show(Menus.from, Menus.to, Menus.selectedButton)
+                -- DisplayInstructionalButtons("ft_menu")
+
+            -- elseif GetCurrentInstructionalButtons() == "ft_menu" then
+            --
+            --     DisplayInstructionalButtons(false)
 
             end -- end check menu is open
 
-            Citizen.Wait(10)
+            Citizen.Wait(5)
         end
 
     end)

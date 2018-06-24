@@ -21,6 +21,7 @@ Citizen.CreateThread(function()
             TriggerFrame()
             MenuFrame()
             MarkerFrame()
+            InstructionalButtonsFrame()
             break
 
         end

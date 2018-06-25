@@ -114,10 +114,15 @@ end
 -- Copy table
 --
 function Copy(t)
-    if type(t) ~= "table" then return t end
+
+    if type(t) ~= "table" then
+        return t
+    end
     local meta = getmetatable(t)
     local target = {}
-    for k, v in pairs(t) do target[k] = v end
+    for k, v in pairs(t) do
+        target[k] = v
+    end
     setmetatable(target, meta)
     return target
 end
@@ -126,7 +131,10 @@ end
 -- Clone table
 --
 function Clone(t)
-    if type(t) ~= "table" then return t end
+
+    if type(t) ~= "table" then
+        return t
+    end
     local meta = getmetatable(t)
     local target = {}
     for k, v in pairs(t) do
@@ -138,6 +146,7 @@ function Clone(t)
     end
     setmetatable(target, meta)
     return target
+
 end
 
 --
@@ -165,10 +174,10 @@ end
 --
 --
 --
-function Print(str)
+function Print(data)
 
   if debugMode then
-      TablePrint(str)
+      TablePrint(data)
   end
 
 end

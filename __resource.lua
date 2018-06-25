@@ -119,6 +119,10 @@ exports {
     "DisableArea",
     "SwitchArea",
 
+    -- Debug
+    "SetDebug",
+    "Print",
+
 }
 
 server_scripts {

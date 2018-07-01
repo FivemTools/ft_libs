@@ -17,13 +17,15 @@ function Blip:Show()
 
     self.blip = AddBlipForCoord(self.x, self.y, self.z)
     SetBlipSprite(self.blip, self.imageId)
-    SetBlipAsShortRange(self.blip, self.shortRange)
+    if self.shortRange == false then
+        SetBlipAsShortRange(self.blip, self.shortRange)
+    end
     SetBlipColour(self.blip, self.colorId)
     SetBlipScale(self.blip, self.scale)
     BeginTextCommandSetBlipName("STRING")
     AddTextComponentString(self.text)
     EndTextCommandSetBlipName(self.blip)
-    if self.rotation then
+    if self.rotation ~= nil then
         SetBlipRotation(self.blip, self.rotation)
     end
 

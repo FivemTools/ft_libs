@@ -111,14 +111,19 @@ end
 function DisplayInstructionalButtons(name)
 
     if instructionalsButtonsList[name] ~= nil and currentInstructionalButtons ~= name then
+
         currentInstructionalButtons = name
 		CreateInstructionalButtons(instructionalsButtonsList[name])
+
     elseif currentInstructionalButtons == name then
-		Citizen.Trace("oui")
+
 		return false
+
 	else
+
         currentInstructionalButtons = nil
 		scaleform = nil
+
     end
 
 end

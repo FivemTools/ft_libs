@@ -65,6 +65,13 @@ exports {
     "TextNotification",
     "Show3DText",
 
+    -- Instructional Buttons
+    "AddInstructionalButtons",
+    "RemoveInstructionalButtons",
+    "DisplayInstructionalButtons",
+    "GetCurrentInstructionalButtons",
+    
+
     -- Instructional buttons
     "AddInstructionalButtons",
     "GetCurrentInstructionalButtons",

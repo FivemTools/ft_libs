@@ -37,5 +37,6 @@ RegisterNetEvent("ft_libs:DebugMode")
 AddEventHandler('ft_libs:DebugMode', function(status)
 
     debugMode = status
+    Citizen.Trace("oui")
 
 end)

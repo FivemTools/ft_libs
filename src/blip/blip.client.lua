@@ -17,7 +17,7 @@ function Blip:Show()
 
     self.blip = AddBlipForCoord(self.x, self.y, self.z)
     SetBlipSprite(self.blip, self.imageId)
-    if self.shortRange == false then
+    if self.shortRange == true then
         SetBlipAsShortRange(self.blip, true)
     end
     SetBlipColour(self.blip, self.colorId)
@@ -57,7 +57,7 @@ function blip.new(data)
     self.colorId = data.colorId or 0
     self.scale = data.scale or 1.0
 
-    self.shortRange = false
+    self.shortRange = true
     if data.shortRange ~= nil then
         self.shortRange = data.shortRange
     end

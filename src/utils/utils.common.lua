@@ -174,7 +174,7 @@ end
 --
 --
 --
-function Print(data)
+function DebugPrint(data)
 
   if debugMode then
       TablePrint(data)

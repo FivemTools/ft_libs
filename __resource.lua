@@ -6,8 +6,6 @@
 
 resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
-dependencies {}
-
 client_scripts {
 
     -- Utils
@@ -70,13 +68,6 @@ exports {
     "RemoveInstructionalButtons",
     "DisplayInstructionalButtons",
     "GetCurrentInstructionalButtons",
-    
-
-    -- Instructional buttons
-    "AddInstructionalButtons",
-    "GetCurrentInstructionalButtons",
-    "RemoveInstructionalButtons",
-    "DisplayInstructionalButtons",
 
     -- Menu
     "AddMenu",
@@ -128,7 +119,7 @@ exports {
 
     -- Debug
     "SetDebug",
-    "Print",
+    "DebugPrint",
 
 }
 

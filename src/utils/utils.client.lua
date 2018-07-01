@@ -37,6 +37,10 @@ RegisterNetEvent("ft_libs:DebugMode")
 AddEventHandler('ft_libs:DebugMode', function(status)
 
     debugMode = status
-    Citizen.Trace("oui")
+    if debugMode == true then
+        Citizen.Trace("[FT_LIBS] DEBUG MODE ENABLE")
+    else
+        Citizen.Trace("[FT_LIBS] DEBUG MODE DISABLE")
+    end
 
 end)

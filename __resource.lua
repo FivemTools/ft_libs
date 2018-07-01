@@ -131,9 +131,6 @@ server_scripts {
     "src/utils/utils.common.lua",
     "src/utils/utils.server.lua",
 
-    -- Debug
-    "src/debug/debug.server.lua",
-
 }
 
 server_exports {

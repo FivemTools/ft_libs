@@ -15,8 +15,8 @@ local Area = {}
 --
 function Area:Enable()
 
-    EnableMarker(self.name, true)
-    SwitchTrigger(self.name, true)
+    EnableMarker(self.name)
+    EnableTrigger(self.name)
     ShowBlip(self.name)
 
 end
@@ -26,8 +26,8 @@ end
 --
 function Area:Disable()
 
-    EnableMarker(self.name, false)
-    SwitchTrigger(self.name, false)
+    DisableMarker(self.name)
+    DisableTrigger(self.name)
     HideBlip(self.name)
 
 end

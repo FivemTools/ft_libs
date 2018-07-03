@@ -120,6 +120,7 @@ exports {
     -- Debug
     "SetDebug",
     "DebugPrint",
+    "PrintTable",
 
 }
 
@@ -135,7 +136,7 @@ server_exports {
 
     -- Utils
     "TableLength",
-    "TablePrint",
+    "PrintTable",
     "Round",
     "GetSteamIDFormSource",
     "GetIpFormSource",

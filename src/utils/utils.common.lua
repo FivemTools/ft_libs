@@ -9,7 +9,7 @@
 --
 -- Citizen.Trace table
 --
-function TablePrint(table, indent)
+function PrintTable(table, indent)
 
     if type(table) == "table" then
 
@@ -21,7 +21,7 @@ function TablePrint(table, indent)
             formatting = string.rep("  ", indent) .. k .. ": "
             if type(v) == "table" then
                 Citizen.Trace(formatting)
-                TableCitizen.Trace(v, indent + 1)
+                PrintTable(v, indent + 1)
             elseif type(v) == "boolean" then
                 if v then
                     Citizen.Trace(formatting .. "true \n")

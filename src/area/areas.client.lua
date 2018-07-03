@@ -186,7 +186,8 @@ function SwitchArea(...)
     local name = args[1]
     if areas[name] ~= nil then
       for _, area in pairs(areas[name]) do
-        area:Disable()
+        area:Disable()        
+        area.enable = false
       end
     end
 

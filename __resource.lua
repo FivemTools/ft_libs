@@ -47,7 +47,7 @@ exports {
     "TableLength",
     "Round",
     "CommaValue",
-    "GetEntityDirection",
+    "GetEntityInDirection",
     "SetDebug",
     "Print",
     "TablePrint",

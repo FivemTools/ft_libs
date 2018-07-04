@@ -7,7 +7,7 @@
 --
 -- Get entity
 --
-function GetEntityDirection(range)
+function GetEntityInDirection(range)
 
   local playerPed = GetPlayerPed(-1)
   local pos = GetEntityCoords(playerPed)

@@ -9,64 +9,6 @@ local blips = {}
 --
 --
 --
-function AddBlip(...)
-
-    local args = {...}
-    local count = #args
-
-    if count == 1 then
-        assert(type(args[1]) == "table", "Data is not table")
-        for name, value in pairs(args[1]) do
-            blips[name] = blip.new(value)
-            if blips[name].enable then
-                blips[name]:Show()
-            end
-            Citizen.Wait(10)
-        end
-    elseif count == 2 then
-        local name = args[1]
-        local value = args[2]
-        blips[name] = blip.new(value)
-        if blips[name].enable then
-            blips[name]:Show()
-        end
-    end
-
-end
-
---
---
---
-function RemoveBlip(...)
-
-    local args = {...}
-    local count = #args
-
-    if count == 1 and type(args[1]) == "table" then
-        for _, name in ipairs(args[1]) do
-            Citizen.Wait(1)
-            if blips[name] then
-                if blips[name].enable then
-                    blips[name]:Hide()
-                end
-                blips[name] = nil
-            end
-        end
-    elseif count == 1 then
-        local name = args[1]
-        if blips[name] then
-            if blips[name].enable then
-                blips[name]:Hide()
-            end
-            blips[name] = nil
-        end
-    end
-
-end
-
---
---
---
 function ShowBlip(...)
 
     local args = {...}
@@ -75,14 +17,14 @@ function ShowBlip(...)
     if count == 1 and type(args[1]) == "table" then
         for _, name in ipairs(args[1]) do
             Citizen.Wait(1)
-            if blips[name] then
+            if blips[name] ~= nil then
                 blips[name]:Show()
                 blips[name].enable = true
             end
         end
     elseif count == 1 then
         local name = args[1]
-        if blips[name] then
+        if blips[name] ~= nil then
             blips[name]:Show()
             blips[name].enable = true
         end
@@ -109,10 +51,64 @@ function HideBlip(...)
         end
     elseif count == 1 then
         local name = args[1]
-        if blips[name] then
+        if blips[name] ~= nil then
             blips[name]:Hide()
             blips[name].enable = false
             blips[name].blip = nil
+        end
+    end
+
+end
+
+--
+--
+--
+function AddBlip(...)
+
+    local args = {...}
+    local count = #args
+
+    if count == 1 then
+        assert(type(args[1]) == "table", "Data is not table")
+        for name, value in pairs(args[1]) do
+            blips[name] = blip.new(value)
+            if blips[name].enable then
+                ShowBlip(name)
+            end
+            Citizen.Wait(10)
+        end
+    elseif count == 2 then
+        local name = args[1]
+        local value = args[2]
+        blips[name] = blip.new(value)
+        if blips[name].enable then
+            ShowBlip(name)
+        end
+    end
+
+end
+
+--
+--
+--
+function RemoveBlip(...)
+
+    local args = {...}
+    local count = #args
+
+    if count == 1 and type(args[1]) == "table" then
+        for _, name in ipairs(args[1]) do
+            Citizen.Wait(1)
+            if blips[name] then
+                HideBlip(name)
+                blips[name] = nil
+            end
+        end
+    elseif count == 1 then
+        local name = args[1]
+        if blips[name] then
+            HideBlip(name)
+            blips[name] = nil
         end
     end
 

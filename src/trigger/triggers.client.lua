@@ -8,63 +8,6 @@ local triggers = {}
 local activeTriggers = {}
 local currentTrigger = nil
 
---
--- Add Trigger
---
-function AddTrigger(...)
-
-    local args = {...}
-    local count = #args
-
-    if count == 1 and type(args[1]) == "table" then
-
-        for name, value in pairs(args[1]) do
-            triggers[name] = trigger.new(value)
-            if value.enable == nil or value.enable == true then
-                activeTriggers[name] = true
-            end
-            Citizen.Wait(10)
-        end
-
-    elseif count == 2 then
-
-        local name = args[1]
-        local value = args[2]
-        triggers[name] = trigger.new(value)
-
-        if value.enable == nil or value.enable == true then
-            activeTriggers[name] = true
-        end
-
-    end
-
-end
-
---
--- Remove Trigger
---
-function RemoveTrigger(...)
-
-    local args = {...}
-    local count = #args
-
-    if count == 1 and type(args[1]) == "table" then
-        for _, name in ipairs(args[1]) do
-            if triggers[name] ~= nil then
-                triggers[name] = nil
-                activeTriggers[name] = nil
-            end
-            Citizen.Wait(10)
-        end
-    elseif count == 1 then
-        local name = args[1]
-        if triggers[name] ~= nil then
-            triggers[name] = nil
-            activeTriggers[name] = nil
-        end
-    end
-
-end
 
 --
 -- Enable Trigger
@@ -142,6 +85,64 @@ function SwitchTrigger(...)
             else
                 DisableTrigger(name)
             end
+        end
+    end
+
+end
+
+--
+-- Add Trigger
+--
+function AddTrigger(...)
+
+    local args = {...}
+    local count = #args
+
+    if count == 1 and type(args[1]) == "table" then
+
+        for name, value in pairs(args[1]) do
+            triggers[name] = trigger.new(value)
+            if value.enable == nil or value.enable == true then
+                EnableTrigger(name)
+            end
+            Citizen.Wait(10)
+        end
+
+    elseif count == 2 then
+
+        local name = args[1]
+        local value = args[2]
+        triggers[name] = trigger.new(value)
+
+        if value.enable == nil or value.enable == true then
+            EnableTrigger(name)
+        end
+
+    end
+
+end
+
+--
+-- Remove Trigger
+--
+function RemoveTrigger(...)
+
+    local args = {...}
+    local count = #args
+
+    if count == 1 and type(args[1]) == "table" then
+        for _, name in ipairs(args[1]) do
+            if triggers[name] ~= nil then
+                DisableTrigger(name)
+                triggers[name] = nil
+            end
+            Citizen.Wait(10)
+        end
+    elseif count == 1 then
+        local name = args[1]
+        if triggers[name] ~= nil then
+            DisableTrigger(name)
+            triggers[name] = nil
         end
     end
 

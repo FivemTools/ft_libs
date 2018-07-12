@@ -8,55 +8,6 @@ local markers = {}
 local activeMarkers = {}
 local currentMarker = nil
 
---
--- Add Marker in the markers table
---
-function AddMarker(...)
-
-    local args = {...}
-    local count = #args
-    if count == 1 then
-        assert(type(args[1]) == "table", "Data is not table")
-
-        for name, value in pairs(args[1]) do
-            markers[name] = marker.new(value)
-            if value.enable == nil or value.enable == true then
-                activeMarkers[name] = true
-            end
-            Citizen.Wait(10)
-        end
-    elseif count == 2 then
-        local name = args[1]
-        local value = args[2]
-        markers[name] = marker.new(value)
-
-        if value.enable == nil or value.enable == true then
-            activeMarkers[name] = true
-        end
-
-    end
-
-end
-
---
--- Remove Marker in the markers table
---
-function RemoveMarker(...)
-    local args = {...}
-    local count = #args
-    if count == 1 and type(args[1]) == "table" then
-        for _, name in ipairs(args[1]) do
-            markers[name] = nil
-            activeMarkers[name] = nil
-            Citizen.Wait(10)
-        end
-    elseif count == 1 then
-        local name = args[1]
-        markers[name] = nil
-        activeMarkers[name] = nil
-    end
-
-end
 
 --
 -- Add Marker to activeMarkers table
@@ -128,6 +79,56 @@ function SwitchMarker(...)
                 DisableMarker(name)
             end
         end
+    end
+
+end
+
+--
+-- Add Marker in the markers table
+--
+function AddMarker(...)
+
+    local args = {...}
+    local count = #args
+    if count == 1 then
+        assert(type(args[1]) == "table", "Data is not table")
+
+        for name, value in pairs(args[1]) do
+            markers[name] = marker.new(value)
+            if value.enable == nil or value.enable == true then
+                EnableMarker(name)
+            end
+            Citizen.Wait(10)
+        end
+    elseif count == 2 then
+        local name = args[1]
+        local value = args[2]
+        markers[name] = marker.new(value)
+
+        if value.enable == nil or value.enable == true then
+            EnableMarker(name)
+        end
+
+    end
+
+end
+
+--
+-- Remove Marker in the markers table
+--
+function RemoveMarker(...)
+    local args = {...}
+    local count = #args
+    if count == 1 and type(args[1]) == "table" then
+        for _, name in ipairs(args[1]) do
+            DisableMarker(name)
+            markers[name] = nil
+            Citizen.Wait(10)
+        end
+    elseif count == 1 then
+        local name = args[1]
+        DisableMarker(name)
+        markers[name] = nil
     end
 
 end

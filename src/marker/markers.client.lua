@@ -109,20 +109,24 @@ function SwitchMarker(...)
     local count = #args
     if count == 1 and type(args[1]) == "table" then
         for name, status in pairs(args[1]) do
-            if activeMarkers[name] then
-                activeMarkers[name] = nil
-            else
-                activeMarkers[name] = true
+            if markers[name] ~= nil then
+                if status == true then
+                    EnableMarker(name)
+                else
+                    DisableMarker(name)
+                end
             end
             Citizen.Wait(10)
         end
-    elseif count == 1 then
+    elseif count == 2 then
         local name = args[1]
         local status = args[2]
-        if activeMarkers[name] then
-            activeMarkers[name] = nil
-        else
-            activeMarkers[name] = true
+        if markers[name] ~= nil then
+            if status == true then
+                EnableMarker(name)
+            else
+                DisableMarker(name)
+            end
         end
     end
 

@@ -67,34 +67,6 @@ function RemoveTrigger(...)
 end
 
 --
--- Switch Trigger
---
-function SwitchTrigger(...)
-
-    local args = {...}
-    local count = #args
-    if count == 1 and type(args[1]) == "table" then
-        for name, status in pairs(args[1]) do
-            if activeTriggers[name] then
-                activeTriggers[name] = nil
-            else
-                activeMarkers[name] = true
-            end
-            Citizen.Wait(10)
-        end
-    elseif count == 1 then
-        local name = args[1]
-        local status = args[2]
-        if activeTriggers[name] then
-            activeTriggers[name] = nil
-        else
-            activeTriggers[name] = true
-        end
-    end
-
-end
-
---
 -- Enable Trigger
 --
 function EnableTrigger(...)
@@ -142,6 +114,39 @@ function DisableTrigger(...)
 
 end
 
+
+--
+-- Switch Trigger
+--
+function SwitchTrigger(...)
+
+    local args = {...}
+    local count = #args
+    if count == 1 and type(args[1]) == "table" then
+        for name, status in pairs(args[1]) do
+            if triggers[name] ~= nil then
+                if status == true then
+                    EnableTrigger(name)
+                else
+                    DisableTrigger(name)
+                end
+            end
+            Citizen.Wait(10)
+        end
+    elseif count == 2 then
+        local name = args[1]
+        local status = args[2]
+        if triggers[name] ~= nil then
+            if status == true then
+                EnableTrigger(name)
+            else
+                DisableTrigger(name)
+            end
+        end
+    end
+
+end
+
 --
 -- Current Trigger
 --
@@ -165,7 +170,7 @@ function TriggerFrame()
             for name, value in pairs(activeTriggers) do
 
                 local target = triggers[name]
-                if target then
+                if target ~= nil then
                     player_in = (GetDistanceBetweenCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) < (target.weight + 0.0) and math.abs(playerLocalisation.z - target.z) <= (target.height + 0.0))
                     if player_in and currentTrigger ~= name then
                         currentTrigger = name

@@ -20,7 +20,7 @@ function PrintTable(table, indent)
         for k, v in pairs(table) do
             formatting = string.rep("  ", indent) .. k .. ": "
             if type(v) == "table" then
-                Citizen.Trace(formatting)
+                Citizen.Trace(formatting .. "\n")
                 PrintTable(v, indent + 1)
             elseif type(v) == "boolean" then
                 if v then

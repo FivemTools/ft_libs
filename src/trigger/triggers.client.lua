@@ -127,7 +127,7 @@ function SwitchTrigger(...)
             if triggers[name] ~= nil then
                 if status == true then
                     EnableTrigger(name)
-                else
+                elseif status == false then
                     DisableTrigger(name)
                 end
             end

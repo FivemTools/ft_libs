@@ -164,7 +164,7 @@ function DisableArea(...)
 
         end
 
-    elseif count == 2 then
+    elseif count == 1 then
 
         local name = args[1]
         if areas[name] ~= nil then
@@ -189,15 +189,10 @@ function SwitchArea(...)
         for name, status in ipairs(args[1]) do
 
             if areas[name] ~= nil then
-                for _, area in pairs(areas[name]) do
-                    if status == false then
-                        area:Disable()
-                        area.enable = false
-                    elseif status == true then
-                        area:Enable()
-                        area.enable = true
-                    end
-                    Citizen.Wait(10)
+                if status == true then
+                    EnableArea(name)
+                elseif status == false then
+                    DisableArea(name)
                 end
             end
             Citizen.Wait(10)
@@ -207,11 +202,14 @@ function SwitchArea(...)
     elseif count == 2 then
 
         local name = args[1]
+        local status = args[2]
         if areas[name] ~= nil then
             for _, area in pairs(areas[name]) do
-                area:Disable()                
-                area.enable = false
-                Citizen.Wait(10)
+                if status == true then
+                    EnableArea(name)
+                elseif status == false then
+                    DisableArea(name)
+                end
             end
         end
 

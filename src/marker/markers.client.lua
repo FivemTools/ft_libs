@@ -112,7 +112,7 @@ function SwitchMarker(...)
             if markers[name] ~= nil then
                 if status == true then
                     EnableMarker(name)
-                else
+                elseif status == false then
                     DisableMarker(name)
                 end
             end

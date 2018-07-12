@@ -177,7 +177,7 @@ end
 function DebugPrint(data)
 
   if debugMode then
-      TablePrint(data)
+      PrintTable(data)
   end
 
 end

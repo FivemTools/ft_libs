@@ -51,6 +51,9 @@ function DisableTrigger(...)
             if activeTriggers[name] ~= nil then
                 activeTriggers[name] = nil
             end
+            if currentTrigger == name then
+                currentTrigger = nil
+            end
             Citizen.Wait(10)
         end
 
@@ -59,6 +62,9 @@ function DisableTrigger(...)
         local name = args[1]
         if activeTriggers[name] ~= nil then
             activeTriggers[name] = nil
+        end        
+        if currentTrigger == name then
+            currentTrigger = nil
         end
 
     end

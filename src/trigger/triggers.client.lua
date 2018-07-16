@@ -6,7 +6,7 @@
 
 local triggers = {}
 local activeTriggers = {}
-local currentTrigger = nil
+local currentTriggers = {}
 
 
 --
@@ -18,17 +18,21 @@ function EnableTrigger(...)
     local count = #args
 
     if count == 1 and type(args[1]) == "table" then
+
         for _, name in pairs(args[1]) do
             if triggers[name] ~= nil then
                 activeTriggers[name] = true
             end
             Citizen.Wait(10)
         end
+
     elseif count == 1 then
+
         local name = args[1]
         if triggers[name] ~= nil then
             activeTriggers[name] = true
         end
+
     end
 
 end
@@ -42,17 +46,19 @@ function DisableTrigger(...)
     local count = #args
 
     if count == 1 and type(args[1]) == "table" then
+
         for _, name in pairs(args[1]) do
-            if activeTriggers[name] ~= nil then
-                activeTriggers[name] = nil
-            end
+            activeTriggers[name] = nil
+            currentTriggers[name] = nil
             Citizen.Wait(10)
         end
+
     elseif count == 1 then
+
         local name = args[1]
-        if activeTriggers[name] ~= nil then
-            activeTriggers[name] = nil
-        end
+        activeTriggers[name] = nil      
+        currentTriggers[name] = nil
+
     end
 
 end
@@ -66,6 +72,7 @@ function SwitchTrigger(...)
     local args = {...}
     local count = #args
     if count == 1 and type(args[1]) == "table" then
+
         for name, status in pairs(args[1]) do
             if triggers[name] ~= nil then
                 if status == true then
@@ -76,7 +83,9 @@ function SwitchTrigger(...)
             end
             Citizen.Wait(10)
         end
+
     elseif count == 2 then
+
         local name = args[1]
         local status = args[2]
         if triggers[name] ~= nil then
@@ -86,6 +95,7 @@ function SwitchTrigger(...)
                 DisableTrigger(name)
             end
         end
+
     end
 
 end
@@ -131,6 +141,7 @@ function RemoveTrigger(...)
     local count = #args
 
     if count == 1 and type(args[1]) == "table" then
+
         for _, name in ipairs(args[1]) do
             if triggers[name] ~= nil then
                 DisableTrigger(name)
@@ -138,12 +149,15 @@ function RemoveTrigger(...)
             end
             Citizen.Wait(10)
         end
+
     elseif count == 1 then
+
         local name = args[1]
         if triggers[name] ~= nil then
             DisableTrigger(name)
             triggers[name] = nil
         end
+
     end
 
 end
@@ -153,7 +167,7 @@ end
 --
 function CurrentTrigger()
 
-    return currentTrigger
+    return currentTriggers
 
 end
 
@@ -173,13 +187,13 @@ function TriggerFrame()
                 local target = triggers[name]
                 if target ~= nil then
                     player_in = (GetDistanceBetweenCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) < (target.weight + 0.0) and math.abs(playerLocalisation.z - target.z) <= (target.height + 0.0))
-                    if player_in and currentTrigger ~= name then
-                        currentTrigger = name
+                    if player_in and currentTriggers[name] == nil then
+                        currentTriggers[name] = true
                         target:Enter()
-                    elseif player_in and currentTrigger == name then
+                    elseif player_in and currentTriggers[name] ~= nil then
                         target:Active()
-                    elseif not player_in and currentTrigger == name then
-                        currentTrigger = nil
+                    elseif not player_in and currentTriggers[name] ~= nil then
+                        currentTriggers[name] = nil
                         target:Exit()
                     end
                 end

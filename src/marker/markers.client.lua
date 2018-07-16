@@ -6,7 +6,7 @@
 
 local markers = {}
 local activeMarkers = {}
-local currentMarker = nil
+local currentMarkers = {}
 
 
 --
@@ -17,17 +17,21 @@ function EnableMarker(...)
     local args = {...}
     local count = #args
     if count == 1 and type(args[1]) == "table" then
+
         for _, name in pairs(args[1]) do
             if markers[name] then
                 activeMarkers[name] = true
             end
             Citizen.Wait(10)
         end
+
     elseif count == 1 then
+
         local name = args[1]
         if markers[name] then
             activeMarkers[name] = true
         end
+
     end
 
 end
@@ -40,13 +44,19 @@ function DisableMarker(...)
     local args = {...}
     local count = #args
     if count == 1 and type(args[1]) == "table"  then
+
         for _, name in pairs(args[1]) do
             activeMarkers[name] = nil
+            currentMarkers[name] = nil
             Citizen.Wait(10)
         end
+
     elseif count == 1 then
+
         local name = args[1]
         activeMarkers[name] = nil
+        currentMarkers[name] = nil
+
     end
 
 end
@@ -59,6 +69,7 @@ function SwitchMarker(...)
     local args = {...}
     local count = #args
     if count == 1 and type(args[1]) == "table" then
+
         for name, status in pairs(args[1]) do
             if markers[name] ~= nil then
                 if status == true then
@@ -69,7 +80,9 @@ function SwitchMarker(...)
             end
             Citizen.Wait(10)
         end
+
     elseif count == 2 then
+
         local name = args[1]
         local status = args[2]
         if markers[name] ~= nil then
@@ -79,6 +92,7 @@ function SwitchMarker(...)
                 DisableMarker(name)
             end
         end
+
     end
 
 end
@@ -90,8 +104,7 @@ function AddMarker(...)
 
     local args = {...}
     local count = #args
-    if count == 1 then
-        assert(type(args[1]) == "table", "Data is not table")
+    if count == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
             markers[name] = marker.new(value)
@@ -100,11 +113,12 @@ function AddMarker(...)
             end
             Citizen.Wait(10)
         end
+
     elseif count == 2 then
+
         local name = args[1]
         local value = args[2]
         markers[name] = marker.new(value)
-
         if value.enable == nil or value.enable == true then
             EnableMarker(name)
         end
@@ -117,18 +131,23 @@ end
 -- Remove Marker in the markers table
 --
 function RemoveMarker(...)
+
     local args = {...}
     local count = #args
     if count == 1 and type(args[1]) == "table" then
+
         for _, name in ipairs(args[1]) do
             DisableMarker(name)
             markers[name] = nil
             Citizen.Wait(10)
         end
+
     elseif count == 1 then
+
         local name = args[1]
         DisableMarker(name)
         markers[name] = nil
+
     end
 
 end
@@ -138,7 +157,7 @@ end
 --
 function CurrentMarker()
 
-    return currentMarker
+    return currentMarkers
 
 end
 
@@ -167,9 +186,9 @@ function MarkerFrame()
                                 text = target.text,
                             })
                         end
-                        currentMarker = name
-                    elseif currentMarker == name then
-                        currentMarker = nil
+                        currentMarkers[name] = true
+                    elseif currentMarkers[name] ~= nil then
+                        currentMarkers[name] = nil
                     end
                 end
 

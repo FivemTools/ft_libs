@@ -51,6 +51,8 @@ exports {
     "SetDebug",
     "Print",
     "TablePrint",
+    "TableContainsValue",
+    "GetLastContentValue",
 
     -- Ui
     "HelpPromt",
@@ -140,5 +142,7 @@ server_exports {
     "Round",
     "GetSteamIDFormSource",
     "GetIpFormSource",
+    "TableContainsValue",
+    "GetLastContentValue",
 
 }

@@ -5,6 +5,7 @@
 --
 
 local blips = {}
+local activeBlips = {}
 
 --
 --
@@ -17,16 +18,18 @@ function ShowBlip(...)
     if count == 1 and type(args[1]) == "table" then
         for _, name in ipairs(args[1]) do
             Citizen.Wait(1)
-            if blips[name] ~= nil then
+            if blips[name] ~= nil and activeBlips[name] == nil then
                 blips[name]:Show()
                 blips[name].enable = true
+                activeBlips[name] = true
             end
         end
     elseif count == 1 then
         local name = args[1]
-        if blips[name] ~= nil then
+        if blips[name] ~= nil and activeBlips[name] == nil then
             blips[name]:Show()
             blips[name].enable = true
+            activeBlips[name] = true
         end
     end
 
@@ -43,18 +46,20 @@ function HideBlip(...)
     if count == 1 and type(args[1]) == "table" then
         for _, name in ipairs(args[1]) do
             Citizen.Wait(1)
-            if blips[name] ~= nil then
+            if blips[name] ~= nil and activeBlips[name] == true then
                 blips[name]:Hide()
                 blips[name].enable = false
                 blips[name].blip = nil
+                activeBlips[name] = nil
             end
         end
     elseif count == 1 then
         local name = args[1]
-        if blips[name] ~= nil then
+        if blips[name] ~= nil and activeBlips[name] == true then
             blips[name]:Hide()
             blips[name].enable = false
             blips[name].blip = nil
+            activeBlips[name] = nil
         end
     end
 
@@ -68,21 +73,24 @@ function AddBlip(...)
     local args = {...}
     local count = #args
 
-    if count == 1 then
-        assert(type(args[1]) == "table", "Data is not table")
+    if count == 1 and type(args[1]) == "table" then
         for name, value in pairs(args[1]) do
-            blips[name] = blip.new(value)
-            if blips[name].enable then
-                ShowBlip(name)
+            if blips[name] == nil then
+                blips[name] = blip.new(value)
+                if blips[name].enable then
+                    ShowBlip(name)
+                end
             end
             Citizen.Wait(10)
         end
     elseif count == 2 then
         local name = args[1]
         local value = args[2]
-        blips[name] = blip.new(value)
-        if blips[name].enable then
-            ShowBlip(name)
+        if blips[name] == nil then
+            blips[name] = blip.new(value)
+            if blips[name].enable then
+                ShowBlip(name)
+            end
         end
     end
 
@@ -98,17 +106,17 @@ function RemoveBlip(...)
 
     if count == 1 and type(args[1]) == "table" then
         for _, name in ipairs(args[1]) do
-            Citizen.Wait(1)
-            if blips[name] then
+            if blips[name] ~= nil then
                 HideBlip(name)
                 blips[name] = nil
             end
+           Citizen.Wait(10)
         end
     elseif count == 1 then
         local name = args[1]
-        if blips[name] then
+        if blips[name] ~= nil then
             HideBlip(name)
-            blips[name] = nil
+            blips[name] = nil            
         end
     end
 

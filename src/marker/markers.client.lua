@@ -6,7 +6,7 @@
 
 local markers = {}
 local activeMarkers = {}
-local currentMarker = nil
+local currentMarkers = {}
 
 
 --
@@ -47,6 +47,7 @@ function DisableMarker(...)
 
         for _, name in pairs(args[1]) do
             activeMarkers[name] = nil
+            currentMarkers[name] = nil
             Citizen.Wait(10)
         end
 
@@ -54,6 +55,7 @@ function DisableMarker(...)
 
         local name = args[1]
         activeMarkers[name] = nil
+        currentMarkers[name] = nil
 
     end
 
@@ -155,7 +157,7 @@ end
 --
 function CurrentMarker()
 
-    return currentMarker
+    return currentMarkers
 
 end
 
@@ -184,9 +186,9 @@ function MarkerFrame()
                                 text = target.text,
                             })
                         end
-                        currentMarker = name
-                    elseif currentMarker == name then
-                        currentMarker = nil
+                        currentMarkers[name] = true
+                    elseif currentMarkers[name] ~= nil then
+                        currentMarkers[name] = nil
                     end
                 end
 

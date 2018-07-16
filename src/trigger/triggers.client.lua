@@ -57,7 +57,7 @@ function DisableTrigger(...)
 
         local name = args[1]
         activeTriggers[name] = nil      
-        currentTriggers = nil
+        currentTriggers[name] = nil
 
     end
 

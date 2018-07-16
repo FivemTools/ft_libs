@@ -48,24 +48,16 @@ function DisableTrigger(...)
     if count == 1 and type(args[1]) == "table" then
 
         for _, name in pairs(args[1]) do
-            if activeTriggers[name] ~= nil then
-                activeTriggers[name] = nil
-            end
-            if currentTriggers[name] ~= nil then
-                currentTriggers[name] = nil
-            end
+            activeTriggers[name] = nil
+            currentTriggers[name] = nil
             Citizen.Wait(10)
         end
 
     elseif count == 1 then
 
         local name = args[1]
-        if activeTriggers[name] ~= nil then
-            activeTriggers[name] = nil
-        end        
-        if currentTriggers == name then
-            currentTriggers = nil
-        end
+        activeTriggers[name] = nil      
+        currentTriggers = nil
 
     end
 

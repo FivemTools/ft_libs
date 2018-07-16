@@ -18,17 +18,21 @@ function EnableTrigger(...)
     local count = #args
 
     if count == 1 and type(args[1]) == "table" then
+
         for _, name in pairs(args[1]) do
             if triggers[name] ~= nil then
                 activeTriggers[name] = true
             end
             Citizen.Wait(10)
         end
+
     elseif count == 1 then
+
         local name = args[1]
         if triggers[name] ~= nil then
             activeTriggers[name] = true
         end
+
     end
 
 end
@@ -42,17 +46,21 @@ function DisableTrigger(...)
     local count = #args
 
     if count == 1 and type(args[1]) == "table" then
+
         for _, name in pairs(args[1]) do
             if activeTriggers[name] ~= nil then
                 activeTriggers[name] = nil
             end
             Citizen.Wait(10)
         end
+
     elseif count == 1 then
+
         local name = args[1]
         if activeTriggers[name] ~= nil then
             activeTriggers[name] = nil
         end
+
     end
 
 end
@@ -66,6 +74,7 @@ function SwitchTrigger(...)
     local args = {...}
     local count = #args
     if count == 1 and type(args[1]) == "table" then
+
         for name, status in pairs(args[1]) do
             if triggers[name] ~= nil then
                 if status == true then
@@ -76,7 +85,9 @@ function SwitchTrigger(...)
             end
             Citizen.Wait(10)
         end
+
     elseif count == 2 then
+
         local name = args[1]
         local status = args[2]
         if triggers[name] ~= nil then
@@ -86,6 +97,7 @@ function SwitchTrigger(...)
                 DisableTrigger(name)
             end
         end
+
     end
 
 end
@@ -131,6 +143,7 @@ function RemoveTrigger(...)
     local count = #args
 
     if count == 1 and type(args[1]) == "table" then
+
         for _, name in ipairs(args[1]) do
             if triggers[name] ~= nil then
                 DisableTrigger(name)
@@ -138,12 +151,15 @@ function RemoveTrigger(...)
             end
             Citizen.Wait(10)
         end
+
     elseif count == 1 then
+
         local name = args[1]
         if triggers[name] ~= nil then
             DisableTrigger(name)
             triggers[name] = nil
         end
+
     end
 
 end

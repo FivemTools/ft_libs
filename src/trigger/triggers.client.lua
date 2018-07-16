@@ -6,7 +6,7 @@
 
 local triggers = {}
 local activeTriggers = {}
-local currentTrigger = nil
+local currentTriggers = {}
 
 
 --
@@ -51,8 +51,8 @@ function DisableTrigger(...)
             if activeTriggers[name] ~= nil then
                 activeTriggers[name] = nil
             end
-            if currentTrigger == name then
-                currentTrigger = nil
+            if currentTriggers[name] ~= nil then
+                currentTriggers[name] = nil
             end
             Citizen.Wait(10)
         end
@@ -63,8 +63,8 @@ function DisableTrigger(...)
         if activeTriggers[name] ~= nil then
             activeTriggers[name] = nil
         end        
-        if currentTrigger == name then
-            currentTrigger = nil
+        if currentTriggers == name then
+            currentTriggers = nil
         end
 
     end
@@ -175,7 +175,7 @@ end
 --
 function CurrentTrigger()
 
-    return currentTrigger
+    return currentTriggers
 
 end
 
@@ -195,13 +195,13 @@ function TriggerFrame()
                 local target = triggers[name]
                 if target ~= nil then
                     player_in = (GetDistanceBetweenCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) < (target.weight + 0.0) and math.abs(playerLocalisation.z - target.z) <= (target.height + 0.0))
-                    if player_in and currentTrigger ~= name then
-                        currentTrigger = name
+                    if player_in and currentTriggers[name] == nil then
+                        currentTriggers[name] = nil
                         target:Enter()
-                    elseif player_in and currentTrigger == name then
+                    elseif player_in and currentTriggers[name] ~= nil then
                         target:Active()
-                    elseif not player_in and currentTrigger == name then
-                        currentTrigger = nil
+                    elseif not player_in and currentTriggers[name] ~= nil then
+                        currentTriggers[name] = nil
                         target:Exit()
                     end
                 end

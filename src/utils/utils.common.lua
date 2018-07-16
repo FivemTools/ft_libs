@@ -185,11 +185,11 @@ end
 --
 --
 --
-function TableContainsValue(table, value)
+function TableContainsValue(table, data)
 
-    for k, v in pairs(table) do
-        if v == value then
-            return true
+    for key, value in pairs(table) do
+        if value == data then
+            return key
         end
     end
 

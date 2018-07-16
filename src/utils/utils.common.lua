@@ -182,3 +182,27 @@ function DebugPrint(data)
 
 end
 
+--
+--
+--
+function TableContainsValue(table, value)
+
+    for k, v in pairs(table) do
+        if v == value then
+            return true
+        end
+    end
+
+    return false
+
+end
+
+--
+--
+--
+function GetLastContentValue(table)
+
+    local total = #table
+    return table[total]
+
+end

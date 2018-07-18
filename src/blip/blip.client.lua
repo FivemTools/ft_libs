@@ -62,7 +62,7 @@ function blip.new(data)
         self.shortRange = true
     end
 
-    if data.enable == nil or type(data.shortRange) ~= "boolean" then
+    if data.enable == nil or type(data.enable) ~= "boolean" then
         self.enable = true
     end
 

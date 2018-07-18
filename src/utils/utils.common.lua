@@ -1,10 +1,8 @@
 --
 -- @Project: FiveM Tools
--- @Author: Samuelds
--- @Contributors : izio38
+-- @Author: Samuelds, Izio38
 -- @License: GNU General Public License v3.0
 --
-
 
 --
 -- Citizen.Trace table

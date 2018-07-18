@@ -41,6 +41,11 @@ function marker.new(data)
     self.showDistance = data.showDistance or self.weight + 20
     self.text = data.text
     self.textOffset = data.textOffset or 0
+
+    if data.enable == nil or type(data.enable) ~= "boolean" then
+        self.enable = true
+    end
+
     setmetatable(self, { __index = Marker })
     return self
 

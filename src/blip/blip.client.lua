@@ -51,9 +51,6 @@ function blip.new(data)
 
     local self = data
     self.blip = nil
-    self.x = data.x
-    self.y = data.y
-    self.text = data.text
     self.imageId = data.imageId or 1
     self.colorId = data.colorId or 0
     self.scale = data.scale or 1.0

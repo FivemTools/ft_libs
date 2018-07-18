@@ -17,9 +17,7 @@ function Blip:Show()
 
     self.blip = AddBlipForCoord(self.x, self.y, self.z)
     SetBlipSprite(self.blip, self.imageId)
-    if self.shortRange == true then
-        SetBlipAsShortRange(self.blip, true)
-    end
+    SetBlipAsShortRange(self.blip, self.shortRange)
     SetBlipColour(self.blip, self.colorId)
     SetBlipScale(self.blip, self.scale)
     BeginTextCommandSetBlipName("STRING")
@@ -53,18 +51,19 @@ function blip.new(data)
 
     local self = data
     self.blip = nil
+    self.x = data.x
+    self.y = data.y
+    self.text = data.text
     self.imageId = data.imageId or 1
     self.colorId = data.colorId or 0
     self.scale = data.scale or 1.0
 
-    self.shortRange = true
-    if data.shortRange ~= nil then
-        self.shortRange = data.shortRange
+    if data.shortRange == nil or type(data.shortRange) ~= "boolean" then
+        self.shortRange = true
     end
 
-    self.enable = true
-    if data.enable ~= nil then
-        self.enable = data.enable
+    if data.enable == nil or type(data.shortRange) ~= "boolean" then
+        self.enable = true
     end
 
     setmetatable(self, { __index = Blip })

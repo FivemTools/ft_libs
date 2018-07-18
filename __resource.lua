@@ -4,122 +4,145 @@
 -- @License: GNU General Public License v3.0
 --
 
-dependencies {}
+resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
 client_scripts {
 
-  -- Utils
-  "src/utils/utils.common.lua",
-  "src/utils/utils.client.lua",
+    -- Utils
+    "src/utils/utils.common.lua",
+    "src/utils/utils.client.lua",
 
-  -- Ui
-  "src/ui/ui.client.lua",
+    -- Ui
+    "src/ui/ui.client.lua",
+    "src/ui/instructionalButtons.client.lua",
 
-  -- Frames
-  "src/frame.client.lua",
+    -- Menu
+    "src/menu/menu.client.lua",
+    "src/menu/menus.client.lua",
 
-  -- Menu
-  "src/menu/menu.client.lua",
-  "src/menu/menus.client.lua",
+    -- Blip
+    "src/blip/blip.client.lua",
+    "src/blip/blips.client.lua",
 
-  -- Blip
-  "src/blip/blip.client.lua",
-  "src/blip/blips.client.lua",
+    -- Trigger
+    "src/trigger/trigger.client.lua",
+    "src/trigger/triggers.client.lua",
 
-  -- Trigger
-  "src/trigger/trigger.client.lua",
-  "src/trigger/triggers.client.lua",
+    -- Marker
+    "src/marker/marker.client.lua",
+    "src/marker/markers.client.lua",
 
-  -- Marker
-  "src/marker/marker.client.lua",
-  "src/marker/markers.client.lua",
+    -- Area
+    "src/area/area.client.lua",
+    "src/area/areas.client.lua",
 
-  -- Event 100% load
-  "src/client.load.lua",
+    -- Event 100% load
+    "src/client.load.lua",
 
 }
 
 exports {
 
-  -- Utils
-  "TableLength",
-  "Round",
-  "CommaValue",
-  "GetEntityDirection",
+    -- Utils
+    "TableLength",
+    "Round",
+    "CommaValue",
+    "GetEntityInDirection",
+    "SetDebug",
+    "Print",
+    "TablePrint",
+    "TableContainsValue",
+    "GetLastContentValue",
 
-  -- Ui
-  "HelpPromt",
-  "LoadingPromt",
-  "Message",
-  "Notification",
-  "AdvancedNotification",
-  "Text",
-  "OpenTextInput",
-  "TextNotification",
+    -- Ui
+    "HelpPromt",
+    "LoadingPromt",
+    "Message",
+    "Notification",
+    "AdvancedNotification",
+    "Text",
+    "OpenTextInput",
+    "TextNotification",
+    "Show3DText",
 
-  -- Menu
-  "AddMenu",
-  "RemoveMenu",
-  "MenuIsOpen",
-  "CurrentMenu",
-  "PrimaryMenu",
-  "FreezeMenu",
-  "OpenMenu",
-  "CloseMenu",
-  "NextMenu",
-  "BackMenu",
-  "CleanMenuButtons",
-  "SetMenuButtons",
-  "SetMenuValue",
-  "AddMenuButton",
-  "RemoveMenuButton",
+    -- Instructional Buttons
+    "AddInstructionalButtons",
+    "RemoveInstructionalButtons",
+    "DisplayInstructionalButtons",
+    "GetCurrentInstructionalButtons",
 
-  -- Blip
-  "AddBlip",
-  "RemoveBlip",
-  "ShowBlip",
-  "HideBlip",
+    -- Menu
+    "AddMenu",
+    "RemoveMenu",
+    "MenuIsOpen",
+    "CurrentMenu",
+    "PrimaryMenu",
+    "GetCurrentMenu",
+    "GetPrimaryMenu",
+    "FreezeMenu",
+    "OpenMenu",
+    "CloseMenu",
+    "NextMenu",
+    "BackMenu",
+    "CleanMenuButtons",
+    "SetMenuButtons",
+    "SetMenuValue",
+    "AddMenuButton",
+    "RemoveMenuButton",
 
-  -- Trigger
-  "AddTrigger",
-  "RemoveTrigger",
-  "SwitchTrigger",
-  "EnableTrigger",
-  "DisableTrigger",
-  "CurrentTrigger",
+    -- Blip
+    "AddBlip",
+    "RemoveBlip",
+    "ShowBlip",
+    "HideBlip",
 
-  -- Marker
-  "AddMarker",
-  "RemoveMarker",
-  "EnableMarker",
-  "DisableMarker",
-  "SwitchMarker",
-  "CurrentMarker",
+    -- Trigger
+    "AddTrigger",
+    "RemoveTrigger",
+    "SwitchTrigger",
+    "EnableTrigger",
+    "DisableTrigger",
+    "CurrentTrigger",
 
-  -- Areas
-  "AddAreas",
-  "RemoveAreas",
-  "EnableAreas",
-  "DisableAreas",
-  "SwitchAreas",
+    -- Marker
+    "AddMarker",
+    "RemoveMarker",
+    "EnableMarker",
+    "DisableMarker",
+    "SwitchMarker",
+    "CurrentMarker",
+
+    -- Areas
+    "AddArea",
+    "RemoveArea",
+    "EnableArea",
+    "DisableArea",
+    "SwitchArea",
+
+    -- Debug
+    "SetDebug",
+    "DebugPrint",
+    "PrintTable",
 
 }
 
 server_scripts {
 
-  -- Utils
-  "src/utils/utils.common.lua",
-  "src/utils/utils.server.lua",
-
-  -- Debug
-  "src/debug/debug.server.lua",
+    -- Utils
+    "src/utils/utils.common.lua",
+    "src/utils/utils.server.lua",
 
 }
 
 server_exports {
 
-  -- Utils
-  "TablePrint",
-  "Round",
+    -- Utils
+    "TableLength",
+    "PrintTable",
+    "Round",
+    "GetSteamIDFormSource",
+    "GetIpFormSource",
+    "TableContainsValue",
+    "GetLastContentValue",
 
 }

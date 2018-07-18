@@ -18,6 +18,9 @@ Menus = {
     lastKeyPressed = 0,
 }
 
+--
+--
+--
 function AddMenu(...)
 
     local args = {...}
@@ -44,6 +47,9 @@ function AddMenu(...)
 
 end
 
+--
+--
+--
 function RemoveMenu(...)
 
     local args = {...}
@@ -73,35 +79,71 @@ function RemoveMenu(...)
 
 end
 
+--
 -- Return if menu is open
+--
 function MenuIsOpen()
 
     return Menus.curent ~= nil
 
 end
 
+--
 -- Return current
-function CurrentMenu()
+--
+function GetCurrentMenu()
 
     return Menus.curent
 
 end
 
+-- old function name
+function CurrentMenu()
+
+    return GetCurrentMenu()
+
+end
+
+--
 -- Return current
-function PrimaryMenu()
+--
+function GetPrimaryMenu()
 
     return Menus.primary
 
 end
 
+-- old function name
+function PrimaryMenu()
+
+    return GetPrimaryMenu()
+
+end
+
+--
 -- Freeze menu
+--
 function FreezeMenu(status)
 
     Menus.freeze = status
 
 end
 
+--
+-- Reset values
+--
+function ResetMenu()
+
+    Menus.selectedButton = 0
+    Menus.freeze = false
+    Menus.from = 1
+    Menus.to = 10
+
+end
+
+--
 -- Open menu
+--
 function OpenMenu(name)
 
     -- Check if menu is open or not
@@ -122,17 +164,9 @@ function OpenMenu(name)
 
 end
 
--- Reset Values
-function ResetMenu()
-
-    Menus.selectedButton = 0
-    Menus.freeze = false
-    Menus.from = 1
-    Menus.to = 10
-
-end
-
--- Close Values
+--
+-- Close menu
+--
 function CloseMenu()
 
     ResetMenu()
@@ -143,7 +177,9 @@ function CloseMenu()
 
 end
 
+--
 -- Move Up action
+--
 local function MoveUp(menu)
 
     local countBtns = TableLength(menu.buttons)
@@ -165,7 +201,9 @@ local function MoveUp(menu)
 
 end
 
+--
 -- Move down action
+--
 local function MoveDown(menu)
 
     local countBtns = TableLength(menu.buttons)
@@ -187,7 +225,9 @@ local function MoveDown(menu)
 
 end
 
+--
 -- Next menu
+--
 function NextMenu(name)
 
     if Menus.curent ~= nil then
@@ -215,7 +255,9 @@ function NextMenu(name)
 
 end
 
+--
 -- Back last menu
+--
 function BackMenu()
 
     local backNumber = TableLength(Menus.backMenu)
@@ -252,29 +294,28 @@ function BackMenu()
 
 end
 
+--
 -- Back is press Back key
+--
 local function BackBtn(menu)
 
     local name = Menus.curent
     local menu = Menus.list[name]
 
-    -- No closable menu for back button
-    if menu.closable ~= nil and menu.closable == false then
-        return
-    end
-
     menu.Back()
 
     local backNumber = TableLength(Menus.backMenu)
-    if next(Menus.backMenu) and backNumber > 0 then
+    if next(Menus.backMenu) and backNumber > 0 and menu.backLock == false then
         BackMenu()
-    else
+    elseif menu.closable == true then
         CloseMenu()
     end
 
 end
 
+--
 -- Execute action
+--
 local function Exec(menu)
 
     local button = menu.buttons[Menus.selectedButton]
@@ -297,6 +338,7 @@ local function Exec(menu)
 
 end
 
+--
 -- Clean buttons
 function CleanMenuButtons(name)
 
@@ -305,8 +347,11 @@ function CleanMenuButtons(name)
     end
 
 end
+--
 
+--
 -- Clean buttons
+--
 function SetMenuButtons(name, buttons)
 
     if Menus.list[name] ~= nil then
@@ -315,7 +360,9 @@ function SetMenuButtons(name, buttons)
 
 end
 
--- Set Menu info
+--
+-- Set menu value
+--
 function SetMenuValue(name, values)
 
     if Menus.list[name] ~= nil then
@@ -330,7 +377,9 @@ function SetMenuValue(name, values)
 
 end
 
+--
 -- Add button
+--
 function AddMenuButton(name, button)
 
     if Menus.list[name] ~= nil then
@@ -346,7 +395,9 @@ function AddMenuButton(name, button)
 
 end
 
+--
 -- remove button
+--
 function RemoveMenuButton(name, button)
 
     if menus.list[name] ~= nil then
@@ -355,64 +406,99 @@ function RemoveMenuButton(name, button)
 
 end
 
+--
+-- Init instructionalButtons
+--
+local function menuInit()
+
+    AddInstructionalButtons("ft_menu", {
+        ["Up"] = 188,
+        ["Down"] = 187,
+        ["Enter"] = 201,
+        ["Back"] = 177,
+    })
+
+end
+
+--
 -- Show menu
-AddRunInFrame(function()
+--
+function MenuFrame()
 
-    if MenuIsOpen() and not IsHudComponentActive(19) and not IsHudComponentActive(16) and not IsPauseMenuActive() then
+    menuInit()
 
-        local current = Menus.curent
-        local menu = Menus.list[current]
-        local countBtns = TableLength(menu.buttons)
+    Citizen.CreateThread(function()
 
-        if not Menus.freeze then
+        while true do
 
-            -- Fix
-            if Menus.selectedButton > countBtns then
-                Menus.selectedButton = countBtns
-            end
+            if MenuIsOpen() and not IsHudComponentActive(19) and not IsHudComponentActive(16) and not IsPauseMenuActive() then
 
-            -- Block if menu is empty
-            if Menus.selectedButton > 0 and Menus.selectedButton <= countBtns then
+                local current = Menus.curent
+                local menu = Menus.list[current]
+                local countBtns = TableLength(menu.buttons)
 
-                -- Up
-                if IsControlPressed(2, 188) and GetLastInputMethod(2) and (GetGameTimer() - Menus.lastKeyPressed) > 150 then
+                if not Menus.freeze then
 
-                    MoveUp(menu)
-                    Menus.lastKeyPressed = GetGameTimer()
+                    local gameTimer = GetGameTimer()
+                    local getLastInputMethod = GetLastInputMethod()
+
+                    -- Fix
+                    if Menus.selectedButton > countBtns then
+                        Menus.selectedButton = countBtns
+                    end
+
+                    -- Block if menu is empty
+                    if Menus.selectedButton > 0 and Menus.selectedButton <= countBtns then
+
+                        -- Up
+                        if IsControlPressed(2, 188) and getLastInputMethod and (gameTimer - Menus.lastKeyPressed) > 150 then
+
+                            MoveUp(menu)
+                            Menus.lastKeyPressed = gameTimer
+
+                        end
+
+                        -- Down
+                        if IsControlPressed(2, 187) and getLastInputMethod and (gameTimer - Menus.lastKeyPressed) > 150 then
+
+                            MoveDown(menu)
+                            Menus.lastKeyPressed = gameTimer
+
+                        end
+
+                        -- Enter
+                        if IsControlJustReleased(2, 201) and getLastInputMethod then
+
+                            Exec(menu)
+                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+
+                        end
+
+                    end
+
+                    -- Back
+                    if IsControlJustReleased(2, 177) and not IsControlJustReleased(2, 322) and not IsControlJustReleased(2, 24) and not IsControlJustReleased(0, 25) and getLastInputMethod then
+
+                        BackBtn(menu)
+                        PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+
+                    end
 
                 end
 
-                -- Down
-                if IsControlPressed(2, 187) and GetLastInputMethod(2) and (GetGameTimer() - Menus.lastKeyPressed) > 150 then
+                -- Show Memu
+                menu.Show(Menus.from, Menus.to, Menus.selectedButton)
+                DisplayInstructionalButtons("ft_menu")
 
-                    MoveDown(menu)
-                    Menus.lastKeyPressed = GetGameTimer()
+            elseif GetCurrentInstructionalButtons() == "ft_menu" then
 
-                end
+                DisplayInstructionalButtons(false)
 
-                -- Enter
-                if IsControlJustReleased(2, 201) and GetLastInputMethod(2) then
+            end -- end check menu is open
 
-                    Exec(menu)
-                    PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
-
-                end
-
-            end
-
-            -- Back
-            if IsControlJustReleased(2, 177) and not IsControlJustReleased(2, 322) and not IsControlJustReleased(2, 24) and not IsControlJustReleased(0, 25) and GetLastInputMethod(2) then
-
-                BackBtn(menu)
-                PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
-
-            end
-
+            Citizen.Wait(5)
         end
 
-        -- Show Memu
-        menu.Show(Menus.from, Menus.to, Menus.selectedButton)
+    end)
 
-    end -- end check menu is open
-
-end)
+end

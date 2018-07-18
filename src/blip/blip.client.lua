@@ -14,6 +14,7 @@ local Blip = {}
 -- Show Blip
 --
 function Blip:Show()
+
     self.blip = AddBlipForCoord(self.x, self.y, self.z)
     SetBlipSprite(self.blip, self.imageId)
     SetBlipAsShortRange(self.blip, self.shortRange)
@@ -22,16 +23,21 @@ function Blip:Show()
     BeginTextCommandSetBlipName("STRING")
     AddTextComponentString(self.text)
     EndTextCommandSetBlipName(self.blip)
-    if self.rotation then SetBlipRotation(self.blip, self.rotation) end
+    if self.rotation ~= nil then
+        SetBlipRotation(self.blip, self.rotation)
+    end
+
 end
 
 --
 -- Hide Blip
 --
 function Blip:Hide()
+
     if self.blip ~= nil then
         Citizen.InvokeNative(0x86A652570E5F25DD, Citizen.PointerValueIntInitialized(self.blip)) -- Use native REMOVE_BLIP
     end
+
 end
 
 --
@@ -48,10 +54,14 @@ function blip.new(data)
     self.imageId = data.imageId or 1
     self.colorId = data.colorId or 0
     self.scale = data.scale or 1.0
-    self.shortRange = true
-    self.enable = true
-    if data.shortRange then self.shortRange = data.shortRange end
-    if data.enable then self.enable = data.enable end
+
+    if data.shortRange == nil or type(data.shortRange) ~= "boolean" then
+        self.shortRange = true
+    end
+
+    if data.enable == nil or type(data.enable) ~= "boolean" then
+        self.enable = true
+    end
 
     setmetatable(self, { __index = Blip })
     return self

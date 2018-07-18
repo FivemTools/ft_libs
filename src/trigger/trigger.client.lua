@@ -94,6 +94,10 @@ function trigger.new(data)
     self.active = data.active or {}
     self.data = data.data or {}
 
+    if data.enable == nil or type(data.enable) ~= "boolean" then
+        self.enable = true
+    end
+
     setmetatable(self, { __index = Trigger })
     return self
 

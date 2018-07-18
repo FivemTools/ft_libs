@@ -31,8 +31,14 @@ dependencies {
 
 ### Documentation
 
-[Online](https://fivemtools-libs.readme.io/)
+[Online](https://fivemtools-libs.readme.io/v1.0/)
 
 ## License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details
+
+## Contributors :
+
+- LH-Lawliet
+- THEJean-Kevin
+- izio38

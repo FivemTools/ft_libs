@@ -8,33 +8,39 @@
 area = {}
 
 -- class table
-local AreaClass = {}
+local Area = {}
 
 --
 -- Enable Area
 --
-function AreaClass:Enable()
-  EnableMarker(self.name, true)
-  SwitchTrigger(self.name, true)
-  ShowBlip(self.name)
+function Area:Enable()
+
+    EnableMarker(self.name)
+    EnableTrigger(self.name)
+    ShowBlip(self.name)
+
 end
 
 --
 -- Disable Area
 --
 function Area:Disable()
-  EnableMarker(self.name, false)
-  SwitchTrigger(self.name, false)
-  HideBlip(self.name)
+
+    DisableMarker(self.name)
+    DisableTrigger(self.name)
+    HideBlip(self.name)
+
 end
 
 --
 -- Remove Area
 --
 function Area:Remove()
-  RemoveMarker(self.name)
-  RemoveTrigger(self.name)
-  RemoveBlip(self.name)
+
+    RemoveMarker(self.name)
+    RemoveTrigger(self.name)
+    RemoveBlip(self.name)
+
 end
 
 --
@@ -42,46 +48,47 @@ end
 --
 function area.new(name, data)
 
-  assert(type(data.name) == "string", "Area : name must be text")
+    assert(type(name) == "string", "Area : name must be text")
 
-  local self = data
-  if data.enable ~= nil then
-      self.enable = data.enable
-  else
-      self.enable = true
-  end
+    local self = data
+    self.name = name
 
-  -- Trigger
-  if data.trigger ~= nil then
-    local triggerData = data.trigger
-    areaData.enable = self.enable
-    areaData.x = data.x
-    areaData.y = data.y
-    areaData.z = data.z
-    self.area = AddTrigger(self.name, areaData)
-  end
+    self.enable = true
+    if data.enable ~= nil then
+        self.enable = data.enable
+    end
 
-  -- Blip
-  if data.blip ~= nil then
-    local blipData = data.blip
-    blipData.enable = self.enable
-    blipData.x = data.x
-    blipData.y = data.y
-    blipData.z = data.z
-    self.blip = AddBlip(self.name, blipData)
-  end
+    -- Trigger
+    if data.trigger ~= nil then
+        local triggerData = data.trigger
+        triggerData.enable = self.enable
+        triggerData.x = data.x
+        triggerData.y = data.y
+        triggerData.z = data.z
+        self.area = AddTrigger(name, triggerData)
+    end
 
-  -- Marker
-  if data.marker ~= nil then
-    local markerData = data.marker
-    markerData.enable = self.enable
-    markerData.x = data.x
-    markerData.y = data.y
-    markerData.z = data.z
-    self.marker = AddMarker(self.name, markerData)
-  end
+    -- Blip
+    if data.blip ~= nil then
+        local blipData = data.blip
+        blipData.enable = self.enable
+        blipData.x = data.x
+        blipData.y = data.y
+        blipData.z = data.z
+        self.blip = AddBlip(name, blipData)
+    end
 
-  setmetatable(self, { __index = Area })
-  return self
+    -- Marker
+    if data.marker ~= nil then
+        local markerData = data.marker
+        markerData.enable = self.enable
+        markerData.x = data.x
+        markerData.y = data.y
+        markerData.z = data.z
+        self.marker = AddMarker(name, markerData)
+    end
+
+    setmetatable(self, { __index = Area })
+    return self
 
 end

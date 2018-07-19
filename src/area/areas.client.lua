@@ -217,5 +217,3 @@ function RemoveArea(...)
     end
 
 end
-
->>>>>>> develop

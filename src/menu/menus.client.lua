@@ -39,11 +39,8 @@ function AddMenu(...)
         local value = args[2]
         Menus.list[name] = Menu(value)
 
-    else
-
-        return false
-
     end
+    return false
 
 end
 
@@ -71,11 +68,8 @@ function RemoveMenu(...)
             Menus.list[name] = nil
         end
 
-    else
-
-        return false
-
     end
+    return false
 
 end
 
@@ -84,7 +78,10 @@ end
 --
 function MenuIsOpen()
 
-    return Menus.curent ~= nil
+    if Menus.curent ~= nil then
+        return true
+    end
+    return false
 
 end
 
@@ -249,10 +246,8 @@ function NextMenu(name)
         if countBtns >= 1 then
             Menus.selectedButton = 1
         end
-
-    else
-        return
     end
+    return false
 
 end
 

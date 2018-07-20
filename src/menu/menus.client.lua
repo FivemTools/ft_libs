@@ -100,6 +100,7 @@ end
 -- old function name
 function CurrentMenu()
 
+    Citizen.Trace("CurrentMenu function is deprecated ! Please us GetCurrentMenu function.")
     return GetCurrentMenu()
 
 end
@@ -352,8 +353,11 @@ end
 --
 -- Clean buttons
 --
-function SetMenuButtons(name, buttons)
+function SetMenuButtons()
 
+    local args = {...}
+
+    name, buttons
     if Menus.list[name] ~= nil then
         Menus.list[name].buttons = buttons
     end

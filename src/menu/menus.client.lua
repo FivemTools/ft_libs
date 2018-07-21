@@ -29,8 +29,8 @@ function AddMenu(...)
     if count == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
-            Citizen.Wait(1)
             Menus.list[name] = Menu(value)
+            Citizen.Wait(1)
         end
 
     elseif count == 2 then
@@ -55,10 +55,10 @@ function RemoveMenu(...)
     if count == 1 and type(args[1]) == "table" then
 
         for _, name in ipairs(args[1]) do
-            Citizen.Wait(1)
             if Menus[name] ~= nil then
                 Menus.list[name] = nil
             end
+            Citizen.Wait(1)
         end
 
     elseif count == 1 then
@@ -338,9 +338,27 @@ end
 -- Clean buttons
 function CleanMenuButtons(name)
 
-    if Menus.list[name] ~= nil then
-        Menus.list[name].buttons = {}
+    local args = {...}
+    local count = #args
+
+    if count == 1 and type(args[1]) == "table" then
+
+        for _, name in ipairs(args[1]) do
+            if Menus.list[name] ~= nil then
+                Menus.list[name].buttons = {}
+            end
+            Citizen.Wait(1)
+        end
+
+    elseif count == 1 then
+
+        local name = args[1]
+        if Menus.list[name] ~= nil then
+            Menus.list[name].buttons = {}
+        end
+
     end
+    return false
 
 end
 --
@@ -348,49 +366,116 @@ end
 --
 -- Clean buttons
 --
-function SetMenuButtons()
+function SetMenuButtons(...)
 
     local args = {...}
+    local count = #args
 
-    name, buttons
-    if Menus.list[name] ~= nil then
-        Menus.list[name].buttons = buttons
+    if count == 1 and type(args[1]) == "table" then
+
+        for name, buttons in pairs(args[1]) do
+            if Menus.list[name] ~= nil then
+                Menus.list[name].buttons = buttons
+            end
+            Citizen.Wait(1)
+        end
+
+    elseif count == 2 then
+
+        local name = args[1]
+        local buttons = args[2]
+        if Menus.list[name] ~= nil then
+            Menus.list[name].buttons = buttons
+        end
+
     end
+    return false
 
 end
 
 --
 -- Set menu value
 --
-function SetMenuValue(name, values)
+function SetMenuValue(...)
 
-    if Menus.list[name] ~= nil then
+    local args = {...}
+    local count = #args
 
-        local menu = Menus.list[name]
+    if count == 1 and type(args[1]) == "table" then
 
-        for key, value in pairs(values) do
-            menu[key] = value
+        for name, values in pairs(args[1]) do
+            if Menus.list[name] ~= nil then
+
+                local menu = Menus.list[name]
+                for key, value in pairs(values) do
+                    menu[key] = value
+                end
+
+            end
+            Citizen.Wait(1)
+        end
+
+    elseif count == 2 then
+
+        local name = args[1]
+        local values = args[2]
+
+        if Menus.list[name] ~= nil then
+
+            local menu = Menus.list[name]
+            for key, value in pairs(values) do
+                menu[key] = value
+            end
+
         end
 
     end
+    return false
 
 end
 
 --
 -- Add button
 --
-function AddMenuButton(name, button)
+function AddMenuButton(...)
 
-    if Menus.list[name] ~= nil then
-        if type(button) == "table" then
-            local buttons = button
-            for _, button in pairs (buttons) do
+    local args = {...}
+    local count = #args
+
+    if count == 1 and type(args[1]) == "table" then
+
+        for name, button in pairs(args[1]) do
+            if Menus.list[name] ~= nil then
+                if type(button) == "table" then
+                    local buttons = button
+                    for _, button in pairs (buttons) do
+                        table.insert(Menus.list[name].buttons, button)
+                    end
+                else
+                    table.insert(Menus.list[name].buttons, button)
+                end
+            end
+            Citizen.Wait(1)
+        end
+
+    elseif count == 2 then
+
+        local name = args[1]
+        local button = args[2]
+
+        if Menus.list[name] ~= nil then
+            if type(button) == "table" then
+                local buttons = button
+                for _, button in pairs (buttons) do
+                    table.insert(Menus.list[name].buttons, button)
+                end
+            else
                 table.insert(Menus.list[name].buttons, button)
             end
-        else
-            table.insert(Menus.list[name].buttons, button)
         end
+
     end
+    return false
 
 end
 
@@ -399,9 +484,29 @@ end
 --
 function RemoveMenuButton(name, button)
 
-    if menus.list[name] ~= nil then
-        table.remove(menus.list[name].buttons, button)
+    local args = {...}
+    local count = #args
+
+    if count == 1 and type(args[1]) == "table" then
+
+        for name, button in pairs(args[1]) do
+            if menus.list[name] ~= nil then
+                table.remove(menus.list[name].buttons, button)
+            end
+            Citizen.Wait(1)
+        end
+
+    elseif count == 2 then
+
+        local name = args[1]
+        local button = args[2]
+
+        if menus.list[name] ~= nil then
+            table.remove(menus.list[name].buttons, button)
+        end
+
     end
+    return false
 
 end
 

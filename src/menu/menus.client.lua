@@ -482,7 +482,7 @@ end
 --
 -- remove button
 --
-function RemoveMenuButton(name, button)
+function RemoveMenuButton(...)
 
     local args = {...}
     local count = #args

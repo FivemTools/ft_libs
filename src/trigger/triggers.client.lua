@@ -2,6 +2,7 @@
 -- @Project: FiveM Tools
 -- @Author: Samuelds
 -- @License: GNU General Public License v3.0
+-- @Source: https://github.com/FivemTools/ft_libs
 --
 
 local triggers = {}
@@ -56,7 +57,7 @@ function DisableTrigger(...)
     elseif count == 1 then
 
         local name = args[1]
-        activeTriggers[name] = nil      
+        activeTriggers[name] = nil
         currentTriggers[name] = nil
 
     end

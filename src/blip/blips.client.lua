@@ -2,6 +2,7 @@
 -- @Project: FiveM Tools
 -- @Author: Samuelds
 -- @License: GNU General Public License v3.0
+-- @Source: https://github.com/FivemTools/ft_libs
 --
 
 local blips = {}
@@ -116,7 +117,7 @@ function RemoveBlip(...)
         local name = args[1]
         if blips[name] ~= nil then
             HideBlip(name)
-            blips[name] = nil            
+            blips[name] = nil
         end
     end
 

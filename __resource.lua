@@ -37,7 +37,7 @@ client_scripts {
     "src/area/areas.client.lua",
 
     -- Event 100% load
-    "src/client.load.lua",
+    "src/load.client.lua",
 
 }
 

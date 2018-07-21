@@ -445,40 +445,61 @@ function AddMenuButton(...)
     if count == 1 and type(args[1]) == "table" then
 
         for name, button in pairs(args[1]) do
-            if Menus.list[name] ~= nil then
-                if type(button) == "table" then
-                    local buttons = button
-                    for _, button in pairs (buttons) do
-                        table.insert(Menus.list[name].buttons, button)
-                        Citizen.Wait(1)
-                    end
+            if Menus.list[name] ~= nil and type(buttons) == "table" then
+
+                if buttons[1] ~= nil then
+                  for _, value in pairs(button) do
+                    table.insert(Menus.list[name].buttons, value)
+                  end
                 else
-                    table.insert(Menus.list[name].buttons, button)
+                  table.insert(Menus.list[name].buttons, button)
                 end
+
             end
             Citizen.Wait(1)
         end
+        return true
 
     elseif count == 2 then
 
         local name = args[1]
-        local buttons = args[2]
+        local button = args[2]
 
-        if Menus.list[name] ~= nil then
-            if type(buttons) == "table" then
-                for _, button in pairs(buttons) do
-                    table.insert(Menus.list[name].buttons, button)
-                    Citizen.Wait(1)
-                end
+        if Menus.list[name] ~= nil and type(button) == "table" then
+
+            if buttons[1] ~= nil then
+              for _, value in pairs(button) do
+                table.insert(Menus.list[name].buttons, value)
+              end
             else
-                table.insert(Menus.list[name].buttons, button)
+              table.insert(Menus.list[name].buttons, button)
             end
+
         end
+        return true
 
     end
     return false
 
 end
+
+-- Add button
+function AddMenuButton(name, button)
+
+    if Menus.list[name] ~= nil and type(button) == "table" then
+
+        if button[1] ~= nil then
+          for _, value in pairs(button) do
+            table.insert(Menus.list[name].buttons, value)
+          end
+        else
+          table.insert(Menus.list[name].buttons, button)
+        end
+
+    end
+
+end
+
 
 --
 -- remove button

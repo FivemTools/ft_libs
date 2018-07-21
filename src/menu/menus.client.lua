@@ -450,6 +450,7 @@ function AddMenuButton(...)
                     local buttons = button
                     for _, button in pairs (buttons) do
                         table.insert(Menus.list[name].buttons, button)
+                        Citizen.Wait(1)
                     end
                 else
                     table.insert(Menus.list[name].buttons, button)
@@ -461,13 +462,13 @@ function AddMenuButton(...)
     elseif count == 2 then
 
         local name = args[1]
-        local button = args[2]
+        local buttons = args[2]
 
         if Menus.list[name] ~= nil then
-            if type(button) == "table" then
-                local buttons = button
-                for _, button in pairs (buttons) do
+            if type(buttons) == "table" then
+                for _, button in pairs(buttons) do
                     table.insert(Menus.list[name].buttons, button)
+                    Citizen.Wait(1)
                 end
             else
                 table.insert(Menus.list[name].buttons, button)

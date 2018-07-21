@@ -278,7 +278,7 @@ function Menu(data)
         local subTextScale = self.subTextScale
 
         Text({
-            text = data.text,
+            text = data.text or "Default text",
             font = 0,
             x = x - (self.width / 2) + 0.005,
             y = y - (self.height / 2) + 0.0035,

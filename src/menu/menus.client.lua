@@ -139,10 +139,23 @@ function ResetMenu()
 
 end
 
+
+
 --
 -- Open menu
 --
-function OpenMenu(name)
+function OpenMenu(...)
+    local args = {...}
+    local count = #args
+    if count == 1 then
+        name = args[1]
+        argsData = {}
+    elseif count == 2 and type(args[2]) == "table" then
+        name = args[1]
+        argsData = args[2]
+    else
+        return
+    end
 
     -- Check if menu is open or not
     if MenuIsOpen() or Menus.list[name] == nil then
@@ -156,10 +169,13 @@ function OpenMenu(name)
     local menu = Menus.list[name]
     local countBtns = TableLength(menu.buttons)
 
-    if countBtns >= 1 then
+    if argsData.defaultPosition ~= nil then
+        selecteButton(name,argsData.defaultPosition)
+    elseif menu.defaultButtonPosition ~= nil then
+        selecteButton(name,menu.defaultButtonPosition)
+    elseif countBtns >= 1 and Menus.selectedButton ==0 then
         Menus.selectedButton = 1
     end
-
 end
 
 --
@@ -223,27 +239,43 @@ local function MoveDown(menu)
 
 end
 
+
 --
 -- Next menu
 --
-function NextMenu(name)
-
+function NextMenu(...)
     if Menus.curent ~= nil then
+        local args = {...}
+        local count = #args
+        if count == 1 then
+            name = args[1]
+            argsData = {}
+        elseif count == 2 and type(args[2]) == "table" then
+            name = args[1]
+            argsData = args[2]
+        else
+            return false
+        end
         local data = {
-            name = Menus.curent,
-            from = Menus.from,
-            to = Menus.to,
-            selectedButton = Menus.selectedButton,
+                name = Menus.curent,
+                from = Menus.from,
+                to = Menus.to,
+                selectedButton = Menus.selectedButton,
         }
         table.insert(Menus.backMenu, data) -- Check if curent menu is backMenu
 
         ResetMenu()
         Menus.curent = name
 
+     
         local menu = Menus.list[name]
         local countBtns = TableLength(menu.buttons)
 
-        if countBtns >= 1 then
+        if argsData.defaultPosition ~= nil then
+            selecteButton(name,argsData.defaultPosition)
+        elseif menu.defaultButtonPosition ~= nil then
+            selecteButton(name,menu.defaultButtonPosition)
+        elseif countBtns >= 1 and Menus.selectedButton == 0 then
             Menus.selectedButton = 1
         end
     end
@@ -509,6 +541,30 @@ function RemoveMenuButton(...)
     return false
 
 end
+
+--
+-- Select Button
+--
+
+function selecteButton(name, number)
+    local menu = Menus.list[name]
+    if menu ~= nil and type(number) == "number" then
+        local countBtns = TableLength(menu.buttons)
+        if number < countBtns then
+
+            Menus.selectedButton = number
+
+            while Menus.selectedButton > Menus.to do
+                Menus.to = Menus.to + 1
+                Menus.from = Menus.from + 1
+            end
+            if MenuIsOpen() and Menus.curent == name then
+                menu.Hover(Menus.selectedButton)
+            end
+        end
+    end
+end
+
 
 --
 -- Init instructionalButtons

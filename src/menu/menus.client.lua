@@ -336,7 +336,7 @@ end
 
 --
 -- Clean buttons
-function CleanMenuButtons(name)
+function CleanMenuButtons(...)
 
     local args = {...}
     local count = #args

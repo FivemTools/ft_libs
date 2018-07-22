@@ -6,7 +6,7 @@
 --
 
 --
--- Citizen.Trace table
+-- print table
 --
 function PrintTable(table, indent)
 
@@ -19,42 +19,42 @@ function PrintTable(table, indent)
         for k, v in pairs(table) do
             formatting = string.rep("  ", indent) .. k .. ": "
             if type(v) == "table" then
-                Citizen.Trace(formatting .. "\n")
+                print(formatting)
                 PrintTable(v, indent + 1)
             elseif type(v) == "boolean" then
                 if v then
-                    Citizen.Trace(formatting .. "true \n")
+                    print(formatting .. "true")
                 else
-                    Citizen.Trace(formatting .. "false \n")
+                    print(formatting .. "false")
                 end
             elseif type(v) == "nil" then
-                Citizen.Trace(formatting .. "nil \n")
+                print(formatting .. "nil")
             elseif type(v) == "function" then
-                Citizen.Trace(formatting .. "function \n")
+                print(formatting .. "function")
             else
-                Citizen.Trace(formatting .. tostring(v) .. " (" .. type(v) .. ") \n")
+                print(formatting .. tostring(v) .. " (" .. type(v) .. ")")
             end
         end
 
     elseif type(table) == "boolean" then
 
         if table then
-            Citizen.Trace("true \n")
+            print("true")
         else
-            Citizen.Trace("false \n")
+            print("false")
         end
 
     elseif type(table) == "nil" then
 
-        Citizen.Trace("nil \n")
+        print("nil")
 
     elseif type(table) == "function" then
 
-        Citizen.Trace("function \n")
+        print("function")
 
     else
 
-        Citizen.Trace(tostring(table)  .. " (" .. type(table) .. ") \n")
+        print(tostring(table)  .. " (" .. type(table) .. ")")
 
     end
 
@@ -173,11 +173,23 @@ end
 --
 --
 --
-function DebugPrint(data)
+function DebugPrint(...)
 
-  if debugMode then
-      PrintTable(data)
-  end
+    if debugMode then
+    local args = {...}
+    local count = #args
+
+    if count > 1 then
+        print("------[ " .. args[2].. " ]------")
+        PrintTable(args[1])
+        print("-----[ END FT_DEBUG ]-----")
+    else
+        print("------[ FT_DEBUG ]------")
+        PrintTable(args[1])
+        print("-----[ END FT_DEBUG ]-----")
+    end
+
+    end
 
 end
 

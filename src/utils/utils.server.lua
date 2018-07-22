@@ -12,9 +12,9 @@ function GetSteamIDFormSource(source)
 
     assert(type(source) == "number", "source must be number")
 
-    local steamID = GetPlayerIdentifiers(source)
-    if steamID[1] ~= nil  then
-        return steamID[1]
+    local identifier = GetPlayerIdentifiers(source)
+    if identifier[1] ~= nil and string.find(identifier[1], "steam") then
+        return identifier[1]
     end
 	return false
 
@@ -28,7 +28,7 @@ function GetIpFormSource(source)
     assert(type(source) == "number", "source must be number")
 
     local ip = GetPlayerEP(source)
-    if ip ~= nil  then
+    if ip ~= nil then
         return ip
     end
 	return false

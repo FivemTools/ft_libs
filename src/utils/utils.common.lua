@@ -182,7 +182,7 @@ function DebugPrint(...)
     if count > 1 then
         print("------[ " .. args[2].. " ]------")
         PrintTable(args[1])
-        print("-----[ END FT_DEBUG ]-----")
+        print("-----[ END " .. args[2].. " ]-----")
     else
         print("------[ FT_DEBUG ]------")
         PrintTable(args[1])

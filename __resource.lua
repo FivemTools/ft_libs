@@ -145,5 +145,6 @@ server_exports {
     "GetIpFormSource",
     "TableContainsValue",
     "GetLastContentValue",
+    "DebugPrint",
 
 }

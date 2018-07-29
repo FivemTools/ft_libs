@@ -90,7 +90,7 @@ exports {
     "SetMenuValue",
     "AddMenuButton",
     "RemoveMenuButton",
-    "selecteButton",
+    "SelecteButton",
 
     -- Blip
     "AddBlip",

@@ -1,6 +1,6 @@
 --
 -- @Project: FiveM Tools
--- @Author: Samuelds
+-- @Author: Samuelds, THEJean-Kevin
 -- @License: GNU General Public License v3.0
 -- @Source: https://github.com/FivemTools/ft_libs
 --
@@ -30,6 +30,7 @@ function AddMenu(...)
     if count == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
+            print("Add menu : " .. name)
             Menus.list[name] = Menu(value)
             Citizen.Wait(1)
         end
@@ -38,6 +39,7 @@ function AddMenu(...)
 
         local name = args[1]
         local value = args[2]
+        print("Add menu : " .. name)
         Menus.list[name] = Menu(value)
 
     end
@@ -146,37 +148,45 @@ end
 -- Open menu
 --
 function OpenMenu(...)
-    local args = {...}
-    local count = #args
-    if count == 1 then
-        name = args[1]
-        argsData = {}
-    elseif count == 2 and type(args[2]) == "table" then
-        name = args[1]
-        argsData = args[2]
-    else
-        return
+
+    -- Check if menu is open
+    if MenuIsOpen() then
+        return false
     end
 
-    -- Check if menu is open or not
-    if MenuIsOpen() or Menus.list[name] == nil then
-        return
+    local args = {...}
+    local countArgs = #args
+    local settings = {}
+    if countArgs == 1 then
+        menuName = args[1]
+    elseif countArgs == 2 and type(args[2]) == "table" then
+        menuName = args[1]
+        settings = args[2]
+    else
+        return false
+    end
+
+    -- Check if menu exit
+    if Menus.list[menuName] == nil then
+        return false
     end
 
     Menus.open = true
-    Menus.curent = name
-    Menus.primary = name
+    Menus.curent = menuName
+    Menus.primary = menuName
 
-    local menu = Menus.list[name]
+    local menu = Menus.list[menuName]
     local countBtns = TableLength(menu.buttons)
-
-    if argsData.defaultPosition ~= nil then
-        selecteButton(name,argsData.defaultPosition)
-    elseif menu.defaultButtonPosition ~= nil then
-        selecteButton(name,menu.defaultButtonPosition)
-    elseif countBtns >= 1 and Menus.selectedButton ==0 then
-        Menus.selectedButton = 1
+    if countBtns >= 1 then
+        local defaultButtonPosition = 1
+        if settings.defaultButtonPosition ~= nil and settings.defaultButtonPosition <= countBtns then
+            defaultButtonPosition = settings.defaultButtonPosition
+        elseif menu.defaultButtonPosition ~= nil and menu.defaultButtonPosition <= nil then
+            defaultButtonPosition = menu.defaultButtonPosition
+        end
+        Menus.selectedButton = defaultButtonPosition
     end
+
 end
 
 --
@@ -244,41 +254,31 @@ end
 --
 -- Next menu
 --
-function NextMenu(...)
+function NextMenu(menuName)
+
     if Menus.curent ~= nil then
-        local args = {...}
-        local count = #args
-        if count == 1 then
-            name = args[1]
-            argsData = {}
-        elseif count == 2 and type(args[2]) == "table" then
-            name = args[1]
-            argsData = args[2]
-        else
-            return false
-        end
+
         local data = {
-                name = Menus.curent,
-                from = Menus.from,
-                to = Menus.to,
-                selectedButton = Menus.selectedButton,
+            name = Menus.curent,
+            from = Menus.from,
+            to = Menus.to,
+            selectedButton = Menus.selectedButton,
         }
         table.insert(Menus.backMenu, data) -- Check if curent menu is backMenu
 
         ResetMenu()
-        Menus.curent = name
+        Menus.curent = menuName
 
-     
-        local menu = Menus.list[name]
+        local menu = Menus.list[menuName]
         local countBtns = TableLength(menu.buttons)
-
-        if argsData.defaultPosition ~= nil then
-            selecteButton(name,argsData.defaultPosition)
-        elseif menu.defaultButtonPosition ~= nil then
-            selecteButton(name,menu.defaultButtonPosition)
-        elseif countBtns >= 1 and Menus.selectedButton == 0 then
-            Menus.selectedButton = 1
+        if countBtns >= 1 then
+            local defaultButtonPosition = 1
+            if menu.defaultButtonPosition ~= nil and menu.defaultButtonPosition <= countBtns then
+                defaultButtonPosition = menu.defaultButtonPosition
+            end
+            Menus.selectedButton = defaultButtonPosition
         end
+
     end
     return false
 
@@ -369,6 +369,7 @@ end
 
 --
 -- Clean buttons
+--
 function CleanMenuButtons(...)
 
     local args = {...}
@@ -402,9 +403,8 @@ end
 function SetMenuButtons(...)
 
     local args = {...}
-    local count = #args
-
-    if count == 1 and type(args[1]) == "table" then
+    local countArgs = #args
+    if countArgs == 1 and type(args[1]) == "table" then
 
         for name, buttons in pairs(args[1]) do
             if Menus.list[name] ~= nil then
@@ -413,7 +413,7 @@ function SetMenuButtons(...)
             Citizen.Wait(1)
         end
 
-    elseif count == 2 then
+    elseif countArgs == 2 then
 
         local name = args[1]
         local buttons = args[2]
@@ -516,7 +516,9 @@ function AddMenuButton(...)
 
 end
 
+--
 -- Add button
+--
 function AddMenuButton(name, button)
 
     if Menus.list[name] ~= nil and type(button) == "table" then
@@ -568,26 +570,20 @@ end
 --
 -- Select Button
 --
+function SelecteButton(menuName, number)
 
-function selecteButton(name, number)
-    local menu = Menus.list[name]
-    if menu ~= nil and type(number) == "number" then
+    assert(type(number) == "number", "[FT_LIBS] SelecteButton : number must be number")
+    assert(type(number) >= 1, "[FT_LIBS] SelecteButton : can not be negative or zero")
+
+    local menu = Menus.list[menuName]
+    if menu ~= nil and MenuIsOpen() then
         local countBtns = TableLength(menu.buttons)
-        if number < countBtns then
-
+        if number <= countBtns then
             Menus.selectedButton = number
-
-            while Menus.selectedButton > Menus.to do
-                Menus.to = Menus.to + 1
-                Menus.from = Menus.from + 1
-            end
-            if MenuIsOpen() and Menus.curent == name then
-                menu.Hover(Menus.selectedButton)
-            end
         end
     end
-end
 
+end
 
 --
 -- Init instructionalButtons

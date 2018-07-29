@@ -22,7 +22,7 @@ function Menu(data)
         position = data.position or 2,
         width = data.width or 0.2,
         height = data.height or 0.04,
-        defaultButtonPosition = data.defaultButtonPosition or nil,
+        defaultButtonPosition = data.defaultButtonPosition or 1,
 
         colors = {
             header = {

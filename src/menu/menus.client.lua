@@ -177,14 +177,12 @@ function OpenMenu(...)
 
     local menu = Menus.list[menuName]
     local countBtns = TableLength(menu.buttons)
+    for name, value in pairs(settings) do
+        Menus.list[menuName][name] = value
+    end
+
     if countBtns >= 1 then
-        local defaultButtonPosition = 1
-        if settings.defaultButtonPosition ~= nil and settings.defaultButtonPosition <= countBtns then
-            defaultButtonPosition = settings.defaultButtonPosition
-        elseif menu.defaultButtonPosition ~= nil and menu.defaultButtonPosition <= nil then
-            defaultButtonPosition = menu.defaultButtonPosition
-        end
-        Menus.selectedButton = defaultButtonPosition
+        Menus.selectedButton = menu.defaultButtonPosition
     end
 
 end

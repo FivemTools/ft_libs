@@ -7,7 +7,9 @@
 
 local areas = {}
 
-
+--
+--
+--
 function EnableArea(...)
 
     local args = {...}
@@ -43,6 +45,9 @@ function EnableArea(...)
 
 end
 
+--
+--
+--
 function DisableArea(...)
 
     local args = {...}
@@ -78,6 +83,9 @@ function DisableArea(...)
 
 end
 
+--
+--
+--
 function SwitchArea(...)
 
     local args = {...}
@@ -175,6 +183,9 @@ function AddArea(...)
 
 end
 
+--
+--
+--
 function RemoveArea(...)
 
     local args = {...}

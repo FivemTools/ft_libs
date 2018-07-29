@@ -158,9 +158,9 @@ function RemoveMarker(...)
 end
 
 --
--- Set Marker value
+-- Set Marker
 --
-function SetMarkerValue(...)
+function SetMarker(...)
 
     local args = {...}
     local count = #args
@@ -187,10 +187,6 @@ function SetMarkerValue(...)
                 marker[key] = value
             end
         end
-
-    else
-
-        return false
 
     end
 

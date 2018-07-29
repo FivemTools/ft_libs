@@ -30,8 +30,9 @@ function AddMenu(...)
     if count == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
-            print("Add menu : " .. name)
-            Menus.list[name] = Menu(value)
+            if Menus.list[name] == nil then
+                Menus.list[name] = Menu(value)
+            end
             Citizen.Wait(1)
         end
 
@@ -39,11 +40,11 @@ function AddMenu(...)
 
         local name = args[1]
         local value = args[2]
-        print("Add menu : " .. name)
-        Menus.list[name] = Menu(value)
+        if Menus.list[name] == nil then
+            Menus.list[name] = Menu(value)
+        end
 
     end
-    return false
 
 end
 
@@ -72,7 +73,6 @@ function RemoveMenu(...)
         end
 
     end
-    return false
 
 end
 
@@ -278,7 +278,6 @@ function NextMenu(menuName)
         end
 
     end
-    return false
 
 end
 
@@ -420,7 +419,6 @@ function SetMenuButtons(...)
         end
 
     end
-    return false
 
 end
 
@@ -461,7 +459,6 @@ function SetMenuValue(...)
         end
 
     end
-    return false
 
 end
 
@@ -489,7 +486,6 @@ function AddMenuButton(...)
             end
             Citizen.Wait(1)
         end
-        return true
 
     elseif count == 2 then
 
@@ -507,10 +503,8 @@ function AddMenuButton(...)
             end
 
         end
-        return true
 
     end
-    return false
 
 end
 
@@ -561,7 +555,6 @@ function RemoveMenuButton(...)
         end
 
     end
-    return false
 
 end
 

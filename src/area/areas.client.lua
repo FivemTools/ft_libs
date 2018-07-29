@@ -236,9 +236,9 @@ function RemoveArea(...)
 end
 
 --
--- Set areas value
+-- Set areas values
 --
-function SetAreaValue(...)
+function SetArea(...)
 
     local args = {...}
     local count = #args
@@ -297,10 +297,6 @@ function SetAreaValue(...)
             end
 
         end
-
-    else
-
-        return false
 
     end
 

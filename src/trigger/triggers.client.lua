@@ -169,9 +169,9 @@ end
 
 
 --
--- Set areas value
+-- Set areas
 --
-function SetTriggerValue(...)
+function SetTrigger(...)
 
     local args = {...}
     local count = #args
@@ -198,10 +198,6 @@ function SetTriggerValue(...)
                 trigger[key] = value
             end
         end
-
-    else
-
-        return false
 
     end
 

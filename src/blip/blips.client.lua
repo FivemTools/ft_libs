@@ -124,9 +124,9 @@ function RemoveBlip(...)
 end
 
 --
--- Set Blip value
+-- Set Blip
 --
-function SetBlipValue(...)
+function SetBlip(...)
 
     local args = {...}
     local count = #args
@@ -153,10 +153,6 @@ function SetBlipValue(...)
                 blip[key] = value
             end
         end
-
-    else
-
-        return false
 
     end
 

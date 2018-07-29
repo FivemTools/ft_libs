@@ -203,7 +203,6 @@ function TableContainsValue(table, data)
             return key
         end
     end
-
     return false
 
 end
@@ -232,7 +231,7 @@ function GetRandomString(length)
     if length > 0 then
         return GetRandomString(length - 1) .. charset[math.random(1, #charset)]
     else
-        return false
+        return ""
     end
 
 end

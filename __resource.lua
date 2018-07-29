@@ -54,6 +54,7 @@ exports {
     "TablePrint",
     "TableContainsValue",
     "GetLastContentValue",
+    "GetRandomString",
 
     -- Ui
     "HelpPromt",
@@ -147,5 +148,6 @@ server_exports {
     "TableContainsValue",
     "GetLastContentValue",
     "DebugPrint",
+    "GetRandomString",
 
 }

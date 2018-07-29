@@ -158,6 +158,45 @@ function RemoveMarker(...)
 end
 
 --
+-- Set Marker value
+--
+function SetMarkerValue(...)
+
+    local args = {...}
+    local count = #args
+
+    if count == 1 and type(args[1]) == "table" then
+
+        for name, values in pairs(args[1]) do
+            if markers[name] ~= nil then
+                local marker = markers[name]
+                for key, value in pairs(values) do
+                    marker[key] = value
+                end
+            end
+            Citizen.Wait(1)
+        end
+
+    elseif count == 2 then
+
+        local name = args[1]
+        local values = args[2]
+        if markers[name] ~= nil then
+            local marker = markers[name]
+            for key, value in pairs(values) do
+                marker[key] = value
+            end
+        end
+
+    else
+
+        return false
+
+    end
+
+end
+
+--
 -- Get Current Marker
 --
 function CurrentMarker()

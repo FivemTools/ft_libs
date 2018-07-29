@@ -167,6 +167,46 @@ function RemoveTrigger(...)
 
 end
 
+
+--
+-- Set areas value
+--
+function SetTriggerValue(...)
+
+    local args = {...}
+    local count = #args
+
+    if count == 1 and type(args[1]) == "table" then
+
+        for name, values in pairs(args[1]) do
+            if triggers[name] ~= nil then
+                local trigger = triggers[name]
+                for key, value in pairs(values) do
+                    trigger[key] = value
+                end
+            end
+            Citizen.Wait(1)
+        end
+
+    elseif count == 2 then
+
+        local name = args[1]
+        local values = args[2]
+        if triggers[name] ~= nil then
+            local trigger = triggers[name]
+            for key, value in pairs(values) do
+                trigger[key] = value
+            end
+        end
+
+    else
+
+        return false
+
+    end
+
+end
+
 --
 -- Current Trigger
 --

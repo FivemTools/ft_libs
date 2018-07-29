@@ -122,3 +122,42 @@ function RemoveBlip(...)
     end
 
 end
+
+--
+-- Set Blip value
+--
+function SetBlipValue(...)
+
+    local args = {...}
+    local count = #args
+
+    if count == 1 and type(args[1]) == "table" then
+
+        for name, values in pairs(args[1]) do
+            if blips[name] ~= nil then
+                local blip = blips[name]
+                for key, value in pairs(values) do
+                    blip[key] = value
+                end
+            end
+            Citizen.Wait(1)
+        end
+
+    elseif count == 2 then
+
+        local name = args[1]
+        local values = args[2]
+        if blips[name] ~= nil then
+            local blip = blips[name]
+            for key, value in pairs(values) do
+                blip[key] = value
+            end
+        end
+
+    else
+
+        return false
+
+    end
+
+end

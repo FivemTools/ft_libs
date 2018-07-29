@@ -108,9 +108,11 @@ function AddMarker(...)
     if count == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
-            markers[name] = marker.new(value)
-            if value.enable == nil or value.enable == true then
-                EnableMarker(name)
+            if markers[name] == nil then
+                markers[name] = marker.new(value)
+                if value.enable == nil or value.enable == true then
+                    EnableMarker(name)
+                end
             end
             Citizen.Wait(10)
         end
@@ -119,9 +121,11 @@ function AddMarker(...)
 
         local name = args[1]
         local value = args[2]
-        markers[name] = marker.new(value)
-        if value.enable == nil or value.enable == true then
-            EnableMarker(name)
+        if markers[name] == nil then
+            markers[name] = marker.new(value)
+            if value.enable == nil or value.enable == true then
+                EnableMarker(name)
+            end
         end
 
     end

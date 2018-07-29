@@ -112,9 +112,11 @@ function AddTrigger(...)
     if count == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
-            triggers[name] = trigger.new(value)
-            if value.enable == nil or value.enable == true then
-                EnableTrigger(name)
+            if triggers[name] == nil then
+                triggers[name] = trigger.new(value)
+                if value.enable == nil or value.enable == true then
+                    EnableTrigger(name)
+                end
             end
             Citizen.Wait(10)
         end
@@ -123,10 +125,12 @@ function AddTrigger(...)
 
         local name = args[1]
         local value = args[2]
-        triggers[name] = trigger.new(value)
+        if triggers[name] == nil then
+            triggers[name] = trigger.new(value)
 
-        if value.enable == nil or value.enable == true then
-            EnableTrigger(name)
+            if value.enable == nil or value.enable == true then
+                EnableTrigger(name)
+            end
         end
 
     end

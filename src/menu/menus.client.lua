@@ -177,12 +177,11 @@ function OpenMenu(...)
 
     local menu = Menus.list[menuName]
     local countBtns = TableLength(menu.buttons)
-    for name, value in pairs(settings) do
-        Menus.list[menuName][name] = value
-    end
-
-    if countBtns >= 1 then
-        Menus.selectedButton = menu.defaultButtonPosition
+    local defaultButtonPosition = settings.defaultButtonPosition or menu.defaultButtonPosition
+    if countBtns >= 1 and defaultButtonPosition <= countBtns then
+        Menus.selectedButton = defaultButtonPosition
+    else
+        Menus.selectedButton = 1
     end
 
 end
@@ -252,9 +251,26 @@ end
 --
 -- Next menu
 --
-function NextMenu(menuName)
+function NextMenu(...)
 
     if Menus.curent ~= nil then
+
+        local args = {...}
+        local countArgs = #args
+        local settings = {}
+        if countArgs == 1 then
+            menuName = args[1]
+        elseif countArgs == 2 and type(args[2]) == "table" then
+            menuName = args[1]
+            settings = args[2]
+        else
+            return false
+        end
+
+        -- Check if menu exit
+        if Menus.list[menuName] == nil then
+            return false
+        end
 
         local data = {
             name = Menus.curent,
@@ -263,18 +279,17 @@ function NextMenu(menuName)
             selectedButton = Menus.selectedButton,
         }
         table.insert(Menus.backMenu, data) -- Check if curent menu is backMenu
-
         ResetMenu()
+
         Menus.curent = menuName
 
         local menu = Menus.list[menuName]
         local countBtns = TableLength(menu.buttons)
-        if countBtns >= 1 then
-            local defaultButtonPosition = 1
-            if menu.defaultButtonPosition ~= nil and menu.defaultButtonPosition <= countBtns then
-                defaultButtonPosition = menu.defaultButtonPosition
-            end
+        local defaultButtonPosition = settings.defaultButtonPosition or menu.defaultButtonPosition
+        if countBtns >= 1 and defaultButtonPosition <= countBtns then
             Menus.selectedButton = defaultButtonPosition
+        else
+            Menus.selectedButton = 1
         end
 
     end

@@ -5,6 +5,23 @@
 -- @Source: https://github.com/FivemTools/ft_libs
 --
 
+playerLocalisation = {}
+playerPed = nil
+
+function UpdatePosition()
+
+  Citizen.CreateThread(function()
+      while true do
+
+        playerPed = GetPlayerPed(-1)
+        playerLocalisation = GetEntityCoords(playerPed)
+        Citizen.Wait(500)
+
+      end
+  end)
+
+end
+
 --
 -- Client is 100% loaded games
 --
@@ -22,6 +39,7 @@ Citizen.CreateThread(function()
             TriggerFrame()
             MenuFrame()
             MarkerFrame()
+            UpdatePosition()
             InstructionalButtonsFrame()
             break
 

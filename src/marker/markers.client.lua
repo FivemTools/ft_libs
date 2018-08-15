@@ -210,13 +210,11 @@ function MarkerFrame()
 
         while true do
 
-            local playerPed = GetPlayerPed(-1)
-            local playerLocalisation = GetEntityCoords(playerPed)
             for name, value in pairs(activeMarkers) do
 
                 local target = markers[name]
                 if target then
-                    if GetDistanceBetweenCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) <= target.showDistance then
+                    if GetDistanceBetween3DCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z) <= target.showDistance then
                         target:Show()
                         if target.text ~= nil then
                             Show3DText({
@@ -234,7 +232,7 @@ function MarkerFrame()
 
             end
 
-            Citizen.Wait(5)
+            Citizen.Wait(10)
         end
 
     end)

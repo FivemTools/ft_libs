@@ -6,9 +6,8 @@
 --
 
 local triggers = {}
-local activeTriggers = {}
+local enabledTriggers = {}
 local currentTriggers = {}
-
 
 --
 -- Enable Trigger
@@ -22,7 +21,7 @@ function EnableTrigger(...)
 
         for _, name in pairs(args[1]) do
             if triggers[name] ~= nil then
-                activeTriggers[name] = true
+                enabledTriggers[name] = true
             end
             Citizen.Wait(10)
         end
@@ -31,7 +30,7 @@ function EnableTrigger(...)
 
         local name = args[1]
         if triggers[name] ~= nil then
-            activeTriggers[name] = true
+            enabledTriggers[name] = true
         end
 
     end
@@ -49,7 +48,7 @@ function DisableTrigger(...)
     if count == 1 and type(args[1]) == "table" then
 
         for _, name in pairs(args[1]) do
-            activeTriggers[name] = nil
+            enabledTriggers[name] = nil
             currentTriggers[name] = nil
             Citizen.Wait(10)
         end
@@ -57,7 +56,7 @@ function DisableTrigger(...)
     elseif count == 1 then
 
         local name = args[1]
-        activeTriggers[name] = nil
+        enabledTriggers[name] = nil
         currentTriggers[name] = nil
 
     end
@@ -220,14 +219,12 @@ function TriggerFrame()
     Citizen.CreateThread(function()
 
         while true do
-            local playerPed = GetPlayerPed(-1)
-            local playerLocalisation = GetEntityCoords(playerPed)
 
-            for name, value in pairs(activeTriggers) do
+            for name, value in pairs(enabledTriggers) do
 
                 local target = triggers[name]
                 if target ~= nil then
-                    player_in = (GetDistanceBetweenCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, true) < (target.weight + 0.0) and math.abs(playerLocalisation.z - target.z) <= (target.height + 0.0))
+                    player_in = (GetDistanceBetween3DCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z) < (target.weight + 0.0) and math.abs(playerLocalisation.z - target.z) <= (target.height + 0.0))
                     if player_in and currentTriggers[name] == nil then
                         currentTriggers[name] = true
                         target:Enter()
@@ -241,7 +238,7 @@ function TriggerFrame()
 
             end
 
-            Citizen.Wait(5)
+            Citizen.Wait(10)
         end
 
     end)

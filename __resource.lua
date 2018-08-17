@@ -40,6 +40,9 @@ client_scripts {
     -- Event 100% load
     "src/load.client.lua",
 
+    -- Player
+    "src/player/player.client.lua",
+
 }
 
 exports {
@@ -126,6 +129,10 @@ exports {
     "SetDebug",
     "DebugPrint",
     "PrintTable",
+
+    -- Player
+    "GetPlayerPed",
+    "GetPlayerCoords",
 
 }
 

@@ -214,7 +214,7 @@ function MarkerFrame()
 
                 local target = markers[name]
                 if target then
-                    if GetDistanceBetween3DCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z) <= target.showDistance then
+                    if GetDistanceBetween3DCoords(target.x, target.y, target.z, playerCoords.x, playerCoords.y, playerCoords.z) <= target.showDistance then
                         target:Show()
                         if target.text ~= nil then
                             Show3DText({

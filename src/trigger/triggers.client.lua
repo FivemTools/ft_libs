@@ -224,7 +224,7 @@ function TriggerFrame()
 
                 local target = triggers[name]
                 if target ~= nil then
-                    player_in = (GetDistanceBetween3DCoords(target.x, target.y, target.z, playerLocalisation.x, playerLocalisation.y, playerLocalisation.z) < (target.weight + 0.0) and math.abs(playerLocalisation.z - target.z) <= (target.height + 0.0))
+                    player_in = (GetDistanceBetween3DCoords(target.x, target.y, target.z, playerCoords.x, playerCoords.y, playerCoords.z) < (target.weight + 0.0) and math.abs(playerCoords.z - target.z) <= (target.height + 0.0))
                     if player_in and currentTriggers[name] == nil then
                         currentTriggers[name] = true
                         target:Enter()

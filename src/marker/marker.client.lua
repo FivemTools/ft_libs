@@ -20,6 +20,15 @@ function Marker:Show()
     local height = self.height + 0.0
     DrawMarker(self.type, self.x, self.y, (self.z - 1), 0, 0, 0, 0, 0, 0, weight, weight, height, self.red, self.green, self.blue, self.alpha, 0, 0, 0, 0)
 
+    if self.text ~= nil then
+        Show3DText({
+            x = self.x,
+            y = self.y,
+            z = self.z + self.textOffset,
+            text = self.text,
+        })
+    end
+
 end
 
 --

@@ -23,12 +23,13 @@ Citizen.CreateThread(function()
             InstructionalButtonsFrame()
 
             -- Check thread
-            CheckTriggerThread()
-            MarkerFrame()
             UpdatePlayerThread()
+            CheckTriggerThread()
+            CheckMarkerThread()
 
             Citizen.Wait(1000)
             ActiveTriggerThread()
+            ActiveMarkerThread()
 
             break
 

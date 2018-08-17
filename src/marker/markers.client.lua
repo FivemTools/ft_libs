@@ -204,7 +204,7 @@ end
 --
 -- Add check for global frame
 --
-function MarkerFrame()
+function CheckMarkerThread()
 
     Citizen.CreateThread(function()
 
@@ -215,21 +215,35 @@ function MarkerFrame()
                 local target = markers[name]
                 if target then
                     if GetDistanceBetween3DCoords(target.x, target.y, target.z, playerCoords.x, playerCoords.y, playerCoords.z) <= target.showDistance then
-                        target:Show()
-                        if target.text ~= nil then
-                            Show3DText({
-                                x = target.x,
-                                y = target.y,
-                                z = target.z + target.textOffset,
-                                text = target.text,
-                            })
-                        end
                         currentMarkers[name] = true
                     elseif currentMarkers[name] ~= nil then
                         currentMarkers[name] = nil
                     end
                 end
 
+            end
+
+            Citizen.Wait(500)
+        end
+
+    end)
+
+end
+
+--
+--
+--
+function ActiveMarkerThread()
+
+    Citizen.CreateThread(function()
+
+        while true do
+
+            for name, value in pairs(currentMarkers) do
+                local target = markers[name]
+                if target and currentMarkers[name] ~= nil then
+                    target:Show()
+                end
             end
 
             Citizen.Wait(10)

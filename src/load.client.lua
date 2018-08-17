@@ -18,12 +18,18 @@ Citizen.CreateThread(function()
             TriggerServerEvent('ft_libs:OnClientReady')
             TriggerEvent('ft_libs:OnClientReady')
 
-            -- Start frames
-            TriggerFrame()
+            -- tools thread
             MenuFrame()
+            InstructionalButtonsFrame()
+
+            -- Check thread
+            CheckTriggerThread()
             MarkerFrame()
             UpdatePlayerThread()
-            InstructionalButtonsFrame()
+
+            Citizen.Wait(1000)
+            ActiveTriggerThread()
+
             break
 
         end

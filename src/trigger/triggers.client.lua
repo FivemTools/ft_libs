@@ -214,7 +214,7 @@ end
 --
 -- Check
 --
-function TriggerFrame()
+function CheckTriggerThread()
 
     Citizen.CreateThread(function()
 
@@ -228,8 +228,6 @@ function TriggerFrame()
                     if player_in and currentTriggers[name] == nil then
                         currentTriggers[name] = true
                         target:Enter()
-                    elseif player_in and currentTriggers[name] ~= nil then
-                        target:Active()
                     elseif not player_in and currentTriggers[name] ~= nil then
                         currentTriggers[name] = nil
                         target:Exit()
@@ -238,6 +236,30 @@ function TriggerFrame()
 
             end
 
+            Citizen.Wait(500)
+        end
+
+    end)
+
+end
+
+--
+-- Check
+--
+function ActiveTriggerThread()
+
+    Citizen.CreateThread(function()
+
+        while true do
+
+            for name, value in pairs(currentTriggers) do
+
+                local target = triggers[name]
+                if target ~= nil and currentTriggers[name] ~= nil then
+                    target:Active()
+                end
+
+            end
             Citizen.Wait(10)
         end
 

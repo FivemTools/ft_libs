@@ -54,7 +54,6 @@ exports {
     "TableLength",
     "Round",
     "CommaValue",
-    "GetEntityInDirection",
     "SetDebug",
     "Print",
     "PrintTable",
@@ -138,10 +137,16 @@ exports {
     "GetPlayerCoords",
 
     -- Entity
-    "EnumerateObjects",
-    "EnumeratePeds",
-    "EnumerateVehicles",
-    "EnumeratePickups",
+    "GetObjects",
+    "GetPeds",
+    "GetVehicles",
+    "GetPickups",
+    "GetEntityInDirection",
+    "GetPedInDirection",
+    "GetPlayerPedInDirection",
+    "GetPlayerPedServerIdInDirection",
+    "GetVehicleInDirection",
+    "GetObjectInDirection",
 
 }
 

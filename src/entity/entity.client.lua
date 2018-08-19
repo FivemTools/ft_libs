@@ -6,9 +6,9 @@
 --
 
 --
+-- Get all entities
 --
---
-local function EnumerateEntities(findFirst, findNext, endFind)
+local function GetEntities(findFirst, findNext, endFind)
 
     local entities = {}
 
@@ -31,37 +31,146 @@ local function EnumerateEntities(findFirst, findNext, endFind)
 end
 
 --
+-- Get all object
 --
---
-function EnumerateObjects()
+function GetObjects()
 
-  return EnumerateEntities(FindFirstObject, FindNextObject, EndFindObject)
-
-end
-
---
---
---
-function EnumeratePeds()
-
-  return EnumerateEntities(FindFirstPed, FindNextPed, EndFindPed)
+  return GetEntities(FindFirstObject, FindNextObject, EndFindObject)
 
 end
 
 --
+-- Get all peds
 --
---
-function EnumerateVehicles()
+function GetPeds()
 
-  return EnumerateEntities(FindFirstVehicle, FindNextVehicle, EndFindVehicle)
+  return GetEntities(FindFirstPed, FindNextPed, EndFindPed)
 
 end
 
 --
+-- Get all vehicles
 --
---
-function EnumeratePickups()
+function GetVehicles()
 
-  return EnumerateEntities(FindFirstPickup, FindNextPickup, EndFindPickup)
+  return GetEntities(FindFirstVehicle, FindNextVehicle, EndFindVehicle)
+
+end
+
+--
+-- Get all pickups
+--
+function GetPickups()
+
+  return GetEntities(FindFirstPickup, FindNextPickup, EndFindPickup)
+
+end
+
+--
+-- Get entity in direction
+--
+function GetEntityInDirection(range)
+
+  local entityWorld = GetOffsetFromEntityInWorldCoords(playerPed, 0.0, range, 0.0)
+  local rayHandle = CastRayPointToPoint(playerPos.x, playerPos.y, playerPos.z, entityWorld.x, entityWorld.y, entityWorld.z, 10, playerPed, 0)
+  local a, b, c, d, entity = GetRaycastResult(rayHandle)
+  if entity ~= nil then
+      return entity
+  end
+  return false
+
+end
+
+--
+-- Get ped in direction
+--
+function GetPedInDirection(range)
+
+    if type(range) ~= "number" then
+        range = 15.50
+    end
+    local entity = GetEntityInDirection(range)
+    if DoesEntityExist(entity) then
+        if GetEntityType(entity) == 1 then
+            return entity
+        end
+    end
+    return false
+
+end
+
+--
+-- Get player in direction
+--
+function GetPlayerPedInDirection(range)
+
+    if type(range) ~= "number" then
+        range = 15.50
+    end
+    local entity = GetPedInDirection(range)
+    if DoesEntityExist(entity) then
+        local target = NetworkGetPlayerIndexFromPed(entity)
+        local id = GetPlayerServerId(target)
+        if id ~= nil then
+            return entity
+        end
+    end
+    return false
+
+end
+
+--
+-- Get player ped server id in direction
+--
+function GetPlayerPedServerIdInDirection(range)
+
+    if type(range) ~= "number" then
+        range = 15.50
+    end
+    local entity = GetPedInDirection(range)
+    if DoesEntityExist(entity) then
+        local entity = NetworkGetPlayerIndexFromPed(entity)
+        local id = GetPlayerServerId(entity)
+        if id ~= nil then
+            return id
+        end
+    end
+    return false
+
+end
+
+--
+-- Get vehicule in direction
+--
+function GetVehicleInDirection(range)
+
+    if type(range) ~= "number" then
+        range = 15.50
+    end
+    local entity = GetEntityInDirection(range)
+    if DoesEntityExist(entity) then
+        if GetEntityType(entity) == 2 then
+            return entity
+        end
+    end
+    return false
+
+end
+
+--
+-- Get object in direction
+--
+function GetObjectInDirection(range)
+
+    if type(range) ~= "number" then
+        range = 15.50
+    end
+    local entity = GetEntityInDirection(range)
+    if DoesEntityExist(entity) then
+        if GetEntityType(entity) == 3 then
+            return entity
+        end
+    end
+    return false
 
 end

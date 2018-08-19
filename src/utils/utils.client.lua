@@ -27,7 +27,7 @@ RegisterNetEvent("ft_libs:PrintTable")
 AddEventHandler('ft_libs:PrintTable', function(value)
 
     print("---------[ft_libs : Debug]---------")
-    TablePrint(value)
+    PrintTable(value)
     print("-------------------------")
 
 end)

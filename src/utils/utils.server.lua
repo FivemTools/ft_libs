@@ -38,8 +38,8 @@ end
 --
 -- PrintTable event
 --
-RegisterServerEvent("ft_libs:TablePrint")
-AddEventHandler('ft_libs:TablePrint', function(value)
+RegisterServerEvent("ft_libs:PrintTable")
+AddEventHandler('ft_libs:PrintTable', function(value)
 
     print("---------[ft_libs : Debug]---------")
     PrintTable(value)

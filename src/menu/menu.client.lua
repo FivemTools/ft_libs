@@ -373,7 +373,7 @@ function Menu(data)
 
         local button = self.buttons[selectedButton]
 
-        if button.exec ~= nil then
+        if button.exec ~= nil and button.lock ~= false then
 
             -- Execute function
             if button.exec.callback ~= nil then

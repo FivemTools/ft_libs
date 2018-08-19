@@ -43,6 +43,9 @@ client_scripts {
     -- Player
     "src/player/player.client.lua",
 
+    -- Entity
+    "src/entity/entity.client.lua",
+
 }
 
 exports {
@@ -54,7 +57,7 @@ exports {
     "GetEntityInDirection",
     "SetDebug",
     "Print",
-    "TablePrint",
+    "PrintTable",
     "TableContainsValue",
     "GetLastContentValue",
     "GetRandomString",
@@ -133,6 +136,12 @@ exports {
     -- Player
     "GetPlayerPed",
     "GetPlayerCoords",
+
+    -- Entity
+    "EnumerateObjects",
+    "EnumeratePeds",
+    "EnumerateVehicles",
+    "EnumeratePickups",
 
 }
 

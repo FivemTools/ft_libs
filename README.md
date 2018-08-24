@@ -31,7 +31,7 @@ dependencies {
 
 ### Documentation
 
-[Online](https://fivemtools-libs.readme.io/v1.1/)
+[Online](https://fivemtools-libs.readme.io/v1.2/)
 
 ## License
 

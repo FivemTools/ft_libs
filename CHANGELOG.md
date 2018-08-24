@@ -1,15 +1,97 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [0.0] - 2018-00-00
+## [Released]
+
+## [1.2] - 2018-00-00
 ### Added
+- Implement GetPlayerPed function
+- Implement GetPlayerCoords function
+- Implement GetDistanceBetween3DCoords function
+- Implement GetObjects function
+- Implement GetPeds function
+- Implement GetVehicles function
+- Implement GetPickups function
+- Implement GetEntityInDirection function
+- Implement GetPedInDirection function
+- Implement GetPlayerPedInDirection function
+- Implement GetPlayerPedServerIdInDirection function
+- Implement GetVehicleInDirection function
+- Implement GetObjectInDirection function
+- Add client export for GetPlayerPed function
+- Add client export for GetPlayerCoords function
+- Add client export for GetDistanceBetween3DCoords function
+- Add client export for GetObjects function
+- Add client export for GetPeds function
+- Add client export for GetVehicles function
+- Add client export for GetPickups function
+- Add client export for GetEntityInDirection function
+- Add client export for GetPedInDirection function
+- Add client export for  GetPlayerPedInDirection function
+- Add client export for GetPlayerPedServerIdInDirection function
+- Add client export for GetVehicleInDirection function
+- Add client export for GetObjectInDirection function
+- Add server export for SetDebug function
 
 ### Changed
+- Optimization and refactoring Areas functions
+- Optimization and refactoring Trigger functions
+- Optimization and refactoring Marker functions
+- Raname TablePrint function on PrintTable
+- Rename ft_libs:TablePrint event on ft_libs:PrintTable
+- Add lock option on buttons for menu
 
 ### Removed
 
-## [Released]
+## [1.1] - 2018-00-00
+### Added
+- Implement selecteButton function pushed by @THEJean-Kevin
+- Add variable defaultButtonPosition pushed by @THEJean-Kevin
+- Rename selecteButton function to SelecteButton
+- Refactoring SelecteButton function
+- Refactoring variable defaultButtonPosition
+- Implement DPrint function pushed by @izio38
+- Implement DebugPrint function pushed by @izio38
+- Refactoring DPrint function
+- Remane DPrint function to DebugPrint
+- Implement SetArea function
+- Implement SetBlip function
+- Implement SetMarker function
+- Implement SetTrigger function
+- Implement GetRandomString function
+- Add client event ft_libs:DebugMode
+- Add client export for DebugPrint function
+- Add client export for SetDebug function
+- Add client export for SetArea function
+- Add client export for SetBlip function
+- Add client export for SetMarker function
+- Add client export for SetTrigger function
+- Add client export for SelecteButton function
+- Add client export for GetRandomString function
+- Add server export for DebugPrint function
+- Add server export for GetRandomString function
 
+### Changed
+- Rename CurrentMenu in GetCurrentMenu
+- Refactoring menu
+- Implement multiple table in call CleanMenuButtons function
+- Implement multiple table in call SetMenuButtons function
+- Implement multiple table in call SetMenuValue function
+- Implement multiple table in call AddMenuButton function
+- Implement multiple table in call RemoveMenuButton function
+- Add default text on butons in menu is empty
+- Add Citizen.Wait on AddMenuButton function
+- Change variable name on AddMenuButton function
+- Rename file client.client to load.client.lua
+- Change event ft_libs:PrintTable to ft_libs:TablePrint
+- Add source on header in all files
+- Replace Citizen.Trace to print on PrintTable function
+- Add customTitle on DebugPrint function
+- Rename variables steamID to identifier on GetSteamIDFormSource
+- Add check on AddArea if areas exist
+- Add check on AddMarker if marker exist
+- Add check on AddBlip if blip exist
+- Add check on AddTrigger if trigger exist
 
 ## [1.0] - 2018-07-19
 ### Added
@@ -56,11 +138,11 @@ All notable changes to this project will be documented in this file.
 - Fix menu display
 - Fix blip rotation
 - Fix variables on menu
-- Refactiring and optimize marker
+- Refactoring and optimize marker
 - Fix currentMarker on marker
-- Refactiring and optimize blip
+- Refactoring and optimize blip
 - Fix error on blip
-- Refactiring and optimize area
+- Refactoring and optimize area
 
 ### Removed
 - Clear all Citizen.Trace

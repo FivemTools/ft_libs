@@ -41,8 +41,6 @@ All notable changes to this project will be documented in this file.
 - Rename ft_libs:TablePrint event on ft_libs:PrintTable
 - Add lock option on buttons for menu
 
-### Removed
-
 ## [1.1] - 2018-00-00
 ### Added
 - Implement selecteButton function pushed by @THEJean-Kevin

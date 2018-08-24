@@ -145,7 +145,7 @@ exports {
     "GetEntityInDirection",
     "GetPedInDirection",
     "GetPlayerPedInDirection",
-    "GetPlayerPedServerIdInDirection",
+    "GetPlayerServerIdInDirection",
     "GetVehicleInDirection",
     "GetObjectInDirection",
 

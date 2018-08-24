@@ -122,7 +122,7 @@ end
 --
 -- Get player ped server id in direction
 --
-function GetPlayerPedServerIdInDirection(range)
+function GetPlayerServerIdInDirection(range)
 
     if type(range) ~= "number" then
         range = 15.50

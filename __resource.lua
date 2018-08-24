@@ -60,6 +60,7 @@ exports {
     "TableContainsValue",
     "GetLastContentValue",
     "GetRandomString",
+    "GetDistanceBetween3DCoords",
 
     -- Ui
     "HelpPromt",
@@ -169,6 +170,7 @@ server_exports {
     "TableContainsValue",
     "GetLastContentValue",
     "DebugPrint",
+    "SetDebug",
     "GetRandomString",
 
 }

@@ -35,10 +35,10 @@ end
 --
 -- Get objects in coords
 --
-function GetObjectsInCoords(data)
+function GetObjectsInArea(data)
 
     local objects = GetPeds()
-    return GetEntitiesInCoords(objects, data)
-    return objectsInCoords
+    local objectsInArea = GetEntitiesInArea(objects, data)
+    return objectsInArea
 
 end

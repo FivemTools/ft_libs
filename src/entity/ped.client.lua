@@ -33,12 +33,12 @@ function GetPedInDirection(range)
 end
 
 --
--- Get peds in coords
+-- Get peds in area
 --
-function GetPedsInCoords(data)
+function GetPedsInArea(data)
 
     local peds = GetPeds()
-    local pedsInCoords = GetEntitiesInCoords(peds, data)
-    return pedsInCoords
+    local pedsInArea = GetEntitiesInArea(peds, data)
+    return pedsInArea
 
 end

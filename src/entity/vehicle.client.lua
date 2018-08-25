@@ -33,12 +33,12 @@ function GetVehicleInDirection(range)
 end
 
 --
--- Get vehicules in coords
+-- Get vehicules in area
 --
-function GetVehiclesInCoords(data)
+function GetVehiclesInArea(data)
 
     local vehicules = GetVehicles()
-    local vehiculesInCoords = GetEntitiesInCoords(vehicles, data)
-    return vehiculesInCoords
+    local vehiculesInArea = GetEntitiesInArea(vehicles, data)
+    return vehiculesInArea
 
 end

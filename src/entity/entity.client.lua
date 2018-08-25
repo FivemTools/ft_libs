@@ -50,17 +50,18 @@ end
 --
 -- Get entity in coords
 --
-function GetEntitiesInCoords(entities, data)
+function GetEntitiesInArea(entities, data)
 
     local entitiesInArea = {}
     for _, id in pairs(entities) do
 
         local entitieCoords = GetEntityCoords(id)
-        local distance = GetDistanceBetween3DCoords(entitieCoords.x, entitieCoords.y, entitieCoords.z, entitieCoords.x, entitieCoords.y, entitieCoords.z)
+        local distance = GetDistanceBetween3DCoords(entitieCoords.x, entitieCoords.y, entitieCoords.z, data.x, data.y, data.z)
         if distance <= data.range then
             table.insert(entitiesInArea, id)
         end
 
     end
+    return entitiesInArea
 
 end

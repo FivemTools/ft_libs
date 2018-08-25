@@ -15,12 +15,12 @@ function GetPickups()
 end
 
 --
--- Get pickups in coords
+-- Get pickups in area
 --
-function GetPickupsInCoords(data)
+function GetPickupsInArea(data)
 
     local pickups = GetPickups()
-    local pickupsInCoords = GetEntitiesInCoords(pickups, data)
-    return pickupsInCoords
+    local pickupsInArea = GetEntitiesInArea(pickups, data)
+    return pickupsInArea
 
 end

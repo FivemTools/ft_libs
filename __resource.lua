@@ -45,7 +45,7 @@ client_scripts {
     "src/entity/object.client.lua",
     "src/entity/ped.client.lua",
     "src/entity/pickup.client.lua",
-    "src/entity/pickup.client.lua",
+    "src/entity/player.client.lua",
     "src/entity/vehicle.client.lua",
 
 }

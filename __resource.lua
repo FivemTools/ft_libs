@@ -150,6 +150,11 @@ exports {
     "GetPlayerServerIdInDirection",
     "GetVehicleInDirection",
     "GetObjectInDirection",
+    "GetEntitiesInArea",
+    "GetObjectsInArea",
+    "GetPedsInArea",
+    "GetPickupsInArea",
+    "GetVehiclesInArea",
 
 }
 

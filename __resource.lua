@@ -40,11 +40,13 @@ client_scripts {
     -- Event 100% load
     "src/load.client.lua",
 
-    -- Player
-    "src/player/player.client.lua",
-
     -- Entity
     "src/entity/entity.client.lua",
+    "src/entity/object.client.lua",
+    "src/entity/ped.client.lua",
+    "src/entity/pickup.client.lua",
+    "src/entity/pickup.client.lua",
+    "src/entity/vehicle.client.lua",
 
 }
 

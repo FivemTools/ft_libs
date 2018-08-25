@@ -46,3 +46,21 @@ function GetEntityInDirection(range)
     return false
 
 end
+
+--
+-- Get entity in coords
+--
+function GetEntitiesInCoords(entities, data)
+
+    local entitiesInArea = {}
+    for _, id in pairs(entities) do
+
+        local entitieCoords = GetEntityCoords(id)
+        local distance = GetDistanceBetween3DCoords(entitieCoords.x, entitieCoords.y, entitieCoords.z, entitieCoords.x, entitieCoords.y, entitieCoords.z)
+        if distance <= data.range then
+            table.insert(entitiesInArea, id)
+        end
+
+    end
+
+end

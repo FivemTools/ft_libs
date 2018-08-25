@@ -31,3 +31,14 @@ function GetPedInDirection(range)
     return false
 
 end
+
+--
+-- Get peds in coords
+--
+function GetPedsInCoords(data)
+
+    local peds = GetPeds()
+    local pedsInCoords = GetEntitiesInCoords(peds, data)
+    return pedsInCoords
+
+end

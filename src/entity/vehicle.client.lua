@@ -31,3 +31,14 @@ function GetVehicleInDirection(range)
     return false
 
 end
+
+--
+-- Get vehicules in coords
+--
+function GetVehiclesInCoords(data)
+
+    local vehicules = GetVehicles()
+    local vehiculesInCoords = GetEntitiesInCoords(vehicles, data)
+    return vehiculesInCoords
+
+end

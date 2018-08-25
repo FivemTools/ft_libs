@@ -31,3 +31,14 @@ function GetObjectInDirection(range)
     return false
 
 end
+
+--
+-- Get objects in coords
+--
+function GetObjectsInCoords(data)
+
+    local objects = GetPeds()
+    return GetEntitiesInCoords(objects, data)
+    return objectsInCoords
+
+end

@@ -18,6 +18,11 @@ All notable changes to this project will be documented in this file.
 - Implement GetPlayerServerIdInDirection function
 - Implement GetVehicleInDirection function
 - Implement GetObjectInDirection function
+- Implement GetEntitiesInCoords function
+- Implement GetObjectsInCoords function
+- Implement GetPedsInCoords function
+- Implement GetPickupsInCoords function
+- Implement GetVehiclesInCoords function
 - Add client export for GetPlayerPed function
 - Add client export for GetPlayerCoords function
 - Add client export for GetDistanceBetween3DCoords function
@@ -31,6 +36,11 @@ All notable changes to this project will be documented in this file.
 - Add client export for GetPlayerServerIdInDirection function
 - Add client export for GetVehicleInDirection function
 - Add client export for GetObjectInDirection function
+- Add client export for GetEntitiesInCoords function
+- Add client export for GetObjectsInCoords function
+- Add client export for GetPedsInCoords function
+- Add client export for GetPickupsInCoords function
+- Add client export for GetVehiclesInCoords function
 - Add server export for SetDebug function
 
 ### Changed

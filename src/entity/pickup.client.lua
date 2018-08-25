@@ -13,3 +13,14 @@ function GetPickups()
   return GetEntities(FindFirstPickup, FindNextPickup, EndFindPickup)
 
 end
+
+--
+-- Get pickups in coords
+--
+function GetPickupsInCoords(data)
+
+    local pickups = GetPickups()
+    local pickupsInCoords = GetEntitiesInCoords(pickups, data)
+    return pickupsInCoords
+
+end

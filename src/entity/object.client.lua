@@ -37,8 +37,26 @@ end
 --
 function GetObjectsInArea(data)
 
-    local objects = GetPeds()
+    local objects = GetObjects()
     local objectsInArea = GetEntitiesInArea(objects, data)
     return objectsInArea
+
+end
+
+--
+-- Get objects in around
+--
+function GetObjectsInAround(range)
+
+    local objects = GetPeds()
+    local playerCoords = GetPlayerCoords()
+    local data = {
+        x = playerCoords.x,
+        y = playerCoords.y,
+        z = playerCoords.z,
+        range = range,
+    }
+    local objectsInAround = GetEntitiesInArea(objects, data)
+    return objectsInAround
 
 end

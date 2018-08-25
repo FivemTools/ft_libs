@@ -63,6 +63,7 @@ exports {
     "GetLastContentValue",
     "GetRandomString",
     "GetDistanceBetween3DCoords",
+    "PrintTable",
 
     -- Ui
     "HelpPromt",
@@ -133,28 +134,39 @@ exports {
     -- Debug
     "SetDebug",
     "DebugPrint",
-    "PrintTable",
+
+    -- Entity
+    "GetEntitiesInArea",
+    "GetEntityInDirection",
+
+    -- Objects
+    "GetObjects",
+    "GetObjectsInArea",
+    "GetObjectsInAround",
+    "GetObjectInDirection",
+
+    -- Peds
+    "GetPeds",
+    "GetPedsInArea",
+    "GetPedsInAround",
+    "GetPedInDirection",
+
+    -- Vehicules
+    "GetVehicles",
+    "GetVehiclesInArea",
+    "GetVehiclesInAround",
+    "GetVehicleInDirection",
+
+    -- Vehicules
+    "GetPickups",
+    "GetPickupsInArea",
+    "GetPickupsInAround",
 
     -- Player
     "GetPlayerPed",
     "GetPlayerCoords",
-
-    -- Entity
-    "GetObjects",
-    "GetPeds",
-    "GetVehicles",
-    "GetPickups",
-    "GetEntityInDirection",
-    "GetPedInDirection",
     "GetPlayerPedInDirection",
     "GetPlayerServerIdInDirection",
-    "GetVehicleInDirection",
-    "GetObjectInDirection",
-    "GetEntitiesInArea",
-    "GetObjectsInArea",
-    "GetPedsInArea",
-    "GetPickupsInArea",
-    "GetVehiclesInArea",
 
 }
 

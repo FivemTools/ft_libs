@@ -24,3 +24,21 @@ function GetPickupsInArea(data)
     return pickupsInArea
 
 end
+
+--
+-- Get pickups in around
+--
+function GetObjectsInAround(range)
+
+    local pickups = GetPickups()
+    local playerCoords = GetPlayerCoords()
+    local data = {
+        x = playerCoords.x,
+        y = playerCoords.y,
+        z = playerCoords.z,
+        range = range,
+    }
+    local pickupsInAround = GetEntitiesInArea(pickups, data)
+    return pickupsInAround
+
+end

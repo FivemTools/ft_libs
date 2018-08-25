@@ -8,7 +8,7 @@
 --
 -- Get all entities
 --
-local function GetEntities(findFirst, findNext, endFind)
+function GetEntities(findFirst, findNext, endFind)
 
     local entities = {}
 

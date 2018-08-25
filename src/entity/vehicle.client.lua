@@ -42,3 +42,21 @@ function GetVehiclesInArea(data)
     return vehiculesInArea
 
 end
+
+--
+-- Get vehicules in around
+--
+function GetVehiculessInAround(range)
+
+    local pickups = GetVehicles()
+    local playerCoords = GetPlayerCoords()
+    local data = {
+        x = playerCoords.x,
+        y = playerCoords.y,
+        z = playerCoords.z,
+        range = range,
+    }
+    local vehiculesInAround = GetEntitiesInArea(vehicules, data)
+    return vehiculesInAround
+
+end

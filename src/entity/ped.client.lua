@@ -42,3 +42,29 @@ function GetPedsInArea(data)
     return pedsInArea
 
 end
+
+--
+-- Get peds in around
+--
+function GetPedsInAround(range)
+
+    local peds = GetPeds()
+    local playerCoords = GetPlayerCoords()
+    local data = {
+        x = playerCoords.x,
+        y = playerCoords.y,
+        z = playerCoords.z,
+        range = range,
+    }
+    local pedsInAround = GetEntitiesInArea(peds, data)
+
+    -- Remove player ped
+    local playerPed = GetPlayerPed()
+    local key = TableContainsValue(pedsInAround, playerPed)
+    if key ~= false then
+        table.remove(pedsInAround, key)
+    end
+
+    return pedsInAround
+
+end

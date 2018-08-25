@@ -23,6 +23,11 @@ All notable changes to this project will be documented in this file.
 - Implement GetPedsInArea function
 - Implement GetPickupsInArea function
 - Implement GetVehiclesInArea function
+- Implement GetEntitiesInAround function
+- Implement GetObjectsInAround function
+- Implement GetPedsInAround function
+- Implement GetPickupsInAround function
+- Implement GetVehiclesInAround function
 - Add client export for GetPlayerPed function
 - Add client export for GetPlayerCoords function
 - Add client export for GetDistanceBetween3DCoords function
@@ -41,6 +46,11 @@ All notable changes to this project will be documented in this file.
 - Add client export for GetPedsInArea function
 - Add client export for GetPickupsInArea function
 - Add client export for GetVehiclesInArea function
+- Add client export for GetEntitiesInAround function
+- Add client export for GetObjectsInAround function
+- Add client export for GetPedsInAround function
+- Add client export for GetPickupsInAround function
+- Add client export for GetVehiclesInAround function
 - Add server export for SetDebug function
 
 ### Changed

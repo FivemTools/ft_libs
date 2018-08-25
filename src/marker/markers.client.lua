@@ -210,6 +210,7 @@ function CheckMarkerThread()
 
         while true do
 
+            local playerCoords = GetPlayerCoords()
             for name, value in pairs(activeMarkers) do
 
                 local target = markers[name]

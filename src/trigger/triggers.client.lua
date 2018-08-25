@@ -220,6 +220,7 @@ function CheckTriggerThread()
 
         while true do
 
+            local playerCoords = GetPlayerCoords()
             for name, value in pairs(enabledTriggers) do
 
                 local target = triggers[name]

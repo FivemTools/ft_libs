@@ -36,6 +36,7 @@ end
 function GetEntityInDirection(range)
 
     local playerPed = GetPlayerPed()
+    local playerCoords = GetPlayerCoords()
     local entityWorld = GetOffsetFromEntityInWorldCoords(playerPed, 0.0, range, 0.0)
     local rayHandle = CastRayPointToPoint(playerCoords.x, playerCoords.y, playerCoords.z, entityWorld.x, entityWorld.y, entityWorld.z, 10, playerPed, 0)
     local a, b, c, d, entity = GetRaycastResult(rayHandle)

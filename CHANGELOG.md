@@ -28,6 +28,9 @@ All notable changes to this project will be documented in this file.
 - Implement GetPedsInAround function
 - Implement GetPickupsInAround function
 - Implement GetVehiclesInAround function
+- Implement GetPlayersPed function
+- Implement GetPlayersId function
+- Implement GetPlayersPedOrderById function
 - Add client export for GetPlayerPed function
 - Add client export for GetPlayerCoords function
 - Add client export for GetDistanceBetween3DCoords function
@@ -51,6 +54,9 @@ All notable changes to this project will be documented in this file.
 - Add client export for GetPedsInAround function
 - Add client export for GetPickupsInAround function
 - Add client export for GetVehiclesInAround function
+- Add client export for GetPlayersPed function
+- Add client export for GetPlayersId function
+- Add client export for GetPlayersPedOrderById function
 - Add server export for SetDebug function
 
 ### Changed

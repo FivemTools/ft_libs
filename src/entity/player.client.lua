@@ -82,3 +82,60 @@ function GetPlayerServerIdInDirection(range)
     return false
 
 end
+
+--
+--
+--
+function GetPlayersPed()
+
+    local players = {}
+    local playerPed = GetPlayerPed()
+    for i = 0, 32, 1 do
+        local ped = GetPlayerPed(i)
+        if DoesEntityExist(ped) and id ~= playerPed then
+          table.insert(players, i)
+        end
+    end
+    return players
+
+end
+
+--
+--
+--
+function GetPlayersId()
+
+    local players = {}
+    local playersPed = GetPlayersPed()
+    for key, ped in pairs(playersPed) do
+        if DoesEntityExist(ped) then
+            local network = NetworkGetPlayerIndexFromPed(ped)
+            local id = GetPlayerServerId(network)
+            if id ~= nil then
+                table.insert(players, id)
+            end
+        end
+    end
+    return players
+
+end
+
+--
+--
+--
+function GetPlayersPedOrderById()
+
+    local players = {}
+    local playersPed = GetPlayersPed()
+    for key, ped in pairs(playersPed) do
+        if DoesEntityExist(ped) then
+            local network = NetworkGetPlayerIndexFromPed(ped)
+            local id = GetPlayerServerId(network)
+            if id ~= nil then
+                players[id] = ped
+            end
+        end
+    end
+    return players
+
+end

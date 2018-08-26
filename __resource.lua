@@ -164,7 +164,10 @@ exports {
 
     -- Player
     "GetPlayerPed",
+    "GetPlayersId",
+    "GetPlayersPed",
     "GetPlayerCoords",
+    "GetPlayersPedOrderById",
     "GetPlayerPedInDirection",
     "GetPlayerServerIdInDirection",
 

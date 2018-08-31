@@ -237,7 +237,7 @@ function CheckTriggerThread()
 
             end
 
-            Citizen.Wait(500)
+            Citizen.Wait(200)
         end
 
     end)

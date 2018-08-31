@@ -261,7 +261,7 @@ function ActiveTriggerThread()
                 end
 
             end
-            Citizen.Wait(10)
+            Citizen.Wait(5)
         end
 
     end)

@@ -681,7 +681,7 @@ function MenuFrame()
 
             end -- end check menu is open
 
-            Citizen.Wait(10)
+            Citizen.Wait(5)
         end
 
     end)

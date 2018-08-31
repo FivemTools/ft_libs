@@ -241,13 +241,13 @@ function ActiveMarkerThread()
         while true do
 
             for name, value in pairs(currentMarkers) do
-                local target = markers[name]
-                if target and currentMarkers[name] ~= nil then
-                    target:Show()
+                local marker = markers[name]
+                if marker and currentMarkers[name] ~= nil then
+                    marker:Show()
                 end
             end
 
-            Citizen.Wait(10)
+            Citizen.Wait(5)
         end
 
     end)

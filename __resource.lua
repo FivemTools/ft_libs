@@ -64,6 +64,8 @@ exports {
     "GetRandomString",
     "GetDistanceBetween3DCoords",
     "PrintTable",
+    "Copy",
+    "Clone",
 
     -- Ui
     "HelpPromt",
@@ -194,5 +196,7 @@ server_exports {
     "DebugPrint",
     "SetDebug",
     "GetRandomString",
+    "Copy",
+    "Clone",
 
 }

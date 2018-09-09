@@ -50,18 +50,28 @@ end
 --
 -- Get entity in coords
 --
-function GetEntitiesInArea(entities, data)
+function GetEntitiesInArea(settings)
 
     local entitiesInArea = {}
-    for _, id in pairs(entities) do
-
-        local entitieCoords = GetEntityCoords(id)
-        local distance = GetDistanceBetween3DCoords(entitieCoords.x, entitieCoords.y, entitieCoords.z, data.x, data.y, data.z)
-        if distance <= data.range then
-            table.insert(entitiesInArea, id)
+    for _, entityId in pairs(settings.entities) do
+        if DoesEntityExist(entityId) then
+            local entityCoords = GetEntityCoords(entityId)
+            local distance = GetDistanceBetween3DCoords(entityCoords.x, entityCoords.y, entityCoords.z, settings.coords.x, settings.coords.y, settings.coords.z)
+            if distance <= settings.range then
+                table.insert(entitiesInArea, entityId)
+            end
         end
-
     end
     return entitiesInArea
+
+end
+
+--
+--
+--
+function GetEntitiesInAround(settings)
+
+    settings.coords = GetPlayerCoords()
+    return GetEntitiesInArea(settings)
 
 end

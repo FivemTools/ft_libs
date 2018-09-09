@@ -10,35 +10,26 @@
 --
 function GetPickups()
 
-  return GetEntities(FindFirstPickup, FindNextPickup, EndFindPickup)
+    return GetEntities(FindFirstPickup, FindNextPickup, EndFindPickup)
 
 end
 
 --
 -- Get pickups in area
 --
-function GetPickupsInArea(data)
+function GetPickupsInArea(settings)
 
-    local pickups = GetPickups()
-    local pickupsInArea = GetEntitiesInArea(pickups, data)
-    return pickupsInArea
+    settings.entities = GetPickups()
+    return GetEntitiesInArea(settings)
 
 end
 
 --
 -- Get pickups in around
 --
-function GetObjectsInAround(range)
+function GetObjectsInAround(settings)
 
-    local pickups = GetPickups()
-    local playerCoords = GetPlayerCoords()
-    local data = {
-        x = playerCoords.x,
-        y = playerCoords.y,
-        z = playerCoords.z,
-        range = range,
-    }
-    local pickupsInAround = GetEntitiesInArea(pickups, data)
-    return pickupsInAround
+    settings.entities = GetPickups()
+    return GetEntitiesInAround(settings)
 
 end

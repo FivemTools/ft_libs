@@ -108,7 +108,7 @@ function GetPlayersId()
     local players = {}
     local playersPed = GetPlayersPed()
     for key, ped in pairs(playersPed) do
-        if DoesEntityExist(ped) then
+        if DoesEntityExist(ped) and ped ~= GetPlayerPed() then
             local network = NetworkGetPlayerIndexFromPed(ped)
             local id = GetPlayerServerId(network)
             if id ~= nil then
@@ -128,7 +128,7 @@ function GetPlayersPedOrderById()
     local players = {}
     local playersPed = GetPlayersPed()
     for key, ped in pairs(playersPed) do
-        if DoesEntityExist(ped) then
+        if DoesEntityExist(ped) and ped ~= GetPlayerPed() then
             local network = NetworkGetPlayerIndexFromPed(ped)
             local id = GetPlayerServerId(network)
             if id ~= nil then

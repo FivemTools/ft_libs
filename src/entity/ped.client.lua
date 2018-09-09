@@ -35,28 +35,20 @@ end
 --
 -- Get peds in area
 --
-function GetPedsInArea(data)
+function GetPedsInArea(settings)
 
-    local peds = GetPeds()
-    local pedsInArea = GetEntitiesInArea(peds, data)
-    return pedsInArea
+    settings.entities = GetPeds()
+    return GetEntitiesInArea(settings)
 
 end
 
 --
 -- Get peds in around
 --
-function GetPedsInAround(range)
+function GetPedsInAround(settings)
 
-    local peds = GetPeds()
-    local playerCoords = GetPlayerCoords()
-    local data = {
-        x = playerCoords.x,
-        y = playerCoords.y,
-        z = playerCoords.z,
-        range = range,
-    }
-    local pedsInAround = GetEntitiesInArea(peds, data)
+    settings.entities = GetPeds()
+    local pedsInAround = GetEntitiesInAround(settings)
 
     -- Remove player ped
     local playerPed = GetPlayerPed()

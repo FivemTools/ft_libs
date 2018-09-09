@@ -97,27 +97,12 @@ function GetCurrentMenu()
 
 end
 
--- old function name
-function CurrentMenu()
-
-    Citizen.Trace("CurrentMenu function is deprecated ! Please us GetCurrentMenu function.")
-    return GetCurrentMenu()
-
-end
-
 --
 -- Return current
 --
 function GetPrimaryMenu()
 
     return Menus.primary
-
-end
-
--- old function name
-function PrimaryMenu()
-
-    return GetPrimaryMenu()
 
 end
 

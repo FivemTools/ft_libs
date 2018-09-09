@@ -15,7 +15,7 @@ function GetVehicles()
 end
 
 --
--- Get vehicule in direction
+-- Get vehicle in direction
 --
 function GetVehicleInDirection(range)
 
@@ -33,30 +33,21 @@ function GetVehicleInDirection(range)
 end
 
 --
--- Get vehicules in area
+-- Get vehicles in area
 --
-function GetVehiclesInArea(data)
+function GetVehiclesInArea(settings)
 
-    local vehicules = GetVehicles()
-    local vehiculesInArea = GetEntitiesInArea(vehicles, data)
-    return vehiculesInArea
+    settings.entities = GetVehicles()
+    return GetEntitiesInArea(settings)
 
 end
 
 --
--- Get vehicules in around
+-- Get vehicles in around
 --
-function GetVehiculessInAround(range)
+function GetVehiclesInAround(settings)
 
-    local pickups = GetVehicles()
-    local playerCoords = GetPlayerCoords()
-    local data = {
-        x = playerCoords.x,
-        y = playerCoords.y,
-        z = playerCoords.z,
-        range = range,
-    }
-    local vehiculesInAround = GetEntitiesInArea(vehicules, data)
-    return vehiculesInAround
+    settings.entities = GetVehicles()
+    return GetEntitiesInAround(settings)
 
 end

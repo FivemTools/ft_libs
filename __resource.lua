@@ -140,6 +140,7 @@ exports {
     -- Entity
     "GetEntitiesInArea",
     "GetEntityInDirection",
+    "GetEntitiesInAround",
 
     -- Objects
     "GetObjects",
@@ -157,7 +158,7 @@ exports {
     "GetVehicles",
     "GetVehiclesInArea",
     "GetVehiclesInAround",
-    "GetVehicleInDirection",
+    "GetVehiclesInDirection",
 
     -- Vehicules
     "GetPickups",

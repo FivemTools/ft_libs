@@ -35,28 +35,19 @@ end
 --
 -- Get objects in coords
 --
-function GetObjectsInArea(data)
+function GetObjectsInArea(settings)
 
-    local objects = GetObjects()
-    local objectsInArea = GetEntitiesInArea(objects, data)
-    return objectsInArea
+    settings.entities = GetObjects()
+    return GetEntitiesInArea(settings)
 
 end
 
 --
 -- Get objects in around
 --
-function GetObjectsInAround(range)
+function GetObjectsInAround(settings)
 
-    local objects = GetPeds()
-    local playerCoords = GetPlayerCoords()
-    local data = {
-        x = playerCoords.x,
-        y = playerCoords.y,
-        z = playerCoords.z,
-        range = range,
-    }
-    local objectsInAround = GetEntitiesInArea(objects, data)
-    return objectsInAround
+    settings.entities = GetPeds()
+    return GetEntitiesInAround(settings)
 
 end

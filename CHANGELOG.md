@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 - Implement GetPlayersPed function
 - Implement GetPlayersId function
 - Implement GetPlayersPedOrderById function
+- Implement GetEntitiesInAround function
 - Add client export for GetPlayerPed function
 - Add client export for GetPlayerCoords function
 - Add client export for GetDistanceBetween3DCoords function
@@ -59,6 +60,7 @@ All notable changes to this project will be documented in this file.
 - Add client export for GetPlayersPedOrderById function
 - Add client export for Clone function
 - Add client export for Copy function
+- Add client export for GetEntitiesInAround function
 - Add server export for Copy function
 - Add server export for SetDebug function
 

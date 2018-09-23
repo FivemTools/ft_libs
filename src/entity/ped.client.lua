@@ -37,6 +37,7 @@ end
 --
 function GetPedsInArea(settings)
 
+    local settings = settings or {}
     settings.entities = GetPeds()
     return GetEntitiesInArea(settings)
 
@@ -47,6 +48,7 @@ end
 --
 function GetPedsInAround(settings)
 
+    local settings = settings or {}
     settings.entities = GetPeds()
     local pedsInAround = GetEntitiesInAround(settings)
 

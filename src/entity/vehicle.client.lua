@@ -20,7 +20,7 @@ end
 function GetVehicleInDirection(range)
 
     if type(range) ~= "number" then
-        range = 15.50
+        range = 20.0
     end
     local entity = GetEntityInDirection(range)
     if DoesEntityExist(entity) then
@@ -37,6 +37,7 @@ end
 --
 function GetVehiclesInArea(settings)
 
+    local settings = settings or {}
     settings.entities = GetVehicles()
     return GetEntitiesInArea(settings)
 
@@ -47,6 +48,7 @@ end
 --
 function GetVehiclesInAround(settings)
 
+    local settings = settings or {}
     settings.entities = GetVehicles()
     return GetEntitiesInAround(settings)
 

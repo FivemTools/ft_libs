@@ -140,6 +140,7 @@ exports {
     -- Entity
     "GetEntitiesInArea",
     "GetEntityInDirection",
+    "GetEntityObjectInDirection",
     "GetEntitiesInAround",
 
     -- Objects

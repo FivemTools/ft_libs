@@ -52,6 +52,9 @@ end
 --
 function GetEntityInDirection(range)
 
+    if type(range) ~= "number" then
+        range = 20.0
+    end
     return CastRayPlayerPedToPoint(range, 10)
 
 end
@@ -61,6 +64,9 @@ end
 --
 function GetEntityObjectInDirection(range)
 
+    if type(range) ~= "number" then
+        range = 20.0
+    end
     return CastRayPlayerPedToPoint(range, 16)
 
 end
@@ -70,14 +76,15 @@ end
 --
 function GetEntitiesInArea(settings)
 
+    local settings = settings or {}
     assert(type(settings.entities) == "table", "GetEntitiesInArea : entities must be table")
-    assert(type(settings.coords) == "table", "GetEntitiesInArea : coords must be table")
+    assert(type(settings.coords) == "table" or type(settings.coords) == "vector3", "GetEntitiesInArea : coords must be table")
     assert(type(settings.coords.x) == "number", "GetEntitiesInArea : coords x must be number")
     assert(type(settings.coords.y) == "number", "GetEntitiesInArea : coords y must be number")
     assert(type(settings.coords.z) == "number", "GetEntitiesInArea : coords z must be number")
 
     if type(range) ~= "number" then
-        settings.range = 15.50
+        settings.range = 20.0
     end
 
     local entitiesInArea = {}
@@ -102,7 +109,9 @@ end
 --
 function GetEntitiesInAround(settings)
 
+    local settings = settings or {}
     settings.coords = GetPlayerCoords()
+    print("oui 2")
     return GetEntitiesInArea(settings)
 
 end

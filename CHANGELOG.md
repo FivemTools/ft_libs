@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Implement GetVehicles function
 - Implement GetPickups function
 - Implement GetEntityInDirection function
+- Implement GetEntityObjectInDirection function
 - Implement GetPedInDirection function
 - Implement GetPlayerPedInDirection function
 - Implement GetPlayerServerIdInDirection function
@@ -40,6 +41,7 @@ All notable changes to this project will be documented in this file.
 - Add client export for GetVehicles function
 - Add client export for GetPickups function
 - Add client export for GetEntityInDirection function
+- Add client export for GetEntityObjectInDirection function
 - Add client export for GetPedInDirection function
 - Add client export for GetPlayerPedInDirection function
 - Add client export for GetPlayerServerIdInDirection function

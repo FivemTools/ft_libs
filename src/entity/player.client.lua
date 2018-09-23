@@ -49,7 +49,7 @@ end
 function GetPlayerPedInDirection(range)
 
     if type(range) ~= "number" then
-        range = 15.50
+        range = 20.0
     end
     local entity = GetPedInDirection(range)
     if DoesEntityExist(entity) then

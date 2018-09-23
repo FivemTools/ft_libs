@@ -20,7 +20,7 @@ end
 function GetObjectInDirection(range)
 
     if type(range) ~= "number" then
-        range = 15.50
+        range = 20.0
     end
     local entity = GetEntityObjectInDirection(range)
     if DoesEntityExist(entity) then
@@ -37,6 +37,7 @@ end
 --
 function GetObjectsInArea(settings)
 
+    local settings = settings or {}
     settings.entities = GetObjects()
     return GetEntitiesInArea(settings)
 
@@ -47,7 +48,10 @@ end
 --
 function GetObjectsInAround(settings)
 
-    settings.entities = GetPeds()
+    local settings = settings or {}
+    settings.entities = GetObjects()
+    print("oui 1")
+    print("total : " .. TableLength(GetObjects()))
     return GetEntitiesInAround(settings)
 
 end

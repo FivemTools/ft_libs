@@ -19,6 +19,7 @@ end
 --
 function GetPickupsInArea(settings)
 
+    local settings = settings or {}
     settings.entities = GetPickups()
     return GetEntitiesInArea(settings)
 
@@ -27,8 +28,9 @@ end
 --
 -- Get pickups in around
 --
-function GetObjectsInAround(settings)
+function GetPickupsInAround(settings)
 
+    local settings = settings or {}
     settings.entities = GetPickups()
     return GetEntitiesInAround(settings)
 

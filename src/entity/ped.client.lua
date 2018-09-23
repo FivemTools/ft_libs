@@ -20,7 +20,7 @@ end
 function GetPedInDirection(range)
 
     if type(range) ~= "number" then
-        range = 15.50
+        range = 20.0
     end
     local entity = GetEntityInDirection(range)
     if DoesEntityExist(entity) then

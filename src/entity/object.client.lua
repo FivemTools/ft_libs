@@ -22,7 +22,7 @@ function GetObjectInDirection(range)
     if type(range) ~= "number" then
         range = 15.50
     end
-    local entity = GetEntityInDirection(range)
+    local entity = GetEntityObjectInDirection(range)
     if DoesEntityExist(entity) then
         if GetEntityType(entity) == 3 then
             return entity

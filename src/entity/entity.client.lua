@@ -31,19 +31,37 @@ function GetEntities(findFirst, findNext, endFind)
 end
 
 --
--- Get entity in direction
+--  Shape Test Ray
 --
-function GetEntityInDirection(range)
+function CastRayPlayerPedToPoint(range, type)
 
     local playerPed = GetPlayerPed()
     local playerCoords = GetPlayerCoords()
     local entityWorld = GetOffsetFromEntityInWorldCoords(playerPed, 0.0, range, 0.0)
-    local rayHandle = CastRayPointToPoint(playerCoords.x, playerCoords.y, playerCoords.z, entityWorld.x, entityWorld.y, entityWorld.z, 10, playerPed, 0)
+    local rayHandle = StartShapeTestRay(playerCoords.x, playerCoords.y, playerCoords.z, entityWorld.x, entityWorld.y, entityWorld.z, type, playerPed, 0)
     local a, b, c, d, entity = GetRaycastResult(rayHandle)
     if entity ~= nil then
         return entity
     end
     return false
+
+end
+
+--
+-- Get entity in direction
+--
+function GetEntityInDirection(range)
+
+    return CastRayPlayerPedToPoint(range, 10)
+
+end
+
+--
+-- Get object in direction
+--
+function GetEntityObjectInDirection(range)
+
+    return CastRayPlayerPedToPoint(range, 16)
 
 end
 

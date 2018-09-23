@@ -50,8 +50,6 @@ function GetObjectsInAround(settings)
 
     local settings = settings or {}
     settings.entities = GetObjects()
-    print("oui 1")
-    print("total : " .. TableLength(GetObjects()))
     return GetEntitiesInAround(settings)
 
 end

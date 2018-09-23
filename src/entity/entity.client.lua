@@ -111,7 +111,6 @@ function GetEntitiesInAround(settings)
 
     local settings = settings or {}
     settings.coords = GetPlayerCoords()
-    print("oui 2")
     return GetEntitiesInArea(settings)
 
 end

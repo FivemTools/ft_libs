@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
-## [1.2] - 2018-00-00
+## [1.2] - 2018-10-08
 ### Added
 - Implement GetPlayerPed function
 - Implement GetPlayerCoords function

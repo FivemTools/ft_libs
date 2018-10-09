@@ -54,11 +54,6 @@ function area.new(name, data)
     local self = data
     self.name = name
 
-    self.enable = true
-    if data.enable ~= nil then
-        self.enable = data.enable
-    end
-
     -- Trigger
     if data.trigger ~= nil then
         local triggerData = data.trigger

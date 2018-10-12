@@ -148,6 +148,7 @@ function AddArea(...)
                     newArea.x = location.x
                     newArea.y = location.y
                     newArea.z = location.z
+                    newArea.enable = value.enable
                     newArea.blip = Copy(blip)
                     newArea.marker = Copy(marker)
                     newArea.trigger = Copy(trigger)
@@ -175,6 +176,7 @@ function AddArea(...)
                 newArea.x = location.x
                 newArea.y = location.y
                 newArea.z = location.z
+                newArea.enable = value.enable
                 newArea.blip = Copy(blip)
                 newArea.marker = Copy(marker)
                 newArea.trigger = Copy(trigger)
@@ -260,6 +262,7 @@ function SetArea(...)
                     newArea.x = location.x
                     newArea.y = location.y
                     newArea.z = location.z
+                    newArea.enable = value.enable
                     newArea.blip = Copy(blip)
                     newArea.marker = Copy(marker)
                     newArea.trigger = Copy(trigger)
@@ -289,6 +292,7 @@ function SetArea(...)
                 newArea.x = location.x
                 newArea.y = location.y
                 newArea.z = location.z
+                newArea.enable = value.enable
                 newArea.blip = Copy(blip)
                 newArea.marker = Copy(marker)
                 newArea.trigger = Copy(trigger)

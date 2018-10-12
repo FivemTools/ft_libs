@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [1.2.1] - 2018-10-09
+### Changed
+- Fix enable on Area
+
 ## [1.2] - 2018-10-08
 ### Added
 - Implement GetPlayerPed function

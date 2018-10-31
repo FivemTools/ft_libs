@@ -17,7 +17,8 @@ function UpdatePlayerThread()
       while true do
 
         playerPed = Citizen.InvokeNative(0x43A66C31C68491C0, -1) -- Use native GET_PLAYER_PED
-        playerCoords = GetEntityCoords(playerPed)
+        local coords = GetEntityCoords(playerPed)
+        playerCoords = { ["x"] = coords.x, ["y"] = coords.y, ["z"] = coords.z }
         Citizen.Wait(200)
 
       end

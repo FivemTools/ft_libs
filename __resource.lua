@@ -159,7 +159,7 @@ exports {
     "GetVehicles",
     "GetVehiclesInArea",
     "GetVehiclesInAround",
-    "GetVehiclesInDirection",
+    "GetVehicleInDirection",
 
     -- Vehicules
     "GetPickups",

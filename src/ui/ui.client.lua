@@ -12,7 +12,7 @@ function HelpPromt(text)
 
 	SetTextComponentFormat("STRING")
 	AddTextComponentString(text)
-	DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+	DisplayHelpTextFromStringLabel(0, false, true, -1)
 
 end
 

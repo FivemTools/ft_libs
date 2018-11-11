@@ -21,6 +21,21 @@ function GetSteamIDFormSource(source)
 end
 
 --
+-- Get License
+--
+function GetLicenseFormSource(source)
+
+    assert(type(source) == "number", "source must be number")
+
+    local identifier = GetPlayerIdentifiers(source)
+    if identifier[1] ~= nil and string.find(identifier[2], "license") then
+        return identifier[1]
+    end
+	return false
+
+end
+
+--
 -- Get IP
 --
 function GetIpFormSource(source)

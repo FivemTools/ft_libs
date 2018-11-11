@@ -183,6 +183,9 @@ server_scripts {
     "src/utils/utils.common.lua",
     "src/utils/utils.server.lua",
 
+    -- Check Update
+    'src/check.server.lua',
+
 }
 
 server_exports {
@@ -192,6 +195,7 @@ server_exports {
     "PrintTable",
     "Round",
     "GetSteamIDFormSource",
+    "GetLicenseFormSource",
     "GetIpFormSource",
     "TableContainsValue",
     "GetLastContentValue",

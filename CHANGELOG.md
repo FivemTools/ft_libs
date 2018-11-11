@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [1.3.0] - 2018-xx-xx
+## Added
+- Implement GetLicenseFormSource function (export available)
+- Update check
+- Merge pull request 5 https://github.com/FivemTools/ft_libs/pull/5
+
 ## [1.2.2] - 2018-11-11
 ### Changed
 - Fix playerCoords

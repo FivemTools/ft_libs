@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
-## [1.2.2] - 2018-10-09
+## [1.2.2] - 2018-11-11
 ### Changed
 - Fix playerCoords
 - Add client export for GetVehicleInDirection function

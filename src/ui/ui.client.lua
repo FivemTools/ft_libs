@@ -26,10 +26,14 @@ function LoadingPromt(settings)
 	local type = settings.type or 4
 	local time = settings.time or 1000
 
-	N_0xaba17d7ce615adbf("STRING")
+	BeginTextCommandBusyString("STRING")
 	AddTextComponentString(text)
-	N_0xbd12f8228410d9b4(type)
-	N_0x10d373323e5b9c0d()
+	EndTextCommandBusyString(type)
+
+	if time > 0 then
+		Citizen.Wait(time)
+		RemoveLoadingPrompt()
+	end
 
 end
 

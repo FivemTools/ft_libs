@@ -96,6 +96,9 @@ function Text(settings)
 	if settings.right == true then
 		SetTextJustification(2)
 	end
+	if settings.left == true then
+		SetTextJustification(1)
+	end
 	SetTextEntry("STRING")
 	AddTextComponentString(text)
 	DrawText(x, y)

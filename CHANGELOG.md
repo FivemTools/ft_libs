@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 - Implement GetLicenseFormSource function (export available)
 - Update check
 - Merge pull request 5 https://github.com/FivemTools/ft_libs/pull/5
+- Implement TimerBar functions
+
+## Added
+- Fix loadingPromt
 
 ## [1.2.2] - 2018-11-11
 ### Changed

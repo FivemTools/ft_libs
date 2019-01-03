@@ -10,178 +10,185 @@ resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 client_scripts {
 
     -- Utils
-    "src/utils/utils.common.lua",
-    "src/utils/utils.client.lua",
+    'src/utils/utils.common.lua',
+    'src/utils/utils.client.lua',
 
     -- Ui
-    "src/ui/ui.client.lua",
-    "src/ui/instructionalButtons.client.lua",
+    'src/ui/ui.client.lua',
+    'src/ui/instructionalButtons.client.lua',
 
     -- Menu
-    "src/menu/menu.client.lua",
-    "src/menu/menus.client.lua",
+    'src/menu/menu.client.lua',
+    'src/menu/menus.client.lua',
 
     -- Blip
-    "src/blip/blip.client.lua",
-    "src/blip/blips.client.lua",
+    'src/blip/blip.client.lua',
+    'src/blip/blips.client.lua',
 
     -- Trigger
-    "src/trigger/trigger.client.lua",
-    "src/trigger/triggers.client.lua",
+    'src/trigger/trigger.client.lua',
+    'src/trigger/triggers.client.lua',
 
     -- Marker
-    "src/marker/marker.client.lua",
-    "src/marker/markers.client.lua",
+    'src/marker/marker.client.lua',
+    'src/marker/markers.client.lua',
 
     -- Area
-    "src/area/area.client.lua",
-    "src/area/areas.client.lua",
+    'src/area/area.client.lua',
+    'src/area/areas.client.lua',
+
+    -- Timer
+    'src/timer/timer.client.lua',
+    'src/timer/timers.client.lua',
 
     -- Event 100% load
-    "src/load.client.lua",
+    'src/load.client.lua',
 
     -- Entity
-    "src/entity/entity.client.lua",
-    "src/entity/object.client.lua",
-    "src/entity/ped.client.lua",
-    "src/entity/pickup.client.lua",
-    "src/entity/player.client.lua",
-    "src/entity/vehicle.client.lua",
+    'src/entity/entity.client.lua',
+    'src/entity/object.client.lua',
+    'src/entity/ped.client.lua',
+    'src/entity/pickup.client.lua',
+    'src/entity/player.client.lua',
+    'src/entity/vehicle.client.lua',
 
 }
 
 exports {
 
     -- Utils
-    "TableLength",
-    "Round",
-    "CommaValue",
-    "SetDebug",
-    "Print",
-    "PrintTable",
-    "TableContainsValue",
-    "GetLastContentValue",
-    "GetRandomString",
-    "GetDistanceBetween3DCoords",
-    "PrintTable",
-    "Copy",
-    "Clone",
+    'TableLength',
+    'Round',
+    'CommaValue',
+    'SetDebug',
+    'Print',
+    'PrintTable',
+    'TableContainsValue',
+    'GetLastContentValue',
+    'GetRandomString',
+    'GetDistanceBetween3DCoords',
+    'PrintTable',
+    'Copy',
+    'Clone',
 
     -- Ui
-    "HelpPromt",
-    "LoadingPromt",
-    "Message",
-    "Notification",
-    "AdvancedNotification",
-    "Text",
-    "OpenTextInput",
-    "TextNotification",
-    "Show3DText",
+    'HelpPromt',
+    'LoadingPromt',
+    'Message',
+    'Notification',
+    'AdvancedNotification',
+    'Text',
+    'OpenTextInput',
+    'TextNotification',
+    'Show3DText',
 
     -- Instructional Buttons
-    "AddInstructionalButtons",
-    "RemoveInstructionalButtons",
-    "DisplayInstructionalButtons",
-    "GetCurrentInstructionalButtons",
+    'AddInstructionalButtons',
+    'RemoveInstructionalButtons',
+    'DisplayInstructionalButtons',
+    'GetCurrentInstructionalButtons',
 
     -- Menu
-    "AddMenu",
-    "RemoveMenu",
-    "MenuIsOpen",
-    "CurrentMenu",
-    "PrimaryMenu",
-    "GetCurrentMenu",
-    "GetPrimaryMenu",
-    "FreezeMenu",
-    "OpenMenu",
-    "CloseMenu",
-    "NextMenu",
-    "BackMenu",
-    "CleanMenuButtons",
-    "SetMenuButtons",
-    "SetMenuValue",
-    "AddMenuButton",
-    "RemoveMenuButton",
-    "SelecteButton",
+    'AddMenu',
+    'RemoveMenu',
+    'MenuIsOpen',
+    'CurrentMenu',
+    'PrimaryMenu',
+    'GetCurrentMenu',
+    'GetPrimaryMenu',
+    'FreezeMenu',
+    'OpenMenu',
+    'CloseMenu',
+    'NextMenu',
+    'BackMenu',
+    'CleanMenuButtons',
+    'SetMenuButtons',
+    'SetMenuValue',
+    'AddMenuButton',
+    'RemoveMenuButton',
+    'SelecteButton',
 
     -- Blip
-    "AddBlip",
-    "RemoveBlip",
-    "ShowBlip",
-    "HideBlip",
+    'AddBlip',
+    'RemoveBlip',
+    'ShowBlip',
+    'HideBlip',
 
     -- Trigger
-    "AddTrigger",
-    "RemoveTrigger",
-    "SwitchTrigger",
-    "EnableTrigger",
-    "DisableTrigger",
-    "CurrentTrigger",
+    'AddTrigger',
+    'RemoveTrigger',
+    'SwitchTrigger',
+    'EnableTrigger',
+    'DisableTrigger',
+    'CurrentTrigger',
 
     -- Marker
-    "AddMarker",
-    "RemoveMarker",
-    "EnableMarker",
-    "DisableMarker",
-    "SwitchMarker",
-    "CurrentMarker",
+    'AddMarker',
+    'RemoveMarker',
+    'EnableMarker',
+    'DisableMarker',
+    'SwitchMarker',
+    'CurrentMarker',
 
     -- Areas
-    "AddArea",
-    "RemoveArea",
-    "EnableArea",
-    "DisableArea",
-    "SwitchArea",
+    'AddArea',
+    'RemoveArea',
+    'EnableArea',
+    'DisableArea',
+    'SwitchArea',
+
+    -- Timer
+    'AddTimerBar',
 
     -- Debug
-    "SetDebug",
-    "DebugPrint",
+    'SetDebug',
+    'DebugPrint',
 
     -- Entity
-    "GetEntitiesInArea",
-    "GetEntityInDirection",
-    "GetEntityObjectInDirection",
-    "GetEntitiesInAround",
+    'GetEntitiesInArea',
+    'GetEntityInDirection',
+    'GetEntityObjectInDirection',
+    'GetEntitiesInAround',
 
     -- Objects
-    "GetObjects",
-    "GetObjectsInArea",
-    "GetObjectsInAround",
-    "GetObjectInDirection",
+    'GetObjects',
+    'GetObjectsInArea',
+    'GetObjectsInAround',
+    'GetObjectInDirection',
 
     -- Peds
-    "GetPeds",
-    "GetPedsInArea",
-    "GetPedsInAround",
-    "GetPedInDirection",
+    'GetPeds',
+    'GetPedsInArea',
+    'GetPedsInAround',
+    'GetPedInDirection',
 
     -- Vehicules
-    "GetVehicles",
-    "GetVehiclesInArea",
-    "GetVehiclesInAround",
-    "GetVehicleInDirection",
+    'GetVehicles',
+    'GetVehiclesInArea',
+    'GetVehiclesInAround',
+    'GetVehicleInDirection',
 
     -- Vehicules
-    "GetPickups",
-    "GetPickupsInArea",
-    "GetPickupsInAround",
+    'GetPickups',
+    'GetPickupsInArea',
+    'GetPickupsInAround',
 
     -- Player
-    "GetPlayerPed",
-    "GetPlayersId",
-    "GetPlayersPed",
-    "GetPlayerCoords",
-    "GetPlayersPedOrderById",
-    "GetPlayerPedInDirection",
-    "GetPlayerServerIdInDirection",
+    'GetPlayerPed',
+    'GetPlayersId',
+    'GetPlayersPed',
+    'GetPlayerCoords',
+    'GetPlayersPedOrderById',
+    'GetPlayerPedInDirection',
+    'GetPlayerServerIdInDirection',
 
 }
 
 server_scripts {
 
     -- Utils
-    "src/utils/utils.common.lua",
-    "src/utils/utils.server.lua",
+    'src/utils/utils.common.lua',
+    'src/utils/utils.server.lua',
 
     -- Check Update
     'src/check.server.lua',
@@ -191,18 +198,18 @@ server_scripts {
 server_exports {
 
     -- Utils
-    "TableLength",
-    "PrintTable",
-    "Round",
-    "GetSteamIDFormSource",
-    "GetLicenseFormSource",
-    "GetIpFormSource",
-    "TableContainsValue",
-    "GetLastContentValue",
-    "DebugPrint",
-    "SetDebug",
-    "GetRandomString",
-    "Copy",
-    "Clone",
+    'TableLength',
+    'PrintTable',
+    'Round',
+    'GetSteamIDFormSource',
+    'GetLicenseFormSource',
+    'GetIpFormSource',
+    'TableContainsValue',
+    'GetLastContentValue',
+    'DebugPrint',
+    'SetDebug',
+    'GetRandomString',
+    'Copy',
+    'Clone',
 
 }

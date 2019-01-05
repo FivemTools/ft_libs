@@ -77,7 +77,6 @@ Citizen.CreateThread(function()
         local safeZoneX = (1.0 - safeZone) * 0.5
         local safeZoneY = (1.0 - safeZone) * 0.5
         local total = #timerBars
-
         local x = ScreenCoords.baseX - safeZoneX
         local y = ScreenCoords.baseY - safeZoneY
 

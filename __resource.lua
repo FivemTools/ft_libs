@@ -88,6 +88,7 @@ exports {
     "AddMenu",
     "RemoveMenu",
     "MenuIsOpen",
+    "GetCurrentMenu",
     "PrimaryMenu",
     "GetCurrentMenu",
     "GetPrimaryMenu",

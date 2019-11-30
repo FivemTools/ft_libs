@@ -141,6 +141,7 @@ exports {
     "GetEntityInDirection",
     "GetEntityObjectInDirection",
     "GetEntitiesInAround",
+    "CastRayPlayerPedToPoint",
 
     -- Objects
     "GetObjects",
